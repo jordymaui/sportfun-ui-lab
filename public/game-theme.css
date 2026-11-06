@@ -1,0 +1,467 @@
+/* Screen-calibrated palette and proportions. Load after styles, lab and research. */
+:root {
+  --canvas:#080a0f;
+  --surface:#111118;
+  --surface-raised:#18181f;
+  --line:#232b34;
+  --border:#303335;
+  --text:#eff1f2;
+  --muted:#7a8085;
+  --accent:#05b4a4;
+  --positive:#00c62d;
+  --negative:#ff4400;
+}
+
+body,.lab-header {background:#080a0f}
+.lab-header {min-height:66px;padding:12px 24px;gap:24px;border-color:#232b34}
+.lab-brand {font-size:11px;gap:12px}
+.lab-brand img {width:93px;max-height:28px}
+.lab-brand span {font-size:9px;color:#7a8085;letter-spacing:.7px}
+.lab-tabs {background:#111118;border-color:#232b34;box-shadow:none;border-radius:8px}
+.lab-tabs button {padding:8px 14px;font-size:11px;border-radius:5px;color:#7a8085}
+.lab-tabs button[aria-pressed=true],.lab-tabs button.active {background:#303335;box-shadow:none;color:#eff1f2}
+.lab-meta {font-size:8px;color:#7a8085}
+.live-dot {background:#7a8085}
+.lab-layout {grid-template-columns:210px minmax(0,1fr);min-height:calc(100vh - 66px)}
+.lab-sidebar {padding:28px 20px;background:#111118;border-color:#232b34}
+.lab-sidebar h1 {font-size:20px;line-height:1.2;letter-spacing:-.6px;margin-bottom:12px;font-weight:600}
+.lab-sidebar p {font-size:11px;line-height:1.65;color:#7a8085;margin-bottom:20px}
+.eyebrow,.lab-sidebar p.eyebrow,.lab-sidebar>.eyebrow {color:#7a8085;font-size:8px;letter-spacing:1px;margin-bottom:12px}
+.control-label {color:#7a8085;font-size:8px;letter-spacing:.8px}
+.control-group {margin-bottom:20px}
+.segmented {background:#080a0f;border-color:#232b34;border-radius:6px}
+.segmented button {color:#7a8085;font-size:10px;padding:8px 5px;border-radius:4px}
+.segmented button[aria-pressed=true],.segmented button[aria-selected=true],.segmented button.active {background:#303335;color:#eff1f2}
+.reference-button {background:#18181f;border-color:#232b34;border-radius:6px;font-size:10px;padding:11px 10px;color:#c4cacf}
+.reference-button:hover {background:#23232b;border-color:#303335}
+.source-note {border-color:#232b34;margin-top:22px;padding-top:18px;color:#7a8085}
+.source-note p {font-size:10px;color:#7a8085}
+.iteration-note,.iteration-note span {font-size:9px;color:#7a8085}
+.stage {background:#080a0f;padding:24px;gap:0}
+.stage-caption {width:min(1120px,100%);color:#7a8085;font-size:8px;margin-bottom:16px;letter-spacing:.7px}
+.stage-caption span:first-child {color:#b0b7bc}
+.device {width:390px;max-width:100%;min-height:760px;border:1px solid #232b34;border-radius:12px;box-shadow:none;background:#080a0f;container-type:inline-size}
+.device {transition:none}
+.device[data-size=desktop] {width:min(1120px,100%);border-radius:10px;box-shadow:none}
+.game-app {background:#080a0f;color:#eff1f2}
+.game-topbar,.device[data-size=desktop] .game-topbar {height:64px;background:#111118;border-color:#232b34;padding:12px 16px;gap:15px}
+.game-content {background:#080a0f}
+.balances {margin-left:auto;flex:0 1 auto;gap:12px}
+.currency {font-size:11px}
+.gold-coin,.coin {background:#fdb913;border-color:#b87b00;color:#805600}
+.gold-text {color:#fdb913}
+.tp-coin,.tp {background:#eff1f2;color:#080a0f}
+.sport-switch {background:#eff1f2;color:#080a0f;border-radius:50%;height:33px;width:33px;display:grid;place-items:center;padding:7px;flex-shrink:0}
+.sport-switch svg {height:21px;width:21px}
+.game-sports {display:flex;align-items:center;gap:5px;border-radius:28px;padding:4px;background:#18181f;flex-shrink:0}
+.sport-option {display:flex;align-items:center;justify-content:center;height:33px;width:33px;padding:6px;color:#7a8085;border:0;background:transparent;border-radius:50%;flex-shrink:0}
+.sport-option svg,.sport-option img {width:23px;height:23px;object-fit:contain}
+.sport-option.selected,.sport-option.active,.sport-option[aria-pressed=true] {background:#eff1f2;color:#111118}
+.game-desktop-links {display:none}
+.device[data-size=desktop] .game-desktop-links {display:flex;align-items:center;align-self:stretch;gap:19px;margin-left:8px;min-width:0}
+.game-desktop-links button {border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:#7a8085;font-size:11px;font-weight:500;padding:0 2px;white-space:nowrap}
+.game-desktop-links button:hover {color:#eff1f2}
+.game-desktop-links button.active,.game-desktop-links button[aria-current=page],.game-desktop-links button[aria-pressed=true] {color:#eff1f2;border-bottom-color:#eff1f2}
+.top-avatar {background:#303335;border-color:#484c4f;height:30px;width:30px}
+.game-utilities {display:flex;align-items:center;gap:7px;flex-shrink:0}
+.game-utility {height:29px;width:29px;display:grid;place-items:center;padding:6px;border:1px solid #303335;border-radius:50%;background:#18181f;color:#a4aaaf}
+.game-utility svg {height:16px;width:16px}
+.game-utility:hover {background:#303335;color:#eff1f2}
+.game-bottomnav {background:#111118;border-color:#232b34;min-height:61px}
+.device[data-size=desktop] .game-bottomnav {display:none}
+.game-bottomnav button {color:#7a8085}
+.game-bottomnav button.active,.game-bottomnav button[aria-current=page] {color:#eff1f2}
+
+/* Proposed profile structure, using the game's account/sidebar hierarchy. */
+.manager-layout {min-width:0}
+.manager-identity,.manager-main {min-width:0}
+.profile-hero {margin-bottom:8px}
+.cover-art {height:90px;background:#18181f;border-color:#232b34}
+.cover-art::before {display:none}
+.cover-art::after {color:#eff1f20a;letter-spacing:-.7px;font-size:25px;bottom:13px;right:15px}
+.cover-art>span {color:#7a8085;font-size:8px;letter-spacing:1px;margin:18px 20px}
+.cover-pitch,.cover-pitch::before,.cover-pitch::after {border-color:#ffffff08}
+.avatar-wrap {border-color:#080a0f;background:#18181f}
+.profile-identity>.chip {background:#23232b;color:#c4cacf;border:1px solid #303335;font-size:7px;border-radius:4px}
+.profile-name {font-size:22px;font-weight:600;letter-spacing:-.5px}
+.handle {color:#7a8085;font-size:9px;line-height:1.6;overflow-wrap:anywhere}
+.profile-bio {color:#a4aaaf;font-size:11px;line-height:1.6}
+.verified {color:#c4cacf;font-size:14px}
+.club-line {color:#c4cacf;font-size:10px;line-height:1.5}
+.club-line svg {color:#7a8085}
+.club-line span {color:#7a8085;font-size:7px}
+.profile-actions {gap:7px}
+.button,.button.secondary,.button.icon {background:#303335;border-color:transparent;color:#eff1f2;border-radius:20px;min-height:35px;font-size:10px;padding:9px 13px}
+.button.primary {background:#fff;border-color:#fff;color:#111118}
+.button.primary:hover {background:#c4cacf;border-color:#c4cacf}
+.button.secondary:hover,.button.icon:hover {background:#484c4f}
+.button.icon {width:35px;padding:8px}
+.button svg {height:14px;width:14px}
+.chip,.badge {background:#23232b;color:#b0b7bc;border-radius:4px}
+.chip.accent,.badge.accent {color:#c4cacf;background:#23232b;border-color:#303335}
+.stats-grid {gap:8px;margin:12px 0 20px}
+.stat {background:#111118;border:1px solid transparent;border-radius:12px;padding:13px 11px}
+.stat-label {color:#7a8085;font-size:8px;letter-spacing:.6px;min-height:26px}
+.stat-value {font-family:Inter,Arial,sans-serif;font-size:20px;font-weight:600;letter-spacing:-.5px;margin-top:5px}
+.stat small {color:#7a8085;font-size:8px}
+.profile-tabs {gap:24px;border-color:#232b34;margin-bottom:16px}
+.profile-tabs button {font-size:11px;color:#7a8085;padding:13px 0}
+.profile-tabs button.active,.profile-tabs button[aria-selected=true] {border-bottom-color:#fff;color:#eff1f2}
+.profile-tabs button span {font-size:9px;color:#7a8085}
+.section-heading {margin:20px 0 12px}
+.section-heading h2,.section-heading h3 {font-size:13px;font-weight:550;letter-spacing:-.15px}
+.section-heading>span {color:#7a8085}
+.squad-list {gap:5px}
+.player-row {background:#18181f;border-color:transparent;border-radius:7px;padding:10px;gap:10px}
+button.player-row:hover {background:#23232b;border-color:#303335}
+.player-detail strong {font-size:11px;font-weight:500}
+.player-detail small {color:#7a8085;font-size:8px}
+.player-value {font-family:Inter,Arial,sans-serif;font-size:12px;font-variant-numeric:tabular-nums}
+.player-value small {font-size:8px;color:#7a8085}
+.player-row>svg {color:#7a8085}
+.available-dot {background:#00c62d}
+.form-bars i {background:#00c62d!important}
+.form-bars i:nth-child(2) {background:#fdb913!important}
+.positive {color:#00c62d}
+.achievement {background:#18181f;border-color:transparent;border-radius:12px}
+.achievement svg {color:#b0b7bc}
+.achievement p,.achievement small {color:#7a8085}
+.empty-note {color:#7a8085;font-size:8px}
+
+.device[data-size=desktop] .game-content {padding:0 24px 24px}
+.device[data-size=desktop] .game-content:has(.manager-layout) {padding:0}
+.device[data-size=desktop] .manager-layout {display:grid;grid-template-columns:220px minmax(0,1fr);min-height:695px}
+.device[data-size=desktop] .manager-identity {background:#111118;border-right:1px solid #232b34;padding:0 16px 24px}
+.device[data-size=desktop] .manager-main {padding:20px 24px 26px}
+.device[data-size=desktop] .manager-identity .profile-hero {padding:0;margin:0}
+.device[data-size=desktop] .manager-identity .cover-art {height:86px;margin:0 -16px 0;background:#18181f}
+.device[data-size=desktop] .manager-identity .cover-art>span {margin:17px 16px;font-size:7px}
+.device[data-size=desktop] .manager-identity .cover-art::after {font-size:20px;right:12px;bottom:10px}
+.device[data-size=desktop] .manager-identity .profile-identity {margin-top:-27px;min-height:67px;gap:9px;align-items:flex-end;flex-wrap:wrap}
+.device[data-size=desktop] .manager-identity .avatar-wrap {width:67px;height:67px;border-width:3px;border-color:#111118}
+.device[data-size=desktop] .manager-identity .profile-identity>.chip {margin:0 0 5px;padding:4px;font-size:6px;max-width:100%}
+.device[data-size=desktop] .manager-identity .profile-copy {padding:14px 0 0!important}
+.device[data-size=desktop] .manager-identity .profile-name {font-size:22px;margin-bottom:5px}
+.device[data-size=desktop] .manager-identity .profile-bio {margin:13px 0;font-size:11px;line-height:1.6}
+.device[data-size=desktop] .manager-identity .profile-actions {display:flex;flex-direction:column;margin:18px 0 0;gap:8px;max-width:none}
+.device[data-size=desktop] .manager-identity .profile-actions .button {width:100%;min-height:34px;flex:auto}
+.device[data-size=desktop] .manager-identity .club-line {flex-wrap:wrap;gap:5px}
+.device[data-size=desktop] .manager-identity .club-line span {margin-left:0}
+.device[data-size=desktop] .manager-main .stats-grid {margin:0 0 18px;gap:10px}
+.device[data-size=desktop] .manager-main .stat {padding:14px 15px;background:#111118}
+.device[data-size=desktop] .manager-main .stat-value {font-size:24px}
+.device[data-size=desktop] .manager-main .stat-label {min-height:auto;font-size:9px}
+.device[data-size=desktop] .manager-main .profile-tabs {margin-bottom:18px}
+.device[data-size=desktop] .manager-main .squad-list {grid-template-columns:1fr}
+.device[data-size=desktop] .manager-main .player-row {padding:12px 14px}
+.device[data-size=desktop] .manager-main .player-detail strong {font-size:12px}
+.device[data-size=desktop] .manager-main .player-detail small {font-size:9px}
+.device[data-size=desktop] .manager-main .player-shirt {height:46px;width:42px}
+
+/* Research content uses flat nested panels, compact labels and quiet dividers. */
+.competition-list {background:#111118;border-color:transparent;border-radius:16px}
+.competition-row {background:#18181f;border-color:#232b34;padding:11px 12px;min-height:61px}
+.competition-detail strong {font-size:12px;font-weight:500}
+.competition-detail small,.league-position small,.league-position strong>span {color:#7a8085}
+.competition-tag {background:#16351f;border-color:transparent;color:#00c62d;font-size:7px;border-radius:4px}
+.league-icon {color:#7a8085}
+.career-grid {gap:8px}
+.career-highlight {background:#18181f;border-color:transparent;border-radius:16px;padding:14px 12px 10px}
+.career-label {color:#7a8085;font-size:8px;letter-spacing:.5px}
+.career-number,.picks-highlight .career-number {font-family:Inter,Arial,sans-serif;font-weight:600;color:#eff1f2;letter-spacing:-1px}
+.league-position strong {font-family:Inter,Arial,sans-serif;font-weight:600}
+.career-number>span {color:#7a8085}
+.career-highlight p {color:#9da3a8}
+.career-highlight .gold-metric,.career-highlight .gold-metric b {color:#fdb913}
+.highlight-context,.highlight-footnote {color:#7a8085}
+.highlight-action,.highlight-footnote {border-color:#303335}
+.highlight-action {color:#b0b7bc}
+.highlight-action:hover {color:#eff1f2}
+.device[data-size=desktop] .career-highlight {padding:16px 14px 12px}
+.device[data-size=desktop] .career-label {font-size:9px}
+.device[data-size=desktop] .career-number {font-size:29px}
+.device[data-size=desktop] .highlight-player strong {font-size:12px}
+.device[data-size=desktop] .career-highlight p {font-size:10px}
+.device[data-size=desktop] .highlight-context {font-size:10px}
+.call-card {background:#111118;border-color:transparent;border-radius:16px}
+.call-player {background:#18181f;border-color:#232b34;color:#7a8085;border-radius:6px}
+.call-shareholder {background:#303335;color:#b0b7bc}
+.calls-intro,.call-author>div>span,.call-meta,.calls-context {color:#7a8085}
+.call-card blockquote {color:#c4cacf}
+.call-actions {border-color:#232b34}
+.call-actions button,.call-like>span:first-child {color:#a4aaaf}
+.call-like[aria-pressed=true],.call-like[aria-pressed=true]>span:first-child {color:#05b4a4}
+
+.player-hero,.device[data-size=desktop] .player-hero {background:#111118;border-bottom:1px solid #232b34}
+.player-hero .large-shirt {filter:none}
+.player-meta>.muted,.player-meta,.player-meta .chip {color:#7a8085}
+.player-picker button {background:#18181f;color:#a4aaaf;border-radius:7px}
+.player-picker button[aria-pressed=true] {background:#23232b;border-color:#484c4f;color:#eff1f2}
+.chart {background:#111118;border-color:transparent;border-radius:16px}
+.chart-labels {color:#7a8085}
+.chart path[stroke='#03ffcc'] {stroke:#05b4a4}
+.chart circle[fill='#03ffcc'] {fill:#05b4a4}
+.chart stop {stop-color:#05b4a4}
+.share-heading>svg {color:#a4aaaf}
+.share-controls {background:#111118;border-color:transparent;border-radius:16px}
+.field input,.field select,.field textarea {background:#080a0f;border-color:#303335;border-radius:6px}
+.share-canvas {border-color:#232b34;border-radius:8px;box-shadow:none}
+.share-card {background:#111118;border-color:#232b34;box-shadow:none}
+.share-card::after {display:none}
+.share-card-stat {background:#18181f}
+.share-stat-small strong {color:#eff1f2}
+.share-card-footer {border-color:#232b34}
+.reference-panel {background:#111118;border-color:#232b34;box-shadow:none;border-radius:8px;backdrop-filter:none}
+.reference-select {display:flex;align-items:center;gap:12px;color:#7a8085;font-size:11px;flex-wrap:wrap}
+.reference-select select {background:#18181f;border:1px solid #303335;color:#eff1f2;border-radius:6px;padding:9px 30px 9px 11px;font-size:11px;min-width:180px;max-width:100%}
+dialog {background:#111118;border-color:#303335;border-radius:12px}
+dialog input,dialog textarea {background:#080a0f;border-color:#303335}
+
+/* Collapse based on the actual preview width, independently of the lab sidebar. */
+@container (max-width:700px) {
+  .device[data-size=desktop] .manager-layout {grid-template-columns:200px minmax(0,1fr)}
+  .device[data-size=desktop] .manager-identity {padding-left:13px;padding-right:13px}
+  .device[data-size=desktop] .manager-identity .cover-art {margin-left:-13px;margin-right:-13px}
+  .device[data-size=desktop] .manager-main {padding:16px}
+  .device[data-size=desktop] .manager-main .stats-grid {gap:6px}
+  .device[data-size=desktop] .manager-main .stat {padding:11px 8px}
+  .device[data-size=desktop] .manager-main .stat-value {font-size:17px}
+  .device[data-size=desktop] .career-number {font-size:25px}
+  .device[data-size=desktop] .game-desktop-links {gap:10px;margin-left:0}
+}
+@container (max-width:580px) {
+  .device[data-size=desktop] .manager-layout {display:block}
+  .device[data-size=desktop] .manager-identity {padding:0 18px 20px;border-right:0;border-bottom:1px solid #232b34}
+  .device[data-size=desktop] .manager-identity .cover-art {height:85px;margin-left:-18px;margin-right:-18px}
+  .device[data-size=desktop] .manager-identity .profile-actions {flex-direction:row;max-width:360px;margin-top:14px}
+  .device[data-size=desktop] .manager-identity .profile-actions .button {width:auto;flex:1}
+  .device[data-size=desktop] .manager-identity .profile-identity {flex-wrap:nowrap;justify-content:space-between}
+  .device[data-size=desktop] .manager-identity .profile-identity>.chip {font-size:7px}
+  .device[data-size=desktop] .manager-main {padding:18px 15px}
+  .device[data-size=desktop] .manager-main .stat-value {font-size:18px}
+  .device[data-size=desktop] .game-desktop-links {display:none}
+  .device[data-size=desktop] .share-workspace {display:block}
+  .device[data-size=desktop] .share-controls {margin-top:18px}
+  .device[data-size=desktop] .player-meta h2 {font-size:29px}
+  .device[data-size=desktop] .player-hero .large-shirt {height:142px;width:110px}
+}
+@media(max-width:1120px) {
+  .lab-layout {grid-template-columns:190px minmax(0,1fr)}
+  .lab-sidebar {padding:24px 16px}
+  .lab-header {padding:12px 20px}
+  .stage {padding:20px}
+}
+@media(max-width:760px) {
+  .lab-header {padding:13px 16px;gap:12px}
+  .lab-tabs {border-radius:7px}
+  .lab-tabs button {padding:8px;font-size:10px}
+  .lab-layout {display:block}
+  .lab-sidebar {padding:18px 16px 16px;grid-template-columns:1fr 1fr;column-gap:16px}
+  .lab-sidebar h1 {font-size:20px;margin-bottom:8px}
+  .lab-sidebar>p {margin-bottom:12px}
+  .lab-sidebar .control-group {margin:4px 0 8px}
+  .lab-sidebar .reference-button {grid-column:1/-1;margin:5px 0 0;min-height:36px}
+  .stage {padding:20px 12px 32px}
+  .stage-caption {font-size:7px;letter-spacing:.5px}
+  .device,.device[data-size=desktop] {border-radius:10px;box-shadow:none}
+  .source-note,.iteration-note {display:none}
+}
+@media(max-width:400px) {
+  .stage {padding-left:9px;padding-right:9px}
+  .game-topbar,.device[data-size=desktop] .game-topbar {gap:10px;padding:12px}
+  .balances {gap:8px}
+  .currency {font-size:10px}
+  .game-sports {gap:3px;padding:3px}
+  .sport-option {height:29px;width:29px;padding:5px}
+  .sport-option svg,.sport-option img {height:20px;width:20px}
+  .profile-name {font-size:21px}
+  .stat {padding:12px 8px}
+  .stat-value {font-size:16px}
+  .career-highlight {padding:12px 9px 9px}
+}
+
+/* Mobile references: one app viewport, fixed navigation, content scrolling within it. */
+.device[data-size=mobile] {
+  width:390px;
+  height:844px;
+  max-height:calc(100vh - 150px);
+  min-height:650px;
+  border-radius:12px;
+}
+.device[data-size=mobile] .game-app {height:100%;min-height:0;overflow:hidden}
+.device[data-size=mobile] .game-topbar {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+  height:68px;
+  min-height:68px;
+  padding:12px;
+  gap:8px;
+  background:#080a0f;
+  border-bottom-color:transparent;
+  flex-shrink:0;
+}
+.device[data-size=mobile] .balances {grid-column:1;grid-row:1;justify-self:start;margin:0;gap:8px;min-width:0}
+.device[data-size=mobile] .currency {font-size:10px;font-family:Inter,Arial,sans-serif;font-weight:550;gap:4px;letter-spacing:-.1px}
+.device[data-size=mobile] .game-sports {grid-column:2;grid-row:1;justify-self:center;gap:3px;padding:4px}
+.device[data-size=mobile] .sport-option {height:32px;width:32px;padding:5px}
+.device[data-size=mobile] .sport-option svg,.device[data-size=mobile] .sport-option img {height:24px;width:24px}
+.device[data-size=mobile] .game-utilities {grid-column:3;grid-row:1;justify-self:end;gap:6px}
+.device[data-size=mobile] .game-topbar>.top-avatar {grid-column:3;grid-row:1;justify-self:end}
+.device[data-size=mobile] .game-utility {width:27px;height:27px;padding:5px}
+.device[data-size=mobile] .game-utilities .top-avatar {width:29px;height:29px}
+.device[data-size=mobile] .game-content {
+  flex:1 1 0;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  overscroll-behavior:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#303335 transparent;
+  padding:0 15px 22px;
+  font-size:12px;
+  line-height:1.5;
+}
+.device[data-size=mobile] .game-bottomnav {flex:0 0 65px;min-height:65px;padding:7px 8px 10px;background:#080a0f;border-color:#232b34}
+.device[data-size=mobile] .game-bottomnav button {font-size:10px;gap:4px;padding:5px 3px}
+.device[data-size=mobile] .game-bottomnav svg {height:20px;width:20px}
+.device[data-size=mobile] .manager-layout {display:block}
+.device[data-size=mobile] .manager-identity {padding:0;border:0;background:transparent}
+.device[data-size=mobile] .manager-main {padding:0}
+.device[data-size=mobile] .profile-hero {padding:0 16px;margin:0 -15px 14px}
+.device[data-size=mobile] .cover-art {height:68px;margin:0 -16px;background:#111118}
+.device[data-size=mobile] .cover-art>span {margin:15px 16px;font-size:9px}
+.device[data-size=mobile] .cover-art::after {font-size:21px;bottom:10px}
+.device[data-size=mobile] .profile-identity {margin-top:-25px;min-height:64px;align-items:flex-end}
+.device[data-size=mobile] .avatar-wrap {width:64px;height:64px;border-width:3px}
+.device[data-size=mobile] .avatar-wrap>img.avatar-rank {width:24px;height:27px;right:-6px;bottom:-4px}
+.device[data-size=mobile] .profile-identity>.chip {margin:0 0 4px;font-size:9px;line-height:1.3;padding:5px 7px}
+.device[data-size=mobile] .profile-copy {padding:11px 0 0!important}
+.device[data-size=mobile] .profile-name {font-size:22px;line-height:1.2;margin-bottom:5px}
+.device[data-size=mobile] .handle {font-size:10px;line-height:1.5}
+.device[data-size=mobile] .profile-bio {font-size:12px;line-height:1.5;margin:9px 0}
+.device[data-size=mobile] .club-line {font-size:11px;line-height:1.4}
+.device[data-size=mobile] .club-line span {font-size:8px}
+.device[data-size=mobile] .profile-actions {margin:13px 0 0;gap:8px}
+.device[data-size=mobile] .button {font-size:12px;min-height:37px;padding:10px 13px}
+.device[data-size=mobile] .button.icon {min-height:35px;font-size:15px;padding:8px}
+.device[data-size=mobile] .stats-grid {gap:7px;margin:14px 0 12px}
+.device[data-size=mobile] .stat {padding:12px 9px;border-radius:10px}
+.device[data-size=mobile] .stat-label {font:500 9px/1.5 Inter,Arial,sans-serif;letter-spacing:.3px;min-height:27px}
+.device[data-size=mobile] .stat-value {font:600 21px/1.2 Inter,Arial,sans-serif;letter-spacing:-.5px;margin-top:6px}
+.device[data-size=mobile] .stat small {font-size:9px;line-height:1.4;margin-top:6px}
+.device[data-size=mobile] .profile-tabs {gap:23px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;white-space:nowrap;margin:0 0 16px;min-height:45px}
+.device[data-size=mobile] .profile-tabs::-webkit-scrollbar {display:none}
+.device[data-size=mobile] .profile-tabs button {font-size:12px;padding:13px 0;flex-shrink:0}
+.device[data-size=mobile] .profile-tabs button span {font-size:10px}
+.device[data-size=mobile] .section-heading {margin:20px 0 12px}
+.device[data-size=mobile] .section-heading h2,.device[data-size=mobile] .section-heading h3 {font-size:14px;font-weight:550}
+.device[data-size=mobile] .section-heading>span,.device[data-size=mobile] .research-section .section-heading>span {font-size:9px;letter-spacing:.2px}
+.device[data-size=mobile] .competition-row {min-height:66px;padding:12px;gap:10px}
+.device[data-size=mobile] .competition-detail strong {font-size:12px;line-height:1.4}
+.device[data-size=mobile] .competition-detail small {font-size:10px;line-height:1.4}
+.device[data-size=mobile] .competition-tag {font-size:9px;padding:4px 6px}
+.device[data-size=mobile] .league-position strong {font-size:17px}
+.device[data-size=mobile] .league-position strong>span {font-size:11px}
+.device[data-size=mobile] .league-position small {font-size:8px;letter-spacing:.3px}
+.device[data-size=mobile] .career-grid {gap:8px}
+.device[data-size=mobile] .career-highlight {padding:14px 11px 11px;border-radius:12px}
+.device[data-size=mobile] .career-label {font:500 9px/1.5 Inter,Arial,sans-serif;letter-spacing:.3px;min-height:27px}
+.device[data-size=mobile] .highlight-player {gap:6px;min-height:54px;margin:6px 0}
+.device[data-size=mobile] .highlight-player strong {font-size:12px;line-height:1.3}
+.device[data-size=mobile] .career-number {font-size:29px;letter-spacing:-1px;min-height:54px;margin:6px 0}
+.device[data-size=mobile] .career-number>span {font-size:10px}
+.device[data-size=mobile] .career-highlight p {font-size:11px;line-height:1.5}
+.device[data-size=mobile] .highlight-context,.device[data-size=mobile] .highlight-footnote {font-size:10px;line-height:1.4}
+.device[data-size=mobile] .highlight-action {font-size:11px;padding-top:11px;min-height:34px}
+.device[data-size=mobile] .highlight-action svg {height:14px;width:14px}
+.device[data-size=mobile] .player-row {padding:12px 10px;gap:9px}
+.device[data-size=mobile] .player-detail strong {font-size:13px;line-height:1.4}
+.device[data-size=mobile] .player-detail small {font-size:10px;line-height:1.4}
+.device[data-size=mobile] .player-value {font-size:13px}
+.device[data-size=mobile] .player-value small {font-size:9px}
+.device[data-size=mobile] .player-row>.form-bars {gap:2px;min-width:23px}
+.device[data-size=mobile] .calls-intro {font-size:12px;line-height:1.5}
+.device[data-size=mobile] .call-card {padding:14px}
+.device[data-size=mobile] .call-author strong {font-size:12px}
+.device[data-size=mobile] .call-author>div>span {font-size:9px}
+.device[data-size=mobile] .call-shareholder {font-size:7px;padding:5px}
+.device[data-size=mobile] .call-player {font-size:11px;padding:8px}
+.device[data-size=mobile] .call-card blockquote {font-size:13px;line-height:1.7}
+.device[data-size=mobile] .call-meta {font-size:9px}
+.device[data-size=mobile] .call-meta>span:last-child {font-size:8px}
+.device[data-size=mobile] .call-actions button {font-size:11px}
+.device[data-size=mobile] .call-like strong {font-size:11px}
+.device[data-size=mobile] .calls-context {font-size:10px;line-height:1.5}
+.device[data-size=mobile] .empty-note {font-size:10px;line-height:1.5}
+.device[data-size=mobile] .player-meta .chip {font-size:10px}
+.device[data-size=mobile] .player-meta>.muted {font-size:9px;letter-spacing:.4px}
+.device[data-size=mobile] .player-picker button {font-size:10px}
+.device[data-size=mobile] .chart-labels {font-size:9px}
+@container (max-width:340px) {
+  .device[data-size=mobile] .game-topbar {padding:12px 9px;gap:5px}
+  .device[data-size=mobile] .currency {font-size:9px;gap:3px}
+  .device[data-size=mobile] .balances {gap:5px}
+  .device[data-size=mobile] .gold-coin,.device[data-size=mobile] .tp-coin {width:14px;height:14px;font-size:7px}
+  .device[data-size=mobile] .sport-option {height:28px;width:28px;padding:4px}
+  .device[data-size=mobile] .sport-option img,.device[data-size=mobile] .sport-option svg {height:21px;width:21px}
+  .device[data-size=mobile] .game-sports {padding:3px;gap:2px}
+  .device[data-size=mobile] .game-utilities {gap:4px}
+  .device[data-size=mobile] .game-utility {height:24px;width:24px;padding:4px}
+  .device[data-size=mobile] .game-utilities .top-avatar {height:26px;width:26px}
+  .device[data-size=mobile] .game-content {padding-left:12px;padding-right:12px}
+  .device[data-size=mobile] .profile-hero {margin-left:-12px;margin-right:-12px}
+  .device[data-size=mobile] .stat {padding-left:7px;padding-right:7px}
+  .device[data-size=mobile] .stat-value {font-size:18px}
+  .device[data-size=mobile] .player-row {gap:7px;padding-left:8px;padding-right:8px}
+  .device[data-size=mobile] .player-detail strong {font-size:12px}
+  .device[data-size=mobile] .player-detail small {font-size:9px}
+  .device[data-size=mobile] .player-row>.form-bars {display:none}
+  .device[data-size=mobile] .career-number {font-size:25px}
+}
+.game-utilities{display:flex;align-items:center;gap:8px;flex-shrink:0}.game-utility{width:28px;height:28px;border:0;border-radius:50%;display:grid;place-items:center;background:#303335;color:#b6babe;padding:6px}.game-utility svg{width:16px;height:16px}.sport-option img.football-mark{width:21px;height:25px}.sport-option.selected img.football-mark{filter:invert(1)}
+
+/* On a real narrow browser, the lab becomes a compact toolbar around the app. */
+@media(max-width:760px) {
+  html {height:100%;overflow:hidden}
+  body {height:100vh;height:100dvh;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+  .lab-header {flex:0 0 auto;min-height:0;padding:8px 12px;gap:7px;align-items:center}
+  .lab-brand {gap:9px;min-height:18px}
+  .lab-brand img {width:78px;max-height:18px}
+  .lab-brand span {font-size:8px;letter-spacing:.6px;margin:0}
+  .lab-tabs {flex:0 0 100%;width:100%;padding:3px;border-radius:6px}
+  .lab-tabs button {min-height:30px;padding:7px 6px;font-size:10px}
+  .lab-layout {display:flex;flex-direction:column;flex:1 1 0;min-height:0;overflow:hidden}
+  .lab-sidebar {display:flex;flex:0 0 auto;flex-direction:row;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #232b34}
+  .lab-sidebar>h1,.lab-sidebar>.eyebrow,.lab-sidebar>p,
+  .lab-sidebar>.source-note,.lab-sidebar>.iteration-note,
+  .lab-sidebar>.control-group:not(:has([data-size])) {display:none}
+  .lab-sidebar>.control-group:has([data-size]) {width:126px;flex:0 0 126px;margin:0}
+  .lab-sidebar>.control-group:has([data-size])>.control-label {display:none}
+  .lab-sidebar .segmented {padding:3px;gap:3px}
+  .lab-sidebar .segmented button {min-height:28px;padding:6px 5px;font-size:10px}
+  .lab-sidebar .reference-button {width:auto;flex:1;min-width:0;min-height:36px;margin:0;padding:8px 9px;font-size:10px;line-height:1.3;gap:5px}
+  .stage {display:flex;flex-direction:column;flex:1 1 0;min-height:0;padding:0;overflow:hidden;align-items:stretch}
+  .stage-caption {flex:0 0 24px;min-height:24px;width:100%;margin:0;padding:6px 12px;align-items:center;font-size:7px;line-height:1.2;letter-spacing:.5px}
+  .device,.device[data-size=mobile],.device[data-size=desktop] {
+    flex:1 1 0;
+    width:100%;
+    max-width:100%;
+    height:auto;
+    min-height:0;
+    max-height:none;
+    border-radius:0;
+    border-left:0;
+    border-right:0;
+    border-bottom:0;
+    box-shadow:none;
+  }
+  .device .game-app {height:100%;min-height:0;overflow:hidden}
+  .device .game-topbar {flex-shrink:0}
+  .device .game-content {flex:1 1 0;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#303335 transparent}
+  .device[data-size=mobile] .game-bottomnav {flex-shrink:0;padding-bottom:max(10px,env(safe-area-inset-bottom));min-height:65px}
+  .device .share-workspace {min-width:0}
+  .device .share-controls {margin-bottom:12px}
+  .reference-panel {position:absolute;inset:4px;z-index:6;width:auto;max-width:none;max-height:none;margin:0;padding:14px;overflow:auto;border-radius:8px}
+  .reference-panel .section-heading {margin-top:0}
+  .reference-panel img {height:auto;max-height:none;margin:18px auto}
+}

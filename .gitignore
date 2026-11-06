@@ -1,0 +1,16 @@
+references/
+.vercel/
+.env*
+node_modules/
+outputs/
+qa-artifacts/
+screenshots/
+test-results/
+playwright-report/
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json

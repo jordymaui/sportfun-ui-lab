@@ -1,0 +1,25 @@
+# Private local screenshot references must never be uploaded.
+references/
+
+# Repository metadata, local deployment state and generated output.
+.git/
+.vercel/
+node_modules/
+outputs/
+qa-artifacts/
+screenshots/
+test-results/
+playwright-report/
+*.log
+
+# Credentials and local environment configuration.
+.env*
+**/.env*
+.aws/
+.ssh/
+*.pem
+*.key
+*.p12
+*.pfx
+**/credentials*.json
+**/service-account*.json

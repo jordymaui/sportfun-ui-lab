@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'">
+  <title>Sport.Fun — Profile & Share Lab</title>
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/lab.css"><link rel="stylesheet" href="/research.css"><link rel="stylesheet" href="/game-theme.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="lab-header">
+    <a class="lab-brand" href="/" aria-label="Sport.Fun design lab"><img src="/assets/wordmark.png" alt="Sport.Fun"><span>DESIGN LAB</span></a>
+    <nav class="lab-tabs" aria-label="Mockup screen">
+      <button data-view="manager" aria-pressed="true">Manager profile</button><button data-view="player" aria-pressed="false">Player & Calls</button><button data-view="share" aria-pressed="false">Sharing</button>
+    </nav><span class="lab-meta"><span class="live-dot"></span><span id="environment-label">DESIGN PROTOTYPE</span></span>
+  </header>
+  <main class="lab-layout">
+    <aside class="lab-sidebar">
+      <span class="eyebrow">01 / PROFILES & SHARING</span>
+      <h1>Profiles<br>& sharing</h1>
+      <p>New ideas, inside the game’s visual language.</p>
+      <div class="control-group"><span class="control-label">Preview size</span><div class="segmented" aria-label="Preview size"><button data-size="mobile" aria-pressed="true">Mobile</button><button data-size="desktop" aria-pressed="false">Desktop</button></div></div>
+      <div class="control-group"><span class="control-label">On this screen</span><p id="screen-description" class="screen-description"></p></div>
+      <button class="reference-button" id="reference-toggle" aria-expanded="false" hidden>Compare new game UI <span>↗</span></button>
+      <div class="source-note"><span class="eyebrow">VISUAL REFERENCE</span><p>Colours and component styling matched to your new game screenshots.</p><p>Profile layouts and sharing are proposed features. All numbers are sample data.</p></div>
+      <div class="iteration-note"><span>V0.3</span> New game UI · 6 Nov 2026</div>
+    </aside>
+    <section class="stage" aria-label="Interactive mockup">
+      <div class="stage-caption"><span id="stage-label">MANAGER PROFILE</span><span>CONCEPT · SAMPLE DATA</span></div>
+      <div class="reference-panel" id="reference-panel" hidden><div class="section-heading"><h2>Your new game screenshots</h2><button class="button icon" id="reference-close" aria-label="Close reference">×</button></div><label class="reference-select">Reference screen <select id="reference-select"><optgroup label="Desktop"><option value="roster">Roster</option><option value="live-scores">Live scores</option><option value="leaderboard">Leaderboard</option><option value="rewards">Account · FUN Rewards</option><option value="reputation">Account · Reputation</option></optgroup><optgroup label="Mobile"><option value="mobile-roster">Mobile · Roster</option><option value="mobile-rewards">Mobile · Account rewards</option><option value="mobile-leaderboard-sheet">Mobile · Leaderboard sheet</option><option value="mobile-leaderboard">Mobile · Leaderboard</option><option value="mobile-trades">Mobile · Trades</option></optgroup></select></label><img id="reference-image" alt="User-provided new Sport.Fun roster screenshot"><p class="muted">Supplied 6 November 2026. Used for colour, spacing and component reference. Displayed only by this local preview server.</p></div>
+      <div class="device" data-size="mobile"><div class="game-app"><div id="game-topbar" class="game-topbar"></div><div id="screen" class="game-content"></div><nav id="game-bottomnav" class="game-bottomnav" aria-label="Prototype navigation"></nav></div></div>
+    </section>
+  </main>
+  <dialog id="edit-dialog"><form id="edit-form"><div class="section-heading"><h2>Edit mock profile</h2><button class="button icon" type="button" id="edit-close" aria-label="Close editor">×</button></div><label class="field">Display name<input name="name" maxlength="24" required></label><label class="field">Supported club<input name="club" maxlength="30"></label><label class="field">Bio<textarea name="bio" maxlength="100" rows="3"></textarea></label><p class="muted">Saved in this browser only.</p><button class="button primary" type="submit">Save preview</button></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body></html>
