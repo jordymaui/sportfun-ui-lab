@@ -14,3 +14,6 @@ playwright-report/
 *.pfx
 credentials*.json
 service-account*.json
+
+.vercel
+.env*

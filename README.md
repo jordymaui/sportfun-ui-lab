@@ -16,6 +16,8 @@ Open <http://127.0.0.1:4186>. The preview uses sample data and local interaction
 
 Source repository: [jordymaui/sportfun-ui-lab](https://github.com/jordymaui/sportfun-ui-lab) (private).
 
+Hosted preview: [sportfun-ui-lab.vercel.app](https://sportfun-ui-lab.vercel.app). Vercel is connected to the GitHub repository; pushes to `main` deploy the production preview.
+
 Vercel serves the static `public/` folder. `vercel.json` runs `npm run check` before deployment and requires no dependencies or environment secrets. The local Node server is for development only. Hosted preview links use the deployed hostname. The screenshot comparison is available only on localhost, and `references/` is excluded from both Git and Vercel uploads.
 
 ## Asset provenance
