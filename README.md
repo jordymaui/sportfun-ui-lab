@@ -39,6 +39,7 @@ The prototype reuses assets from the local `sdf-site` checkout, plus the user's 
 | `shirt-5.webp` | `../sdf-site/public/images/public-home-v8/shirts-football/Goalkeeper1.webp` |
 | `division.webp` | `../sdf-site/public/images/public-home-v8/divisions/rankDiamond.webp` |
 | `endgame-avatar.png` | User-supplied `codex-clipboard-0d2bc6b0-e3a7-4e3c-a2b7-db12ea6867bf.png`, a 200×200 blue anime stadium avatar, copied unchanged |
+| `endgame-cover-v1.png` | AI-generated 2172×724 stadium panorama based on the supplied ENDGAME avatar, approved by the user; used in the responsive profile cover and manager share cards |
 | `reference-game.png` | `../sdf-site/public/images/marketing/football-mobiles-live-v2-20260730.png` |
 
 ENDGAME and its avatar are the user's supplied in-game identity, used across the profile, Calls and share cards. Rankings, scores, holdings, rewards and Call activity remain illustrative. The supplied football and NFL logos are rendered as CSS luminance masks to match the sport selector's active and inactive colours.
@@ -93,5 +94,7 @@ After the v0.2 research update, browser review verified the overview/career sect
 For v0.3, JavaScript syntax checks passed. Browser review covered the desktop profile, the 390px preview, and actual 390×844 and 320×740 browser viewports. Neither phone viewport had horizontal page overflow; at 320px the content width and scroll width both measured 310px, and the bottom navigation ended at the viewport bottom. Roster and Trades show active navigation states, and switching from a scrolled roster to a player resets the content to the top. The mobile reference image loaded correctly, and a revised 1080×1080 Picks-result PNG was downloaded and visually inspected. The five card types and two export formats were not exhaustively re-tested in this styling pass.
 
 The subsequent identity and player-layout update passed JavaScript syntax checks. Browser review verified ENDGAME and the supplied avatar/logos, migration of the previous demo name, the desktop player structure and the mobile Selection/Market/Statistics tabs. At 390×844, page and player content had no horizontal overflow; Market used stacked transaction cards, Statistics showed the radar and detail placeholders, and the mobile Share player action opened the composer. A 1080×1080 ENDGAME manager card was successfully exported. These are visual mockups; no trade or game-account action was performed.
+
+The generated ENDGAME cover was then applied to the desktop and mobile profile and manager share cards. Browser review confirmed the character remains visible in both profile crops and in square/story card previews. A square manager PNG with the cover downloaded successfully, and JavaScript syntax and whitespace checks passed.
 
 The saved Cloudflare session exposes the campaign/tool account's four applications. The local GitHub login can read `sportdotfun/sdf-site`; `fdf-platform` was not in its accessible repositories. The current screenshots improve visual calibration; actual frontend duplication still requires access to the game source.

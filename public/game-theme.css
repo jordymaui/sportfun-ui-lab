@@ -79,11 +79,10 @@ body,.lab-header {background:#080a0f}
 .manager-layout {min-width:0}
 .manager-identity,.manager-main {min-width:0}
 .profile-hero {margin-bottom:8px}
-.cover-art {height:90px;background:#18181f;border-color:#232b34}
-.cover-art::before {display:none}
-.cover-art::after {color:#eff1f20a;letter-spacing:-.7px;font-size:25px;bottom:13px;right:15px}
-.cover-art>span {color:#7a8085;font-size:8px;letter-spacing:1px;margin:18px 20px}
-.cover-pitch,.cover-pitch::before,.cover-pitch::after {border-color:#ffffff08}
+.cover-art {height:100px;position:relative;overflow:hidden;background:#080a0f;border-color:#232b34}
+.cover-art::before,.cover-art::after {display:none;content:none}
+.cover-art .profile-cover {position:absolute;inset:0;display:block;width:100%;height:100%;max-width:none;object-fit:cover;object-position:75% 32%}
+.cover-pitch {display:none}
 .avatar-wrap {border-color:#080a0f;background:#18181f}
 .profile-identity>.chip {background:#23232b;color:#c4cacf;border:1px solid #303335;font-size:7px;border-radius:4px}
 .profile-name {font-size:22px;font-weight:600;letter-spacing:-.5px}
@@ -137,9 +136,7 @@ button.player-row:hover {background:#23232b;border-color:#303335}
 .device[data-size=desktop] .manager-identity {background:#111118;border-right:1px solid #232b34;padding:0 16px 24px}
 .device[data-size=desktop] .manager-main {padding:20px 24px 26px}
 .device[data-size=desktop] .manager-identity .profile-hero {padding:0;margin:0}
-.device[data-size=desktop] .manager-identity .cover-art {height:86px;margin:0 -16px 0;background:#18181f}
-.device[data-size=desktop] .manager-identity .cover-art>span {margin:17px 16px;font-size:7px}
-.device[data-size=desktop] .manager-identity .cover-art::after {font-size:20px;right:12px;bottom:10px}
+.device[data-size=desktop] .manager-identity .cover-art {height:100px;margin:0 -16px 0;background:#080a0f}
 .device[data-size=desktop] .manager-identity .profile-identity {margin-top:-27px;min-height:67px;gap:9px;align-items:flex-end;flex-wrap:wrap}
 .device[data-size=desktop] .manager-identity .avatar-wrap {width:67px;height:67px;border-width:3px;border-color:#111118}
 .device[data-size=desktop] .manager-identity .profile-identity>.chip {margin:0 0 5px;padding:4px;font-size:6px;max-width:100%}
@@ -235,7 +232,7 @@ dialog input,dialog textarea {background:#080a0f;border-color:#303335}
 @container (max-width:580px) {
   .device[data-size=desktop] .manager-layout {display:block}
   .device[data-size=desktop] .manager-identity {padding:0 18px 20px;border-right:0;border-bottom:1px solid #232b34}
-  .device[data-size=desktop] .manager-identity .cover-art {height:85px;margin-left:-18px;margin-right:-18px}
+  .device[data-size=desktop] .manager-identity .cover-art {height:auto;aspect-ratio:3/1;min-height:100px;max-height:150px;margin-left:-18px;margin-right:-18px}
   .device[data-size=desktop] .manager-identity .profile-actions {flex-direction:row;max-width:360px;margin-top:14px}
   .device[data-size=desktop] .manager-identity .profile-actions .button {width:auto;flex:1}
   .device[data-size=desktop] .manager-identity .profile-identity {flex-wrap:nowrap;justify-content:space-between}
@@ -331,9 +328,7 @@ dialog input,dialog textarea {background:#080a0f;border-color:#303335}
 .device[data-size=mobile] .manager-identity {padding:0;border:0;background:transparent}
 .device[data-size=mobile] .manager-main {padding:0}
 .device[data-size=mobile] .profile-hero {padding:0 16px;margin:0 -15px 14px}
-.device[data-size=mobile] .cover-art {height:68px;margin:0 -16px;background:#111118}
-.device[data-size=mobile] .cover-art>span {margin:15px 16px;font-size:9px}
-.device[data-size=mobile] .cover-art::after {font-size:21px;bottom:10px}
+.device[data-size=mobile] .cover-art {height:auto;aspect-ratio:3/1;min-height:100px;max-height:150px;margin:0 -16px;background:#080a0f}
 .device[data-size=mobile] .profile-identity {margin-top:-25px;min-height:64px;align-items:flex-end}
 .device[data-size=mobile] .avatar-wrap {width:64px;height:64px;border-width:3px}
 .device[data-size=mobile] .avatar-wrap>img.avatar-rank {width:24px;height:27px;right:-6px;bottom:-4px}
