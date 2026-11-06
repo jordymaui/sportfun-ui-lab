@@ -1,4 +1,5 @@
 import { profileOverview, callsPanel } from './research.js';
+import { renderPlayerProfile } from './player-profile.js';
 const $ = (selector) => document.querySelector(selector);
 const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -19,10 +20,12 @@ const icons = {
 const icon = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${icons[name]||icons.star}</svg>`;
 let saved = {};
 try { saved = JSON.parse(localStorage.getItem('sportfun-ui-lab') || '{}') || {}; } catch {}
-const state = {view:'manager',size:window.innerWidth>=1000?'desktop':'mobile',tab:'overview',name:typeof saved.name==='string'?saved.name:'Jordy',bio:typeof saved.bio==='string'?saved.bio:'Building a squad. Backing my picks.',club:typeof saved.club==='string'?saved.club:'Your club',liked:false,player:0,shareType:'picks',format:'square'};
+const state = {view:'manager',size:window.innerWidth>=1000?'desktop':'mobile',tab:'overview',name:typeof saved.name==='string'?saved.name:'ENDGAME',bio:typeof saved.bio==='string'?saved.bio:'Building a squad. Backing my picks.',club:typeof saved.club==='string'?saved.club:'Your club',liked:false,player:0,playerTab:'selection',shareType:'picks',format:'square'};
 const params = new URLSearchParams(location.search);
 if(['manager','player','share'].includes(params.get('view'))) state.view=params.get('view');
-if(params.has('name')) state.name=params.get('name').slice(0,24)||'Jordy';
+if(params.has('name')) state.name=params.get('name').slice(0,24)||'ENDGAME';
+// Migrate the previous demo identity in saved profiles and older preview links.
+if(state.name==='Jordy')state.name='ENDGAME';
 if(['manager','player','picks','pack','call'].includes(params.get('card')))state.shareType=params.get('card');
 if(['0','1','2','3','4'].includes(params.get('player')))state.player=Number(params.get('player'));
 const players = [
@@ -32,43 +35,40 @@ const players = [
   {name:'Vitinha',short:'Vitinha',team:'PSG',position:'MID',number:17,shirt:4,value:'218.40',change:'+3.6%',points:'104.6',form:[41,57,73,54,83]},
   {name:'Alisson Becker',short:'Alisson',team:'Liverpool',position:'GK',number:1,shirt:5,value:'165.20',change:'+2.8%',points:'92.4',form:[45,75,60,85,70]}
 ];
-const descriptions={manager:'Your identity, where you compete, career highlights and Calls. Based on your profile research notes.',player:'See how a shareholder’s Call connects a footballer page to their own profile.',share:'Picks results, pack pulls and Calls — each shared with your identity attached. Sample data throughout.'};
+const descriptions={manager:'Your identity, where you compete, career highlights and Calls. Based on your profile research notes.',player:'Player pages matched to your desktop and iOS references, with proposed Calls alongside the existing game layout.',share:'Picks results, pack pulls and Calls — each shared with your identity attached. Sample data throughout.'};
 const stat=(label,value,extra='')=>`<div class="stat"><span class="stat-label">${label}</span><strong class="stat-value">${value}</strong>${extra?`<small>${extra}</small>`:''}</div>`;
 const form=(values)=>`<span class="form-bars" aria-label="Illustrative recent form">${values.map((n,i)=>`<i style="height:${n}%;background:${i===1?'#fdb913':'#00c62d'}"></i>`).join('')}</span>`;
 const shirt=(p,large=false)=>`<div class="${large?'large-shirt':'player-shirt'}"><img src="/assets/shirt-${p.shirt}.webp" alt="${p.team} shirt"><span>${p.number}</span></div>`;
 function topbar(){
-  $('#game-topbar').innerHTML=`<div class="game-sports" aria-label="Football selected · sport selector visual"><span class="sport-option selected"><img class="football-mark" src="/assets/football-mark.svg" alt="Football selected"></span><span class="sport-option" aria-label="NFL visual reference"><svg viewBox="0 0 28 33" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M3 5Q14 9 25 5v14q0 7-11 12Q3 26 3 19Z"/><path d="M8 12v8q0 5 6 7 6-2 6-7v-8M14 12v10m-3-7h6m-6 4h6"/><path d="M6 3Q14-1 22 3"/></svg></span></div><nav class="game-desktop-links" aria-label="Profile prototype sections"><button data-section="overview">Profile</button><button data-section="squad">Squad</button><button data-section="calls">Calls</button><button data-view="share">Share</button></nav><div class="balances"><span class="currency"><b class="gold-coin">★</b> 9.52k</span><span class="currency"><b class="tp-coin">TP</b> 420</span></div><div class="game-utilities"><button class="game-utility" data-section="overview" aria-label="View competitive profile">${icon('trophy')}</button><button class="game-utility" data-action="media-preview" aria-label="Media prototype placeholder">${icon('tv')}</button><button class="top-avatar" data-view="manager" aria-label="Manager profile"><img src="/assets/avatar.webp" alt=""></button></div>`;
+  $('#game-topbar').innerHTML=`<div class="game-sports" aria-label="Football selected · sport selector visual"><span class="sport-option selected"><span class="sport-mark football-mark" role="img" aria-label="Football selected"></span></span><span class="sport-option"><span class="sport-mark nfl-mark" role="img" aria-label="NFL"></span></span></div><nav class="game-desktop-links" aria-label="Profile prototype sections"><button data-section="overview">Profile</button><button data-section="squad">Squad</button><button data-section="calls">Calls</button><button data-view="share">Share</button></nav><div class="balances"><span class="currency"><b class="gold-coin">★</b> 9.52k</span><span class="currency"><b class="tp-coin">TP</b> 420</span></div><div class="game-utilities"><button class="game-utility" data-section="overview" aria-label="View competitive profile">${icon('trophy')}</button><button class="game-utility" data-action="media-preview" aria-label="Media prototype placeholder">${icon('tv')}</button><button class="top-avatar" data-view="manager" aria-label="Manager profile"><img src="/assets/endgame-avatar.png" alt=""></button></div>`;
   $('#game-bottomnav').innerHTML=[['manager','home','Home'],['manager','users','Roster'],['player','arrows','Trades'],['player','football','Live'],['manager','trophy','Leaderboard']].map(([view,glyph,label])=>`<button data-nav="${label}" data-target="${view}" aria-label="Preview ${label}">${icon(glyph)}<span>${label}</span></button>`).join('');
 }
 function manager(){
-  return `<div class="manager-layout"><aside class="manager-identity"><div class="profile-hero"><div class="cover-art"><span>MANAGER PROFILE</span><div class="cover-pitch"></div></div><div class="profile-identity"><div class="avatar-wrap"><img src="/assets/avatar.webp" alt="Sample manager avatar"><img class="avatar-rank" src="/assets/division.webp" alt="Diamond division"></div><span class="chip">DIAMOND DIVISION</span></div><div class="profile-copy"><h2 class="profile-name">${escapeHtml(state.name)}</h2><span class="handle">@${escapeHtml(state.name.toLowerCase().replace(/\s/g,'')||'manager')} · Manager since 2025</span><p class="profile-bio">${escapeHtml(state.bio)}</p><div class="club-line">${icon('football')} ${escapeHtml(state.club)} <span>SUPPORTED CLUB</span></div><div class="profile-actions"><button class="button primary" data-action="share-manager">${icon('share')} Share profile</button><button class="button secondary" data-action="edit">${icon('edit')} Edit</button></div></div></div></aside><section class="manager-main">
+  return `<div class="manager-layout"><aside class="manager-identity"><div class="profile-hero"><div class="cover-art"><span>MANAGER PROFILE</span><div class="cover-pitch"></div></div><div class="profile-identity"><div class="avatar-wrap"><img src="/assets/endgame-avatar.png" alt="ENDGAME in-game avatar"><img class="avatar-rank" src="/assets/division.webp" alt="Diamond division"></div><span class="chip">DIAMOND DIVISION</span></div><div class="profile-copy"><h2 class="profile-name">${escapeHtml(state.name)}</h2><span class="handle">@${escapeHtml(state.name.toLowerCase().replace(/\s/g,'')||'manager')} · Manager since 2025</span><p class="profile-bio">${escapeHtml(state.bio)}</p><div class="club-line">${icon('football')} ${escapeHtml(state.club)} <span>SUPPORTED CLUB</span></div><div class="profile-actions"><button class="button primary" data-action="share-manager">${icon('share')} Share profile</button><button class="button secondary" data-action="edit">${icon('edit')} Edit</button></div></div></div></aside><section class="manager-main">
     <div class="stats-grid">${stat('SEASON RANK','#128','of 6,400 · 2026/27')}${stat('BEST RANK','#84','of 5,200 · 2025/26')}${stat('TOURNAMENTS','24','Career to date')}</div>
     <div class="profile-tabs" role="tablist" aria-label="Profile sections"><button role="tab" data-profile-tab="overview" aria-selected="${state.tab==='overview'}">Overview</button><button role="tab" data-profile-tab="squad" aria-selected="${state.tab==='squad'}">Squad <span>5</span></button><button role="tab" data-profile-tab="calls" aria-selected="${state.tab==='calls'}">Calls <span>1</span></button></div>
     ${state.tab==='overview'?profileOverview(state,{shirt,icon,escapeHtml,players}):state.tab==='calls'?callsPanel(state,{shirt,icon,escapeHtml,players}):`<div class="section-heading"><h3>My starting five</h3><span class="muted mono">DEMO LINEUP</span></div><div class="squad-list">${players.map((p,i)=>`<button class="player-row" data-player="${i}">${shirt(p)}<span class="player-detail"><strong>${p.short}</strong><small><span class="available-dot"></span>${p.team} <span>${p.position}</span></small></span>${form(p.form)}<span class="player-value"><strong>${p.points}</strong><small>POINTS</small></span>${icon('chevron')}</button>`).join('')}</div>`}
     <p class="empty-note">Concept screen · illustrative stats and squad</p></section></div>`;
 }
-function player(){const p=players[state.player];return `<div class="player-hero"><div class="player-meta"><span class="chip">${p.team} / ${p.position}</span><h2>${p.name}</h2><span class="muted">PLAYER PROFILE CONCEPT</span><button class="button secondary" data-action="share-player">${icon('share')} Share player</button></div>${shirt(p,true)}</div>
-  <div class="stats-grid">${stat('SHARE PRICE',`<span class="gold-text">●</span> ${p.value}`,`<span class="positive">${p.change} this week</span>`)}${stat('LAST TOURNAMENT',p.points,'Performance points')}${stat('RECENT FORM',form(p.form),'Last five appearances')}</div>
-  <div class="section-heading"><h3>Performance</h3><span class="chip">LAST 5</span></div><div class="chart"><svg viewBox="0 0 340 150" aria-label="Illustrative performance chart" role="img"><defs><linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#00c62d" stop-opacity=".24"/><stop offset="1" stop-color="#00c62d" stop-opacity="0"/></linearGradient></defs><path d="M0 30h340M0 75h340M0 120h340" stroke="#232b34"/><path d="M8 122 88 88 168 101 248 50 332 18V150H8Z" fill="url(#chartFill)"/><path d="M8 122 88 88 168 101 248 50 332 18" fill="none" stroke="#00c62d" stroke-width="3"/><circle cx="332" cy="18" r="5" fill="#00c62d"/></svg><div class="chart-labels"><span>GW 06</span><span>GW 07</span><span>GW 08</span><span>GW 09</span><span>GW 10</span></div></div>
-  ${state.player===0?callsPanel(state,{shirt,icon,escapeHtml,players}):'<div class="empty-note">No sample Calls for this player yet. Choose Yamal to explore the idea.</div>'}
-  <div class="section-heading"><h3>Explore the squad</h3><span class="muted">Sample players</span></div><div class="player-picker">${players.map((p,i)=>`<button data-player="${i}" aria-pressed="${i===state.player}" title="${p.name}">${shirt(p)}<span>${p.short}</span></button>`).join('')}</div><p class="empty-note">Prices, form and scores are illustrative.</p>`;}
+function player(){return renderPlayerProfile(state,{players,shirt,icon,escapeHtml,callsPanel});}
 const shareLabels={picks:'Picks result',pack:'Pack pull',call:'My Call',manager:'Manager profile',player:'Player spotlight'};
 function share(){return `<div class="section-heading share-heading"><div><span class="eyebrow">YOUR MOMENT. YOUR NAME.</span><h2>Share your game.</h2></div>${icon('share')}</div><div class="share-workspace"><div class="share-preview"></div><div class="share-controls"><label class="field">Card content<select id="share-type">${Object.entries(shareLabels).map(([value,label])=>`<option value="${value}" ${state.shareType===value?'selected':''}>${label}</option>`).join('')}</select></label><div class="control-group"><span class="control-label">Format</span><div class="segmented"><button data-format="square" aria-pressed="${state.format==='square'}">Square 1:1</button><button data-format="story" aria-pressed="${state.format==='story'}">Story 9:16</button></div></div><button class="button primary" data-action="download">${icon('download')} Download PNG</button><button class="button secondary" data-action="copy">${icon('link')} Copy preview link</button><p class="muted share-disclaimer">Preview only. Nothing is posted to a social account.</p></div></div>`;}
 let renderedScreen;
 function render(){
-  const screenKey=`${state.view}:${state.view==='manager'?state.tab:state.view==='player'?state.player:''}`;
-  document.querySelectorAll('[data-view]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.view===state.view)));
-  document.querySelectorAll('[data-size]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.size===state.size)));
+  const screenKey=`${state.view}:${state.view==='manager'?state.tab:state.view==='player'?`${state.player}:${state.playerTab}`:''}`;
+  document.querySelectorAll('button[data-view]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.view===state.view)));
+  document.querySelectorAll('button[data-size]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.size===state.size)));
   document.querySelectorAll('[data-section]').forEach(el=>el.setAttribute('aria-current',state.view==='manager'&&el.dataset.section===state.tab?'page':'false'));
   const activeNav=state.view==='manager'?(state.tab==='squad'?'Roster':'Home'):state.view==='player'?'Trades':null;
   document.querySelectorAll('[data-nav]').forEach(el=>el.setAttribute('aria-current',el.dataset.nav===activeNav?'page':'false'));
   $('.device').dataset.size=state.size;
+  $('.device').dataset.view=state.view;
   $('#screen-description').textContent=descriptions[state.view];
   $('#stage-label').textContent={manager:'MANAGER PROFILE',player:'PLAYER PROFILE',share:'SHARE COMPOSER'}[state.view];
   $('#screen').innerHTML=state.view==='manager'?manager():state.view==='player'?player():share();
-  if(renderedScreen!==screenKey)$('#screen').scrollTop=0;
+  if(renderedScreen!==screenKey){$('#screen').scrollTop=0;window.scrollTo(0,0);}
   renderedScreen=screenKey;
-  $('.game-bottomnav').hidden=state.view==='share';
+  $('.game-bottomnav').hidden=state.view!=='manager';
   if(state.view==='share'){
     const preview=$('.share-preview');
     preview.innerHTML='<p class="muted">Preparing card…</p>';
@@ -87,7 +87,8 @@ document.addEventListener('click', async e=>{
   if(el.dataset.section){state.view='manager';state.tab=el.dataset.section;render();}
   if(el.dataset.size){state.size=el.dataset.size;render();}
   if(el.dataset.profileTab){state.tab=el.dataset.profileTab;render();}
-  if(el.dataset.player!==undefined){state.player=Number(el.dataset.player);state.view='player';render();}
+  if(el.dataset.playerTab){state.playerTab=el.dataset.playerTab;render();}
+  if(el.dataset.player!==undefined){state.player=Number(el.dataset.player);state.playerTab='selection';state.view='player';render();}
   if(el.dataset.format){state.format=el.dataset.format;render();}
   if(el.dataset.share){state.shareType=el.dataset.share;state.view='share';render();}
   if(el.dataset.nav){if(el.dataset.nav==='Home'){state.view='manager';state.tab='overview';render();}else if(el.dataset.nav==='Roster'){state.view='manager';state.tab='squad';render();}else if(el.dataset.nav==='Trades'){state.view='player';render();}else toast(`${el.dataset.nav} is outside this profile study.`);}
@@ -99,13 +100,14 @@ document.addEventListener('click', async e=>{
     case 'share-player':state.shareType='player';state.view='share';render();break;
     case 'like-call':state.liked=!state.liked;render();break;
     case 'media-preview':toast('Media is outside this profile study.');break;
+    case 'player-trade-preview':toast('Visual preview only — no trade is placed.');break;
     case 'edit':$('#edit-form [name=name]').value=state.name;$('#edit-form [name=bio]').value=state.bio;$('#edit-form [name=club]').value=state.club;$('#edit-dialog').showModal();break;
     case 'copy':try{const u=new URL(location.href);u.search=new URLSearchParams({view:'share',card:state.shareType,name:state.name,player:String(state.player)});await navigator.clipboard.writeText(u.href);toast(isLocalPreview?'Local preview link copied. Works on this computer.':'Preview link copied.');}catch{toast('Clipboard unavailable. Copy the address from your browser.');}break;
     case 'download':el.disabled=true;try{await downloadCard();toast('PNG ready — check your downloads.');}catch{toast('The PNG could not be generated. Please try again.');}finally{el.disabled=false;}break;
   }
 });
-document.addEventListener('change',e=>{if(e.target.id==='share-type'){state.shareType=e.target.value;render();}if(isLocalPreview&&e.target.id==='reference-select'){const allowed=['roster','live-scores','leaderboard','rewards','reputation','mobile-roster','mobile-rewards','mobile-leaderboard-sheet','mobile-leaderboard','mobile-trades'];if(allowed.includes(e.target.value)){$('#reference-image').src=`/reference/${e.target.value}.png`;$('#reference-image').alt=`User-provided new Sport.Fun ${e.target.selectedOptions[0].textContent} screenshot`;}}});
-$('#edit-form').addEventListener('submit',e=>{e.preventDefault();state.name=$('#edit-form [name=name]').value.trim()||'Jordy';state.bio=$('#edit-form [name=bio]').value.trim();state.club=$('#edit-form [name=club]').value.trim()||'Your club';try{localStorage.setItem('sportfun-ui-lab',JSON.stringify({name:state.name,bio:state.bio,club:state.club}));}catch{}$('#edit-dialog').close();render();toast('Mock profile updated.');});
+document.addEventListener('change',e=>{if(e.target.id==='share-type'){state.shareType=e.target.value;render();}if(isLocalPreview&&e.target.id==='reference-select'){const allowed=['roster','live-scores','leaderboard','rewards','reputation','mobile-roster','mobile-rewards','mobile-leaderboard-sheet','mobile-leaderboard','mobile-trades','player-overview','player-details','player-transactions','mobile-player-selection','mobile-player-news','mobile-player-market','mobile-player-statistics'];if(allowed.includes(e.target.value)){$('#reference-image').src=`/reference/${e.target.value}.png`;$('#reference-image').alt=`User-provided new Sport.Fun ${e.target.selectedOptions[0].textContent} screenshot`;}}});
+$('#edit-form').addEventListener('submit',e=>{e.preventDefault();state.name=$('#edit-form [name=name]').value.trim()||'ENDGAME';state.bio=$('#edit-form [name=bio]').value.trim();state.club=$('#edit-form [name=club]').value.trim()||'Your club';try{localStorage.setItem('sportfun-ui-lab',JSON.stringify({name:state.name,bio:state.bio,club:state.club}));}catch{}$('#edit-dialog').close();render();toast('Mock profile updated.');});
 async function loadImage(url){const img=new Image();img.src=url;await img.decode();return img;}
 async function buildCard(){
   const s={...state},p=players[s.shareType==='pack'?1:s.player],type=s.shareType;
@@ -117,7 +119,7 @@ async function buildCard(){
   ctx.strokeStyle='#232b34';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(75,165);ctx.lineTo(1005,165);ctx.stroke();
   const logo=await loadImage('/assets/wordmark.png');ctx.drawImage(logo,75,75,215,215*logo.height/logo.width);
   ctx.fillStyle='#7a8085';ctx.font='500 20px "DM Mono"';ctx.textAlign='right';ctx.fillText(shareLabels[type].toUpperCase(),1005,110);
-  const center=H===1920?650:365;const img=await loadImage(person?'/assets/avatar.webp':`/assets/shirt-${p.shirt}.webp`);
+  const center=H===1920?650:365;const img=await loadImage(person?'/assets/endgame-avatar.png':`/assets/shirt-${p.shirt}.webp`);
   if(person){ctx.save();ctx.beginPath();ctx.arc(540,center-80,90,0,Math.PI*2);ctx.clip();ctx.drawImage(img,450,center-170,180,180);ctx.restore();}else{const ratio=img.width/img.height;ctx.drawImage(img,540-130*ratio,center-220,260*ratio,260);ctx.fillStyle='#fff';ctx.font='800 52px Inter';ctx.textAlign='center';ctx.fillText(String(p.number),540,center-115);}
   const heading={manager:'DIAMOND DIVISION',picks:'MY BEST PICKS RESULT',pack:'MY BIGGEST PACK PULL',call:'ON LAMINE YAMAL',player:p.team.toUpperCase()}[type];
   ctx.textAlign='center';ctx.fillStyle='#7a8085';ctx.font='500 22px "DM Mono"';ctx.fillText(heading,540,center+75);

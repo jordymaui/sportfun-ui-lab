@@ -65,8 +65,8 @@ export function callsPanel(state, {shirt, icon, escapeHtml, players}) {
       <p class="calls-intro">The thinking behind the picks.</p>
       <article class="call-card">
         <div class="call-author">
-          <img src="/assets/avatar.webp" alt="Sample manager avatar">
-          <div><strong>${escapeHtml(state.name || 'Jordy')}</strong><span>5 Nov 2026 · 18:42 UTC</span></div>
+          <img src="/assets/endgame-avatar.png" alt="ENDGAME in-game avatar">
+          <div><strong>${escapeHtml(state.name || 'ENDGAME')}</strong><span>5 Nov 2026 · 18:42 UTC</span></div>
           <span class="call-shareholder">SHAREHOLDER</span>
         </div>
         <button class="call-player" data-player="0">${shirt(players[0])}<span>On <strong>Lamine Yamal</strong></span>${icon('chevron')}</button>
