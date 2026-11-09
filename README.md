@@ -94,10 +94,13 @@ Player pages also use these badges beside the player's club, below performance b
 - Edit the prototype's display name, bio and supported club; the default identity is ENDGAME supporting Fulham, and changes stay in this browser's local storage.
 - Switch mobile/desktop layout and compare against the saved game screenshot references.
 - Compose Picks-result, pack-pull, Call, manager or player cards in square (1080×1080) or story (1080×1920) format. Preview and PNG download use the same Canvas renderer, retaining identity and a sample-data label.
+- Manager cards use the game's flat surfaces, Inter typography and DM Mono labels, with a left-aligned identity, supported-club badge and equally sized rank values. Square cards use two stat columns; story cards stack them with room for the season context.
 - Copy a preview URL on the current hostname. Hosted URLs can be shared; localhost URLs work only on the computer running the development server.
 - Sharing has a sticky Back to profile/player control. It restores the source view, tab and scroll position, even after changing card format or revisiting Sharing. Direct share links fall back to the relevant profile.
 
 ## Validation history — 6 November 2026
+
+The profile-card refinement on 9 November passed JavaScript syntax and whitespace checks. Both square and story PNGs were downloaded and visually inspected for typography, spacing, image crops and overlap. The 390px mobile preview displayed the square card without horizontal overflow. Profile ranks remain sample data.
 
 For v0.4 on 9 November, the 1660px desktop review measured a 76px header, 22% sidebar and a roughly 505px player performance panel. The 390px and 320px phone layouts had no horizontal page or player-content overflow. Browser review covered all three player tabs, shared manager navigation and the full-width control; supplied badge images loaded successfully. Static rendering covered all 30 player/size/tab combinations, including badge paths, fixture pairs and existing action hooks. Syntax and whitespace checks passed. Chart values and fixture probabilities remain illustrative.
 

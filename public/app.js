@@ -1,6 +1,7 @@
 import { profileOverview, callsPanel } from './research.js';
 import { renderPlayerProfile } from './player-profile.js';
 import { getClubBadge } from './club-badges.js';
+import { buildProfileShareCard } from './profile-share-card.js';
 const $ = (selector) => document.querySelector(selector);
 const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -135,6 +136,7 @@ async function loadImage(url){const img=new Image();img.src=url;await img.decode
 async function buildCard(){
   const s={...state},p=players[s.shareType==='pack'?1:s.player],type=s.shareType;
   await document.fonts.ready;
+  if(type==='manager')return buildProfileShareCard(s,{loadImage,getClubBadge});
   const W=1080,H=s.format==='story'?1920:1080,person=['manager','picks','call'].includes(type);
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');
   ctx.fillStyle='#080a0f';ctx.fillRect(0,0,W,H);
@@ -143,12 +145,6 @@ async function buildCard(){
   const logo=await loadImage('/assets/wordmark.png');ctx.drawImage(logo,75,75,215,215*logo.height/logo.width);
   ctx.fillStyle='#7a8085';ctx.font='500 20px "DM Mono"';ctx.textAlign='right';ctx.fillText(shareLabels[type].toUpperCase(),1005,110);
   const center=H===1920?650:365;const img=await loadImage(person?'/assets/endgame-avatar.png':`/assets/shirt-${p.shirt}.webp`);
-  if(type==='manager'){
-    const cover=await loadImage('/assets/endgame-cover-v1.png'),coverY=center-175;
-    ctx.save();ctx.beginPath();ctx.roundRect(75,coverY,930,240,18);ctx.clip();
-    ctx.drawImage(cover,0,0,cover.width,cover.width*240/930,75,coverY,930,240);ctx.restore();
-    ctx.fillStyle='#111118';ctx.beginPath();ctx.arc(540,center-80,98,0,Math.PI*2);ctx.fill();
-  }
   if(person){ctx.save();ctx.beginPath();ctx.arc(540,center-80,90,0,Math.PI*2);ctx.clip();ctx.drawImage(img,450,center-170,180,180);ctx.restore();}else{const ratio=img.width/img.height;ctx.drawImage(img,540-130*ratio,center-220,260*ratio,260);ctx.fillStyle='#fff';ctx.font='800 52px Inter';ctx.textAlign='center';ctx.fillText(String(p.number),540,center-115);}
   const heading={manager:'DIAMOND DIVISION',picks:'MY BEST PICKS RESULT',pack:'MY BIGGEST PACK PULL',call:'ON LAMINE YAMAL',player:p.team.toUpperCase()}[type];
   ctx.textAlign='center';ctx.fillStyle='#7a8085';ctx.font='500 22px "DM Mono"';ctx.fillText(heading,540,center+75);
