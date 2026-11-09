@@ -1,0 +1,35 @@
+{
+  "provider": "Higgsfield",
+  "date": "2026-11-09",
+  "purpose": "Original fictional mini-league identity icons for Sport.Fun UI Lab",
+  "assets": [
+    {
+      "file": "league-away-end.png",
+      "job_id": "6f04aef3-7589-49ab-ade4-7659e234ac33",
+      "params": {
+        "model": "gpt_image_2_6",
+        "aspect_ratio": "1:1",
+        "quality": "high",
+        "resolution": "1k",
+        "background": "transparent",
+        "output_format": "png",
+        "count": 1,
+        "prompt": "Create one original fictional mini-league crest for a competitive fantasy football game, called The Away End. Transparent PNG background, isolated centered badge only. A compact front-facing football supporters shield with a broad polished silver rim, deep midnight blue enamel, an iconic bright ice-blue and white striped supporters scarf sweeping across the middle, and a simple stadium stand silhouette behind it. Three chunky terrace steps and two broad floodlight shapes; very simple readable geometry rather than intricate detail. Small silver football at the base integrated within the shield. Restrained premium 3D sports-game icon with beveled metal and enamel, mostly navy, electric blue and frosted silver. An instantly recognizable strong silhouette even at 48 pixels. Entire object occupies 88 percent of square canvas. Symmetric or near-symmetric, front-facing orthographic, clean edges. No words, initials, letters, real club branding, flags, external sparkles, scenery, floor, background glow, or cast-shadow backdrop. This is a friendly private-league team identity, not a championship division rank. Finished reusable UI emblem asset, transparent outside the object."
+      }
+    },
+    {
+      "file": "league-friday-five.png",
+      "job_id": "207f0a8a-dde5-467a-98e1-db4f27d4f02a",
+      "params": {
+        "model": "gpt_image_2_6",
+        "aspect_ratio": "1:1",
+        "quality": "high",
+        "resolution": "1k",
+        "background": "transparent",
+        "output_format": "png",
+        "count": 1,
+        "prompt": "Create one original fictional mini-league crest for a competitive fantasy football game, called Friday Five. Transparent PNG background, isolated centered badge only. A compact front-facing round football badge with a broad brushed champagne-gold metal rim and deep aubergine-purple enamel face. Central motif is a bold custom sculpted angular numeral 5 in pearl-white and champagne metal, unmistakably readable at 48 pixels. Five small chunky gold stars follow the upper arc inside the circle, and a compact football with gold-and-black panels rests at the base, integrated into the rim. Restrained premium 3D sports-game icon, polished bevels, broad clean shapes, high contrast. Palette plum-purple, dark graphite, warm champagne gold, pearl white. Distinctive friendly private mini-league identity rather than a championship rank or official club. Entire object occupies 88 percent of square canvas, front-facing orthographic, near-symmetric crisp silhouette. No words, no extra letters or numerals other than the central 5, no real-world team logo, no outer laurels, no scenery, no floor, no background glow, no external sparkles or cast-shadow backdrop. Finished reusable UI emblem asset, transparent outside the object."
+      }
+    }
+  ]
+}

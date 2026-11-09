@@ -17,8 +17,8 @@ export function profileOverview(state, {shirt, icon, escapeHtml, players}) {
         </article>
         <div class="sh-leagues">
           <div class="sh-league-heading"><h3>My leagues</h3><span>Current standings</span></div>
-          <article class="sh-league-row"><span class="sh-league-crest sh-away" aria-hidden="true">AE</span><div><strong>The Away End</strong><small>Mini league</small></div><div class="sh-league-rank"><strong>3<span> / 24</span></strong><small>Podium position</small></div></article>
-          <article class="sh-league-row"><span class="sh-league-crest sh-friday" aria-hidden="true">F5</span><div><strong>Friday Five</strong><small>Mini league</small></div><div class="sh-league-rank"><strong>8<span> / 40</span></strong><small>Top 20%</small></div></article>
+          <article class="sh-league-row"><img class="sh-league-crest" src="/assets/league-away-end.png" alt="" width="52" height="52"><div><strong>The Away End</strong><small>Mini league</small></div><div class="sh-league-rank"><strong>3<span> / 24</span></strong><small>Podium position</small></div></article>
+          <article class="sh-league-row"><img class="sh-league-crest" src="/assets/league-friday-five.png" alt="" width="52" height="52"><div><strong>Friday Five</strong><small>Mini league</small></div><div class="sh-league-rank"><strong>8<span> / 40</span></strong><small>Top 20%</small></div></article>
         </div>
       </section>
       <section class="sh-showcase" id="career-highlights" aria-label="Career highlights" tabindex="-1">

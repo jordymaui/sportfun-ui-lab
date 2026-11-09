@@ -72,6 +72,8 @@ The historic picks now show individual score pills and a teal captain marker, ma
 
 The picks update passed syntax and whitespace checks, desktop and 320px browser review (no horizontal page or pick-card overflow), player navigation and share-return checks. Both actual PNG downloads were visually inspected, with scores and the captain bonus matching the profile.
 
+Mini leagues use original fictional crests generated with Higgsfield: a blue-and-silver supporters' shield for The Away End and a purple-and-gold five-star roundel for Friday Five. Prompts and generation IDs are recorded in `design/mini-league-artwork.json`. The transparent assets replace the letter placeholders at 52px desktop / 44px mobile; desktop and 320px browser checks confirmed they load and the standings rows fit without horizontal overflow.
+
 ## Figma inspiration
 
 All nine reference images in the user's [Figma board](https://www.figma.com/design/CSt51FH6pSOuhjCznUGQIm/Untitled) were inspected read-only. The board was not modified. These are general composition references only; Sport.Fun screenshots remain the authority for the prototype's palette and components.
