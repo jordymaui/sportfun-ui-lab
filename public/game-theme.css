@@ -204,6 +204,11 @@ button.player-row:hover {background:#23232b;border-color:#303335}
 .chart circle[fill='#03ffcc'] {fill:#05b4a4}
 .chart stop {stop-color:#05b4a4}
 .share-heading>svg {color:#a4aaaf}
+.share-backbar {position:sticky;top:0;z-index:3;display:flex;padding:12px 0 8px;background:#080a0f}
+.share-back {display:flex;align-items:center;gap:7px;min-height:36px;padding:8px 12px;border:0;border-radius:20px;background:#303335;color:#eff1f2;font:500 12px Inter,sans-serif}
+.share-back:hover {background:#484c4f}
+.share-back svg {width:16px;height:16px}
+.share-backbar+.share-heading {margin-top:12px}
 .share-controls {background:#111118;border-color:transparent;border-radius:16px}
 .field input,.field select,.field textarea {background:#080a0f;border-color:#303335;border-radius:6px}
 .share-canvas {border-color:#232b34;border-radius:8px;box-shadow:none}

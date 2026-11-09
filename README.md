@@ -95,6 +95,7 @@ Player pages also use these badges beside the player's club, below performance b
 - Switch mobile/desktop layout and compare against the saved game screenshot references.
 - Compose Picks-result, pack-pull, Call, manager or player cards in square (1080×1080) or story (1080×1920) format. Preview and PNG download use the same Canvas renderer, retaining identity and a sample-data label.
 - Copy a preview URL on the current hostname. Hosted URLs can be shared; localhost URLs work only on the computer running the development server.
+- Sharing has a sticky Back to profile/player control. It restores the source view, tab and scroll position, even after changing card format or revisiting Sharing. Direct share links fall back to the relevant profile.
 
 ## Validation history — 6 November 2026
 

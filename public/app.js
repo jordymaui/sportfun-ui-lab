@@ -11,6 +11,7 @@ const icons = {
   trophy:'<path d="M7 3h10v6a5 5 0 0 1-10 0ZM7 5H3v3a4 4 0 0 0 4 4m10-7h4v3a4 4 0 0 1-4 4M12 14v7m-5 0h10"/>',
   tv:'<rect x="4" y="7" width="16" height="13" rx="3"/><path d="m8 3 4 4 4-4"/>',
   share:'<path d="M12 16V3m-5 5 5-5 5 5M5 12H3v9h18v-9h-2"/>',
+  back:'<path d="M19 12H5m7-7-7 7 7 7"/>',
   football:'<circle cx="12" cy="12" r="9"/><path d="m12 7 5 4-2 6H9l-2-6ZM12 7V3m5 8 4-2m-6 8 2 3m-8-3-2 3m0-9L3 9"/>',
   chevron:'<path d="m9 5 7 7-7 7"/>',
   star:'<path d="m12 3 3 6 6 1-4.5 4.5L18 21l-6-3-6 3 1.5-6.5L3 10l6-1Z"/>',
@@ -35,6 +36,15 @@ if(params.has('name')) state.name=params.get('name').slice(0,24)||'ENDGAME';
 if(state.name==='Jordy')state.name='ENDGAME';
 if(['manager','player','picks','pack','call'].includes(params.get('card')))state.shareType=params.get('card');
 if(['0','1','2','3','4'].includes(params.get('player')))state.player=Number(params.get('player'));
+let shareOrigin={view:state.shareType==='player'?'player':'manager',scrollTop:0,windowY:0};
+function openShare(type=state.shareType){
+  if(state.view!=='share')shareOrigin={view:state.view,scrollTop:$('#screen').scrollTop,windowY:window.scrollY};
+  state.shareType=type;state.view='share';render();
+}
+function closeShare(){
+  state.view=shareOrigin.view;render();
+  $('#screen').scrollTop=shareOrigin.scrollTop;window.scrollTo(0,shareOrigin.windowY);
+}
 const players = [
   {name:'Lamine Yamal',short:'L. Yamal',team:'Barcelona',position:'FWD',number:19,shirt:1,value:'486.20',change:'+8.4%',points:'142.8',form:[40,62,52,84,95]},
   {name:'Kylian Mbappé',short:'K. Mbappé',team:'Real Madrid',position:'FWD',number:10,shirt:2,value:'622.50',change:'+6.2%',points:'128.4',form:[80,45,67,94,75]},
@@ -59,7 +69,11 @@ function manager(){
 }
 function player(){return renderPlayerProfile(state,{players,shirt,icon,escapeHtml,callsPanel});}
 const shareLabels={picks:'Picks result',pack:'Pack pull',call:'My Call',manager:'Manager profile',player:'Player spotlight'};
-function share(){return `<div class="section-heading share-heading"><div><span class="eyebrow">YOUR MOMENT. YOUR NAME.</span><h2>Share your game.</h2></div>${icon('share')}</div><div class="share-workspace"><div class="share-preview"></div><div class="share-controls"><label class="field">Card content<select id="share-type">${Object.entries(shareLabels).map(([value,label])=>`<option value="${value}" ${state.shareType===value?'selected':''}>${label}</option>`).join('')}</select></label><div class="control-group"><span class="control-label">Format</span><div class="segmented"><button data-format="square" aria-pressed="${state.format==='square'}">Square 1:1</button><button data-format="story" aria-pressed="${state.format==='story'}">Story 9:16</button></div></div><button class="button primary" data-action="download">${icon('download')} Download PNG</button><button class="button secondary" data-action="copy">${icon('link')} Copy preview link</button><p class="muted share-disclaimer">Preview only. Nothing is posted to a social account.</p></div></div>`;}
+function share(){return `
+  <div class="share-backbar"><button class="share-back" data-action="close-share">${icon('back')} Back to ${shareOrigin.view==='player'?'player':'profile'}</button></div>
+  <div class="section-heading share-heading"><div><span class="eyebrow">YOUR MOMENT. YOUR NAME.</span><h2>Share your game.</h2></div>${icon('share')}</div>
+  <div class="share-workspace"><div class="share-preview"></div><div class="share-controls"><label class="field">Card content<select id="share-type">${Object.entries(shareLabels).map(([value,label])=>`<option value="${value}" ${state.shareType===value?'selected':''}>${label}</option>`).join('')}</select></label><div class="control-group"><span class="control-label">Format</span><div class="segmented"><button data-format="square" aria-pressed="${state.format==='square'}">Square 1:1</button><button data-format="story" aria-pressed="${state.format==='story'}">Story 9:16</button></div></div><button class="button primary" data-action="download">${icon('download')} Download PNG</button><button class="button secondary" data-action="copy">${icon('link')} Copy preview link</button><p class="muted share-disclaimer">Preview only. Nothing is posted to a social account.</p></div></div>`;
+}
 let renderedScreen;
 function render(){
   const screenKey=`${state.view}:${state.view==='manager'?state.tab:state.view==='player'?`${state.player}:${state.playerTab}`:''}`;
@@ -90,22 +104,23 @@ function toast(message){clearTimeout(toastTimer);$('#toast').textContent=message
 function showReference(show){if(!isLocalPreview)return;const image=$('#reference-image');if(show&&!image.getAttribute('src'))image.src='/reference/roster.png';$('#reference-panel').hidden=!show;$('#reference-toggle').setAttribute('aria-expanded',String(show));}
 document.addEventListener('click', async e=>{
   const el=e.target.closest('button');if(!el)return;
-  if(el.dataset.view){state.view=el.dataset.view;render();}
+  if(el.dataset.view){if(el.dataset.view==='share')openShare();else{state.view=el.dataset.view;render();}}
   if(el.dataset.section){state.view='manager';state.tab=el.dataset.section;render();}
   if(el.dataset.size){state.size=el.dataset.size;render();}
   if(el.dataset.profileTab){state.tab=el.dataset.profileTab;render();}
   if(el.dataset.playerTab){state.playerTab=el.dataset.playerTab;render();}
   if(el.dataset.player!==undefined){state.player=Number(el.dataset.player);state.playerTab='selection';state.view='player';render();}
   if(el.dataset.format){state.format=el.dataset.format;render();}
-  if(el.dataset.share){state.shareType=el.dataset.share;state.view='share';render();}
+  if(el.dataset.share)openShare(el.dataset.share);
   if(el.dataset.nav){if(el.dataset.nav==='Home'){state.view='manager';state.tab='overview';render();}else if(el.dataset.nav==='Roster'){state.view='manager';state.tab='squad';render();}else if(el.dataset.nav==='Trades'){state.view='player';render();}else toast(`${el.dataset.nav} is outside this profile study.`);}
   if(el.id==='reference-toggle')showReference($('#reference-panel').hidden);
   if(el.id==='reference-close')showReference(false);
   if(el.id==='edit-close')$('#edit-dialog').close();
   switch(el.dataset.action){
     case 'expand-preview':{const expanded=document.body.classList.toggle('preview-expanded');el.setAttribute('aria-pressed',String(expanded));el.textContent=expanded?'Exit full width':'Full width';if(expanded){state.size='desktop';render();}break;}
-    case 'share-manager':state.shareType='manager';state.view='share';render();break;
-    case 'share-player':state.shareType='player';state.view='share';render();break;
+    case 'share-manager':openShare('manager');break;
+    case 'share-player':openShare('player');break;
+    case 'close-share':closeShare();break;
     case 'like-call':state.liked=!state.liked;render();break;
     case 'media-preview':toast('Media is outside this profile study.');break;
     case 'player-trade-preview':toast('Visual preview only — no trade is placed.');break;
