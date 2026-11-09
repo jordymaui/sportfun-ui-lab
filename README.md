@@ -68,6 +68,10 @@ The v0.5 profile distinguishes current standing from career achievements. Season
 
 Highlights centres on a featured best-picks performance and its five-player lineup. Most-picked player, biggest pack pull and highest tournament reward have distinct supporting treatments. The three transparent achievement assets were generated through Higgsfield at the user's request, with prompts and job IDs recorded in `design/achievement-artwork.json`. They are proposed artwork, not official new game ranks. Subtle live-dot animation respects reduced-motion preferences.
 
+The historic picks now show individual score pills and a teal captain marker, matching the game reference. Yamal's 37.2 includes the 1.5× captain bonus (24.8 base); the other four contributions are 32.4, 28.6, 24.1 and 20.5, totaling 142.8. These sample contributions are separate from player-page performance summaries. The profile and square/story Picks-result exports use the same `picks-data.js` values.
+
+The picks update passed syntax and whitespace checks, desktop and 320px browser review (no horizontal page or pick-card overflow), player navigation and share-return checks. Both actual PNG downloads were visually inspected, with scores and the captain bonus matching the profile.
+
 ## Figma inspiration
 
 All nine reference images in the user's [Figma board](https://www.figma.com/design/CSt51FH6pSOuhjCznUGQIm/Untitled) were inspected read-only. The board was not modified. These are general composition references only; Sport.Fun screenshots remain the authority for the prototype's palette and components.

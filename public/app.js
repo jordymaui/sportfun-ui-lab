@@ -3,6 +3,8 @@ import { renderPlayerProfile } from './player-profile.js';
 import { getClubBadge } from './club-badges.js';
 import { buildProfileShareCard } from './profile-share-card.js';
 import { buildPlayerShareCard } from './player-share-card.js';
+import { buildPicksShareCard } from './picks-share-card.js';
+import { bestPicks } from './picks-data.js';
 const $ = (selector) => document.querySelector(selector);
 const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -117,7 +119,7 @@ function render(){
     const preview=$('.share-preview');
     preview.innerHTML='<p class="muted">Preparing card…</p>';
     buildCard().then(canvas=>{
-      const achievementSummary=state.shareType==='manager'?' — Diamond division; season rank 128 of 6,400, top 2%; all-time best 84 worldwide on 12 October 2025; 24 tournaments, top 5% for participation':'';
+      const achievementSummary=state.shareType==='manager'?' — Diamond division; season rank 128 of 6,400, top 2%; all-time best 84 worldwide on 12 October 2025; 24 tournaments, top 5% for participation':state.shareType==='picks'?` — ${bestPicks.total.toFixed(1)} total points; ${bestPicks.entries.map(pick=>`${players[pick.playerIndex].name} ${pick.score.toFixed(1)}${pick.captain?' captain, 1.5 times bonus included':''}`).join('; ')}`:'';
       canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${shareLabels[state.shareType]} share card — ${state.shareType==='player'?players[state.player].name+' — shared by ':''}${state.name}${achievementSummary} — concept with sample data`);
       canvas.className='share-canvas';preview.replaceChildren(canvas);
     }).catch(()=>{preview.innerHTML='<p class="muted">Could not render the preview. Try switching the card content.</p>';});
@@ -162,6 +164,7 @@ async function buildCard(){
   await document.fonts.ready;
   if(type==='manager')return buildProfileShareCard(s,{loadImage,getClubBadge});
   if(type==='player')return buildPlayerShareCard(s,p,{loadImage,getClubBadge});
+  if(type==='picks')return buildPicksShareCard(s,players,{loadImage});
   const W=1080,H=s.format==='story'?1920:1080,person=['manager','picks','call'].includes(type);
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');
   ctx.fillStyle='#080a0f';ctx.fillRect(0,0,W,H);
