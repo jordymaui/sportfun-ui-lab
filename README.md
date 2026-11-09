@@ -76,11 +76,13 @@ These observations do not add streaks, reward tiers, trade histories or other fe
 
 The feature direction introduced in v0.2 remains based on the user-provided [Sport.fun Profiles Research Notes](https://docs.google.com/document/d/1H59i9hv-FzCmE2YS00ch19FcORgoKCNOiVYaAutF-Ag/edit), read on 6 November 2026. The source document was not edited. It informs identity, supported club, current division/mini leagues, distinct career highlights, Calls and contextual sharing. The notes are exploratory ideas, not validation of outcomes or current game features.
 
+The supported-club row uses an original circular white initial emblem, with Fulham as the default. It is a mockup placeholder rather than an official crest or a verified in-game Fulham asset. Older saved “Your club” placeholders resolve to Fulham; custom club selections are preserved.
+
 ## Available interactions
 
 - Manager profile Overview/Squad/Calls tabs and footballer pages with the same sample Call. Like state is shared between those views for the session.
 - Player-profile layout study: a wide desktop summary and mobile Selection/Market/Statistics tabs, with the Calls proposal placed after news in Selection.
-- Edit the prototype's display name, bio and supported club; the default identity is ENDGAME, and changes stay in this browser's local storage.
+- Edit the prototype's display name, bio and supported club; the default identity is ENDGAME supporting Fulham, and changes stay in this browser's local storage.
 - Switch mobile/desktop layout and compare against the saved game screenshot references.
 - Compose Picks-result, pack-pull, Call, manager or player cards in square (1080×1080) or story (1080×1920) format. Preview and PNG download use the same Canvas renderer, retaining identity and a sample-data label.
 - Copy a preview URL on the current hostname. Hosted URLs can be shared; localhost URLs work only on the computer running the development server.
