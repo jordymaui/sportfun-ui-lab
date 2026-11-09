@@ -90,7 +90,8 @@ body,.lab-header {background:#080a0f}
 .profile-bio {color:#a4aaaf;font-size:11px;line-height:1.6}
 .verified {color:#c4cacf;font-size:14px}
 .club-line {color:#c4cacf;font-size:10px;line-height:1.5}
-.club-line svg.club-emblem {width:20px;height:20px;color:#f3f3f0;flex-shrink:0}
+.club-line .club-emblem {width:20px;height:20px;color:#f3f3f0;flex-shrink:0}
+.club-line .club-badge {width:28px;height:28px;margin:-4px;object-fit:contain}
 .club-line span {color:#7a8085;font-size:7px}
 .profile-actions {gap:7px}
 .button,.button.secondary,.button.icon {background:#303335;border-color:transparent;color:#eff1f2;border-radius:20px;min-height:35px;font-size:10px;padding:9px 13px}

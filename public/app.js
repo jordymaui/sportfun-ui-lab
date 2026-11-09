@@ -1,5 +1,6 @@
 import { profileOverview, callsPanel } from './research.js';
 import { renderPlayerProfile } from './player-profile.js';
+import { getClubBadge } from './club-badges.js';
 const $ = (selector) => document.querySelector(selector);
 const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -18,7 +19,11 @@ const icons = {
   edit:'<path d="m14 5 5 5M4 20l5-1L21 7l-5-5L4 14Z"/>'
 };
 const icon = (name) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${icons[name]||icons.star}</svg>`;
-const clubEmblem = (club) => `<svg class="club-emblem" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><text x="12" y="12" dy=".36em" text-anchor="middle" fill="#111118" font-family="Inter, sans-serif" font-size="13" font-weight="700">${escapeHtml(Array.from(club)[0]?.toUpperCase()||'F')}</text></svg>`;
+const clubEmblem = (club) => {
+  const badge=getClubBadge(club);
+  if(badge)return `<img class="club-emblem club-badge" src="${badge}" alt="" width="28" height="28">`;
+  return `<svg class="club-emblem" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="currentColor"/><text x="12" y="12" dy=".36em" text-anchor="middle" fill="#111118" font-family="Inter, sans-serif" font-size="13" font-weight="700">${escapeHtml(Array.from(club)[0]?.toUpperCase()||'F')}</text></svg>`;
+};
 let saved = {};
 try { saved = JSON.parse(localStorage.getItem('sportfun-ui-lab') || '{}') || {}; } catch {}
 const savedClub = typeof saved.club==='string'?saved.club.trim():'';

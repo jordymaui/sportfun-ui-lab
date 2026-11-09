@@ -22,7 +22,7 @@ Vercel serves the static `public/` folder. `vercel.json` runs `npm run check` be
 
 ## Asset provenance
 
-The prototype reuses assets from the local `sdf-site` checkout, plus the user's supplied ENDGAME avatar and sport logos. Original supplied files remain unchanged.
+The prototype reuses assets from the local `sdf-site` checkout, plus the user's supplied ENDGAME avatar, sport logos and club badge packs. Original supplied files remain unchanged.
 
 | Lab asset | Source relative to this project |
 | --- | --- |
@@ -40,6 +40,7 @@ The prototype reuses assets from the local `sdf-site` checkout, plus the user's 
 | `division.webp` | `../sdf-site/public/images/public-home-v8/divisions/rankDiamond.webp` |
 | `endgame-avatar.png` | User-supplied `codex-clipboard-0d2bc6b0-e3a7-4e3c-a2b7-db12ea6867bf.png`, a 200×200 blue anime stadium avatar, copied unchanged |
 | `endgame-cover-v1.png` | AI-generated 2172×724 stadium panorama based on the supplied ENDGAME avatar, approved by the user; used in the responsive profile cover and manager share cards |
+| `clubs/*.svg` | User-supplied `Team Icons V2.zip` and `CWC Logos.zip`, supplied 9 November 2026; SVG contents preserved with normalized filenames |
 | `reference-game.png` | `../sdf-site/public/images/marketing/football-mobiles-live-v2-20260730.png` |
 
 ENDGAME and its avatar are the user's supplied in-game identity, used across the profile, Calls and share cards. Rankings, scores, holdings, rewards and Call activity remain illustrative. The supplied football and NFL logos are rendered as CSS luminance masks to match the sport selector's active and inactive colours.
@@ -76,7 +77,9 @@ These observations do not add streaks, reward tiers, trade histories or other fe
 
 The feature direction introduced in v0.2 remains based on the user-provided [Sport.fun Profiles Research Notes](https://docs.google.com/document/d/1H59i9hv-FzCmE2YS00ch19FcORgoKCNOiVYaAutF-Ag/edit), read on 6 November 2026. The source document was not edited. It informs identity, supported club, current division/mini leagues, distinct career highlights, Calls and contextual sharing. The notes are exploratory ideas, not validation of outcomes or current game features.
 
-The supported-club row uses an original circular white initial emblem, with Fulham as the default. It is a mockup placeholder rather than an official crest or a verified in-game Fulham asset. Older saved “Your club” placeholders resolve to Fulham; custom club selections are preserved.
+The supported-club row uses the user's supplied game badges, with Fulham as the default. Fulham's black-and-white circular badge replaces the earlier “F” placeholder. Club names are matched without case or punctuation sensitivity, including common aliases. Unknown clubs retain the white initial fallback. Older saved “Your club” placeholders resolve to Fulham; custom club selections are preserved.
+
+The badge library contains all 67 supplied SVGs: 45 from Team Icons V2 and 22 from CWC Logos. Import checks verified passive SVG markup and byte-for-byte equality with the archives. On 9 November 2026, syntax checks, badge-path/alias checks and desktop/mobile browser review of Fulham's badge passed.
 
 ## Available interactions
 
