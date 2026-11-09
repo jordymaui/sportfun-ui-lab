@@ -117,7 +117,8 @@ function render(){
     const preview=$('.share-preview');
     preview.innerHTML='<p class="muted">Preparing card…</p>';
     buildCard().then(canvas=>{
-      canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${shareLabels[state.shareType]} share card — ${state.shareType==='player'?players[state.player].name+' — shared by ':''}${state.name} — concept with sample data`);
+      const achievementSummary=state.shareType==='manager'?' — Diamond division; season rank 128 of 6,400, top 2%; all-time best 84 worldwide on 12 October 2025; 24 tournaments, top 5% for participation':'';
+      canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${shareLabels[state.shareType]} share card — ${state.shareType==='player'?players[state.player].name+' — shared by ':''}${state.name}${achievementSummary} — concept with sample data`);
       canvas.className='share-canvas';preview.replaceChildren(canvas);
     }).catch(()=>{preview.innerHTML='<p class="muted">Could not render the preview. Try switching the card content.</p>';});
   }

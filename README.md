@@ -101,12 +101,14 @@ Player pages also use these badges beside the player's club, below performance b
 - Edit the prototype's display name, bio and supported club; the default identity is ENDGAME supporting Fulham, and changes stay in this browser's local storage.
 - Switch mobile/desktop layout and compare against the saved game screenshot references.
 - Compose Picks-result, pack-pull, Call, manager or player cards in square (1080×1080) or story (1080×1920) format. Preview and PNG download use the same Canvas renderer, retaining identity and a sample-data label.
-- Manager cards use the game's flat surfaces, Inter typography and DM Mono labels, with a left-aligned identity, supported-club badge and equally sized rank values. Square cards use two stat columns; story cards stack them with room for the season context.
+- Manager cards carry the earned Diamond crest, a gold all-time-best medal and a participation milestone badge. Season rank includes its percentile and snapshot movement, the world record includes its date, and a separate tournament ribbon shows the participation percentile. Square cards use two rank panels above the ribbon; story cards stack the panels with larger artwork. ENDGAME's cover, avatar, supported club and sample-data footer remain present in both formats. Long names and club labels are fitted or shortened to preserve the badge space.
 - Player cards use the same frame, type scale and panel spacing, with a compact shirt, player name and supplied club badge. Performance and 24-hour share-price change have matching value sizes; ENDGAME attribution stays secondary. The change period matches the player-page mock, and all figures remain illustrative.
 - Copy a preview URL on the current hostname. Hosted URLs can be shared; localhost URLs work only on the computer running the development server.
 - Sharing has a sticky Back to profile/player control. It restores the source view, tab and scroll position, even after changing card format or revisiting Sharing. Direct share links fall back to the relevant profile.
 
 ## Validation history
+
+The achievement share-card update passed syntax and whitespace checks. Actual 1080×1080 and 1080×1920 PNG exports were downloaded and visually inspected, including badge transparency, dates and participation context. The mobile preview had no horizontal overflow, and a maximum-length wide-character name stayed within the identity area. The canvas has a descriptive achievement summary for screen readers. The PNG is a static snapshot, with all statistics still illustrative.
 
 The v0.5 achievement pass was reviewed at full-width desktop and actual 390px/320px phone viewports. All displayed assets loaded, and neither narrow layout had horizontal page/content overflow. Browser checks covered the all-time-best jump and focus target, pack sharing and return, and a successful manager PNG export with the updated record label/date. Syntax and whitespace checks passed. No live account data or game actions are involved.
 
