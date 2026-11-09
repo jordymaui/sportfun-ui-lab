@@ -1,0 +1,55 @@
+{
+  "provider": "Higgsfield",
+  "date": "2026-11-09",
+  "purpose": "Concept achievement assets for Sport.Fun UI Lab",
+  "assets": [
+    {
+      "file": "diamond-achievement.png",
+      "job_id": "b4c76da5-2bab-489b-bda0-449a7822fe9b",
+      "params": {
+        "model": "gpt_image_2_6",
+        "aspect_ratio": "1:1",
+        "quality": "high",
+        "resolution": "1k",
+        "background": "transparent",
+        "output_format": "png",
+        "count": 1,
+        "medias": [
+          {
+            "role": "image",
+            "value": "https://sportfun-ui-lab.vercel.app/assets/division.webp"
+          }
+        ],
+        "prompt": "Create a single premium DIAMOND DIVISION achievement badge for a dark competitive fantasy-sports game UI. TRANSPARENT BACKGROUND, isolated centered object, no text, no lettering, no numbers, no scene, no floor, no cast shadow background. Use the reference image's actual central football shield monogram, its angular open shield and two horizontal crossbars divided by central stem; faithfully preserve this recognizable symbol rather than inventing a different crest. Evolve the plain circular rank into a prestigious earned emblem: substantial polished platinum and silver bezel, a clean faceted diamond-shaped crystal backing, restrained symmetrical stepped side fins, beveled black enamel inner face, icy pale-blue cyan edge glints. Palette primarily frosted silver, pearl white, pale ice blue #b6e8ff, cool cyan; no gold, no purple, no warm colours. 3D rendered product-icon quality, front-facing almost orthographic, crisp broad silhouette legible at 80px, controlled glossy highlights and angular crystal facets, restrained details, no thin decorative filigree, no medieval swords, no laurels, no huge wings. Emblem occupies 82% of canvas with breathing room, symmetrical, dark center strongly contrasting the white/silver monogram. Should feel like the top division earned through competitive mastery. This is a reusable game UI badge asset, not a poster or an app screen."
+      }
+    },
+    {
+      "file": "world-best-achievement.png",
+      "job_id": "f8aaa017-9949-410b-9468-118487cc6df7",
+      "params": {
+        "model": "gpt_image_2_6",
+        "aspect_ratio": "1:1",
+        "quality": "high",
+        "resolution": "1k",
+        "background": "transparent",
+        "output_format": "png",
+        "count": 1,
+        "prompt": "A single premium ALL-TIME WORLD BEST achievement medal for a dark competitive sports game UI, transparent background, isolated object with no scene or text. Front-facing symmetrical polished 3D icon: an elegant small globe with three readable meridians set into a black enamel circular medal, restrained two-sided golden laurel arcs and a compact faceted five-point star at the top. A short double ribbon below, sophisticated bronze-gold satin and champagne highlights #fdb913. Substantial broad beveled shapes, deep charcoal inner surfaces, crisp icon silhouette readable at 64px, polished metal, clean geometry, premium competitive earned milestone. No letters, no numerals, no crown, no swords, no wide wings, no floor or background, no sparkles outside the icon. Item occupies 80% of a square canvas with breathing room. Render as an actual transparent PNG game UI asset, not a poster. Style family: polished metal with black enamel and precision-cut facets."
+      }
+    },
+    {
+      "file": "tournament-milestone.png",
+      "job_id": "9846b9a1-bfef-4458-b614-fac836fd8d3f",
+      "params": {
+        "model": "gpt_image_2_6",
+        "aspect_ratio": "1:1",
+        "quality": "high",
+        "resolution": "1k",
+        "background": "transparent",
+        "output_format": "png",
+        "count": 1,
+        "prompt": "A single premium TOURNAMENT PARTICIPATION MILESTONE insignia for a dark competitive sports game UI, transparent background, isolated object with no scene or text. Front-facing symmetrical 3D game achievement icon: a strong silver and dark graphite hexagonal medal, an inset luminous turquoise five-point star, five short stacked etched progress bars below the star, and two compact silver ribbon points at the bottom. Polished platinum bezel, black enamel inner plate, teal edge accents #05b4a4 with pale icy silver highlights. Substantial broad beveled forms, crisp silhouette legible at 64px, earned trophy quality, precision-cut facets. No words, no letters, no numerals, no swords, no crown, no wings, no external sparkles, no floor or background. Badge occupies 80% of a square canvas with breathing room. Actual transparent PNG icon asset for a sports-game profile, not a poster. Keep the overall shape clean and understated but premium."
+      }
+    }
+  ]
+}

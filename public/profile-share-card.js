@@ -77,8 +77,8 @@ export async function buildProfileShareCard(profile, {loadImage, getClubBadge}) 
 
   const statY=coverBottom+224,statHeight=240,gap=24;
   const stats=[
-    {label:'SEASON RANK',rank:'#128',managers:'of 6,400',period:'2026/27'},
-    {label:'BEST RANK',rank:'#84',managers:'of 5,200',period:'2025/26'},
+    {label:'SEASON RANK',rank:'#128',managers:'of 6,400',period:'2026/27',context:'2026/27 season'},
+    {label:'ALL-TIME BEST',rank:'#84',managers:'Worldwide',period:'12 Oct 2025',context:'12 Oct 2025 · 2025/26'},
   ];
   stats.forEach((stat,index)=>{
     const x=story?64:64+index*488,y=story?statY+index*(statHeight+gap):statY,w=story?952:464;
@@ -87,7 +87,7 @@ export async function buildProfileShareCard(profile, {loadImage, getClubBadge}) 
     text(stat.rank,x+32,y+154,88,500);
     if(story){
       text(stat.managers,x+w-32,y+150,32,400,colour.muted,'right');
-      text(stat.period+' season',x+w-32,y+206,30,400,colour.muted,'right');
+      text(stat.context,x+w-32,y+206,30,400,colour.muted,'right');
     }else text(stat.managers+' · '+stat.period,x+32,y+208,28,400,colour.muted);
   });
   const statBottom=statY+(story?statHeight*2+gap:statHeight);

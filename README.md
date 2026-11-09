@@ -1,6 +1,6 @@
 # Sport.Fun UI Lab
 
-A separate design playground for exploring Sport.Fun interface improvements. Version 0.3 calibrates the prototype against seventeen current Sport.Fun screenshots, while keeping the profile and sharing layouts as proposals. The `fdf-platform` game repository was not available during setup; no current game frontend source has been duplicated.
+A separate design playground for exploring Sport.Fun interface improvements. Version 0.5 adds earned achievement artwork and a profile showcase on top of the seventeen current Sport.Fun screenshot references. Profile and sharing layouts remain proposals. The `fdf-platform` game repository was not available during setup; no current game frontend source has been duplicated.
 
 ## Run locally
 
@@ -40,6 +40,9 @@ The prototype reuses assets from the local `sdf-site` checkout, plus the user's 
 | `division.webp` | `../sdf-site/public/images/public-home-v8/divisions/rankDiamond.webp` |
 | `endgame-avatar.png` | User-supplied `codex-clipboard-0d2bc6b0-e3a7-4e3c-a2b7-db12ea6867bf.png`, a 200×200 blue anime stadium avatar, copied unchanged |
 | `endgame-cover-v1.png` | AI-generated 2172×724 stadium panorama based on the supplied ENDGAME avatar, approved by the user; used in the responsive profile cover and manager share cards |
+| `diamond-achievement.png` | Higgsfield GPT Image 2.6 concept crest, referencing the existing Diamond division mark and its silver/ice-blue palette |
+| `world-best-achievement.png` | Higgsfield GPT Image 2.6 concept gold globe medal for an all-time world ranking |
+| `tournament-milestone.png` | Higgsfield GPT Image 2.6 concept silver/teal participation badge |
 | `clubs/*.svg` | User-supplied `Team Icons V2.zip` and `CWC Logos.zip`, supplied 9 November 2026; SVG contents preserved with normalized filenames |
 | `reference-game.png` | `../sdf-site/public/images/marketing/football-mobiles-live-v2-20260730.png` |
 
@@ -60,6 +63,10 @@ The additional player-profile references guide a wide desktop summary with perfo
 The v0.4 fidelity pass uses a desktop canvas up to 1800px wide, a 22% manager sidebar, 76px game header, filled top-level navigation pills and a consistent nested-card rhythm. The lab's **Full width** control hides the review sidebar and switches to the desktop layout. Phone component sizes remain independent of the desktop scale.
 
 The player grid now follows the reference's approximately 38/10/50 identity/facts/performance split. Facts are individually boxed; performance uses tall monthly bars and the supplied opponent badges; fixtures contain both teams, a central versus marker and illustrative probability strips. History, news, price and radial-stat panels form the two-column desktop grid, with transactions on the left and the Calls proposal below the standard modules. Mobile keeps the Selection/Market/Statistics grouping, compact identity, inline price change, pill actions and left-aligned tabs.
+
+The v0.5 profile distinguishes current standing from career achievements. Season rank has a sample trend and percentile; All-time best includes its date and a keyboard-accessible jump to the historic picks; tournament participation includes a top-5% example. These values, dates and movement are illustrative, and the live indicators are visual treatments rather than a live-data connection. Division standing is shown separately from season rank, alongside mini leagues, without the earlier “Where I compete” heading.
+
+Highlights centres on a featured best-picks performance and its five-player lineup. Most-picked player, biggest pack pull and highest tournament reward have distinct supporting treatments. The three transparent achievement assets were generated through Higgsfield at the user's request, with prompts and job IDs recorded in `design/achievement-artwork.json`. They are proposed artwork, not official new game ranks. Subtle live-dot animation respects reduced-motion preferences.
 
 ## Figma inspiration
 
@@ -99,7 +106,9 @@ Player pages also use these badges beside the player's club, below performance b
 - Copy a preview URL on the current hostname. Hosted URLs can be shared; localhost URLs work only on the computer running the development server.
 - Sharing has a sticky Back to profile/player control. It restores the source view, tab and scroll position, even after changing card format or revisiting Sharing. Direct share links fall back to the relevant profile.
 
-## Validation history — 6 November 2026
+## Validation history
+
+The v0.5 achievement pass was reviewed at full-width desktop and actual 390px/320px phone viewports. All displayed assets loaded, and neither narrow layout had horizontal page/content overflow. Browser checks covered the all-time-best jump and focus target, pack sharing and return, and a successful manager PNG export with the updated record label/date. Syntax and whitespace checks passed. No live account data or game actions are involved.
 
 The profile-card refinement on 9 November passed JavaScript syntax and whitespace checks. Both square and story PNGs were downloaded and visually inspected for typography, spacing, image crops and overlap. The 390px mobile preview displayed the square card without horizontal overflow. Profile ranks remain sample data.
 

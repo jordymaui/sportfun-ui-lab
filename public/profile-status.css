@@ -1,0 +1,88 @@
+/* Earned status: shared game surfaces, with distinct live/record/milestone treatments. */
+.ps-eyebrow{font:500 10px/1.5 'DM Mono',monospace;letter-spacing:.65px;color:#8c9399}
+.ps-division{position:relative;display:flex;align-items:center;gap:11px;margin:19px 0 20px;padding:10px 2px;isolation:isolate}
+.ps-division::before{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 24% 50%,#9ce6ff15,transparent 68%)}
+.ps-division-art{width:84px;height:84px;flex:0 0 84px;display:grid;place-items:center}
+.ps-division-art img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 14px #7ddaff25)}
+.ps-division>div:last-child{min-width:0}
+.ps-division .ps-eyebrow{font-size:8px;letter-spacing:.7px}
+.ps-division strong{display:block;font:600 25px/1.15 Inter,sans-serif;letter-spacing:-.8px;color:#d9f4ff;margin:4px 0 5px}
+.ps-division small{display:block;color:#939ea6;font-size:10px;line-height:1.5}
+.ps-stats{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:12px;margin:0 0 18px}
+.ps-stats article{min-width:0;position:relative;overflow:hidden;padding:18px;border-radius:12px;background:#111118;border:1px solid #232b34}
+.ps-stat-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:24px}
+.ps-live{display:inline-flex;align-items:center;gap:6px;font:500 9px/1 'DM Mono',monospace;letter-spacing:.75px;color:#00c62d}
+.ps-live i{height:5px;width:5px;border-radius:50%;background:currentColor;box-shadow:0 0 10px #00c62d80;animation:ps-live-pulse 2.8s ease-in-out infinite}
+.ps-season{background:linear-gradient(145deg,#0e1b19,#111118 65%)!important}
+.ps-season-value{display:flex;align-items:center;gap:10px;margin-top:13px}
+.ps-season-value>strong,.ps-record-value strong,.ps-participation-value>strong{font:500 42px/1.15 Inter,sans-serif;letter-spacing:-2px;color:#eff1f2;font-variant-numeric:tabular-nums}
+.ps-season-value>span{font-size:10px;line-height:1.5;color:#8c9399;white-space:nowrap}
+.ps-trend-chart{width:64px;height:40px;min-width:32px;margin-left:auto;overflow:visible;color:#00c62d}
+.ps-season-context{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:13px;font-size:11px;color:#a4aaaf}
+.ps-rank-trend{font-size:10px;color:#00c62d;white-space:nowrap}
+.ps-standing-bar{height:4px;border-radius:4px;background:#232b34;margin:16px 0 9px;overflow:hidden}
+.ps-standing-bar>span{display:block;width:98%;height:100%;background:linear-gradient(90deg,#048328,#00c62d);border-radius:inherit}
+.ps-stat-foot{display:flex;justify-content:space-between;gap:8px;font-size:9px;line-height:1.4;color:#7a8085}
+.ps-stat-foot>span:first-child{color:#a4b4aa}
+.ps-record{border-color:#b2a37330!important;background:radial-gradient(ellipse at 100% 0,#fdb9130b,transparent 70%),#111118!important}
+.ps-record-value{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}
+.ps-record-value>div{min-width:0}
+.ps-record-value strong{display:block;color:#f0dfad}
+.ps-record-value>div>span{display:block;font:500 8px/1.5 'DM Mono',monospace;letter-spacing:.6px;color:#b2a373;margin-top:3px}
+.ps-record-emblem{display:block;width:64px;height:64px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 12px #fdb9131a)}
+.ps-record-date{font-size:11px;color:#c4cacf;margin:12px 0 0;line-height:1.5}
+.ps-record-date>span{color:#7a8085;white-space:nowrap}
+.ps-best-link{display:flex;align-items:center;justify-content:space-between;gap:8px;background:transparent;border:0;border-top:1px solid #b2a37322;border-radius:0;color:#d7c58e;font:500 11px Inter,sans-serif;text-align:left;padding:12px 0 0;margin:15px 0 0;min-height:30px;width:100%}
+.ps-best-link svg{width:14px;height:14px}
+.ps-best-link:hover{color:#fff1c8}
+.ps-best-link:focus-visible{outline:2px solid #f0dfad;outline-offset:4px}
+.ps-participation-value{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px}
+.ps-milestone{display:block;width:64px;height:64px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 0 12px #6ec8e61a)}
+.ps-percentile{display:inline-block;color:#bdeeff;font-size:11px;font-weight:500;margin-top:12px}
+.ps-participation-note{color:#7a8085;font-size:10px;line-height:1.5;margin:4px 0 12px}
+.ps-tournament-marks{display:flex;gap:3px}
+.ps-tournament-marks i{display:block;flex:1;height:7px;min-width:1px;background:#bdeeff88;border-radius:2px}
+.ps-tournament-marks i:nth-child(6n){margin-right:3px;background:#bdeeff}
+.ps-tournament-marks i:last-child{margin-right:0}
+#career-highlights{scroll-margin-top:24px}
+@keyframes ps-live-pulse{0%,100%{box-shadow:0 0 7px #00c62d40}50%{box-shadow:0 0 12px #00c62d99}}
+@container(max-width:1080px){
+  .ps-stats{grid-template-columns:1fr 1fr;gap:10px}
+  .ps-season{grid-column:1/-1}
+  .ps-season-value{margin-top:7px}
+  .ps-season-value>strong{font-size:38px}
+  .ps-trend-chart{width:104px;height:37px;margin-right:3px}
+  .ps-season-context{margin-top:9px}
+  .ps-standing-bar{margin-top:11px}
+  .ps-season .ps-stat-foot{font-size:10px}
+  .ps-division{gap:6px}
+  .ps-division-art{width:72px;height:72px;flex-basis:72px}
+  .ps-division strong{font-size:22px}
+}
+@container(max-width:580px){
+  .ps-stats{gap:9px;margin:14px 0 15px}
+  .ps-stats article{padding:14px}
+  .ps-eyebrow{font-size:9px;letter-spacing:.3px}
+  .ps-stat-heading{min-height:20px}
+  .ps-season-value>strong{font-size:36px}
+  .ps-season-value>span{font-size:11px}
+  .ps-record-value strong,.ps-participation-value>strong{font-size:35px}
+  .ps-record-value{margin-top:9px;gap:5px}
+  .ps-record-emblem,.ps-milestone{width:48px;height:48px}
+  .ps-record-date{font-size:10px;margin-top:10px}
+  .ps-record-date>span{display:block}
+  .ps-best-link{font-size:10px;margin-top:10px;padding-top:10px}
+  .ps-participation-value{margin-top:9px}
+  .ps-percentile{font-size:11px;margin-top:14px}
+  .ps-participation-note{font-size:10px;margin-top:5px;margin-bottom:15px}
+  .ps-tournament-marks{flex-wrap:wrap;gap:4px}
+  .ps-tournament-marks i{flex:0 0 calc((100% - 44px)/12);height:5px}
+  .ps-tournament-marks i:nth-child(6n){margin:0}
+  .ps-division{margin:12px 0 14px;padding:5px 0;gap:11px}
+  .ps-division-art{width:76px;height:76px;flex-basis:76px}
+  .ps-division strong{font-size:23px}
+  .ps-division .ps-eyebrow{font-size:9px}
+  .ps-division small{font-size:11px}
+}
+@container(max-width:340px){.ps-stats article{padding:12px}.ps-eyebrow{font-size:8px}.ps-milestone,.ps-record-emblem{width:40px;height:40px}.ps-record-value strong,.ps-participation-value>strong{font-size:32px}.ps-stat-foot{font-size:9px!important}.ps-season-context{font-size:10px}.ps-percentile{font-size:10px}.ps-trend-chart{width:74px}}
+@media(prefers-reduced-motion:reduce){.ps-live i{animation:none}}

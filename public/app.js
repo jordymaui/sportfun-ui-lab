@@ -54,7 +54,7 @@ const players = [
   {name:'Vitinha',short:'Vitinha',team:'PSG',position:'MID',number:17,shirt:4,value:'218.40',change:'+3.6%',points:'104.6',form:[41,57,73,54,83]},
   {name:'Alisson Becker',short:'Alisson',team:'Liverpool',position:'GK',number:1,shirt:5,value:'165.20',change:'+2.8%',points:'92.4',form:[45,75,60,85,70]}
 ];
-const descriptions={manager:'Your identity, where you compete, career highlights and Calls. Based on your profile research notes.',player:'Player pages matched to your desktop and iOS references, with proposed Calls alongside the existing game layout.',share:'Picks results, pack pulls and Calls — each shared with your identity attached. Sample data throughout.'};
+const descriptions={manager:'Earned division badges, current standings and the moments that made your career. All ranks, dates and movement are illustrative.',player:'Player pages matched to your desktop and iOS references, with proposed Calls alongside the existing game layout.',share:'Picks results, pack pulls and Calls — each shared with your identity attached. Sample data throughout.'};
 const stat=(label,value,extra='')=>`<div class="stat"><span class="stat-label">${label}</span><strong class="stat-value">${value}</strong>${extra?`<small>${extra}</small>`:''}</div>`;
 const form=(values)=>`<span class="form-bars" aria-label="Illustrative recent form">${values.map((n,i)=>`<i style="height:${n}%;background:${i===1?'#fdb913':'#00c62d'}"></i>`).join('')}</span>`;
 const shirt=(p,large=false)=>`<div class="${large?'large-shirt':'player-shirt'}"><img src="/assets/shirt-${p.shirt}.webp" alt="${p.team} shirt"><span>${p.number}</span></div>`;
@@ -63,8 +63,29 @@ function topbar(){
   $('#game-bottomnav').innerHTML=[['manager','home','Home'],['manager','users','Roster'],['player','arrows','Trades'],['player','football','Live'],['manager','trophy','Leaderboard']].map(([view,glyph,label])=>`<button data-nav="${label}" data-target="${view}" aria-label="Preview ${label}">${icon(glyph)}<span>${label}</span></button>`).join('');
 }
 function manager(){
-  return `<div class="manager-layout"><aside class="manager-identity"><div class="profile-hero"><div class="cover-art"><img class="profile-cover" src="/assets/endgame-cover-v1.png" alt="Cyan stadium lights and ENDGAME's white-haired anime character"></div><div class="profile-identity"><div class="avatar-wrap"><img src="/assets/endgame-avatar.png" alt="ENDGAME in-game avatar"><img class="avatar-rank" src="/assets/division.webp" alt="Diamond division"></div><span class="chip">DIAMOND DIVISION</span></div><div class="profile-copy"><h2 class="profile-name">${escapeHtml(state.name)}</h2><span class="handle">@${escapeHtml(state.name.toLowerCase().replace(/\s/g,'')||'manager')} · Manager since 2025</span><p class="profile-bio">${escapeHtml(state.bio)}</p><div class="club-line">${clubEmblem(state.club)} ${escapeHtml(state.club)} <span>SUPPORTED CLUB</span></div><div class="profile-actions"><button class="button primary" data-action="share-manager">${icon('share')} Share profile</button><button class="button secondary" data-action="edit">${icon('edit')} Edit</button></div></div></div></aside><section class="manager-main">
-    <div class="stats-grid">${stat('SEASON RANK','#128','of 6,400 · 2026/27')}${stat('BEST RANK','#84','of 5,200 · 2025/26')}${stat('TOURNAMENTS','24','Career to date')}</div>
+  return `<div class="manager-layout"><aside class="manager-identity"><div class="profile-hero"><div class="cover-art"><img class="profile-cover" src="/assets/endgame-cover-v1.png" alt="Cyan stadium lights and ENDGAME's white-haired anime character"></div><div class="profile-identity"><div class="avatar-wrap"><img src="/assets/endgame-avatar.png" alt="ENDGAME in-game avatar"><img class="avatar-rank" src="/assets/division.webp" alt="Diamond division"></div></div><div class="profile-copy"><h2 class="profile-name">${escapeHtml(state.name)}</h2><span class="handle">@${escapeHtml(state.name.toLowerCase().replace(/\s/g,'')||'manager')} · Manager since 2025</span><p class="profile-bio">${escapeHtml(state.bio)}</p><div class="ps-division"><div class="ps-division-art"><img src="/assets/diamond-achievement.png" alt="Diamond division achievement crest"></div><div><span class="ps-eyebrow">EARNED DIVISION</span><strong>Diamond</strong><small>A place among the elite.</small></div></div><div class="club-line">${clubEmblem(state.club)} ${escapeHtml(state.club)} <span>SUPPORTED CLUB</span></div><div class="profile-actions"><button class="button primary" data-action="share-manager">${icon('share')} Share profile</button><button class="button secondary" data-action="edit">${icon('edit')} Edit</button></div></div></div></aside><section class="manager-main">
+    <section class="ps-stats" aria-label="Competitive achievements — sample data">
+      <article class="ps-season">
+        <div class="ps-stat-heading"><span class="ps-eyebrow">SEASON RANK</span><span class="ps-live"><i aria-hidden="true"></i>LIVE</span></div>
+        <div class="ps-season-value"><strong>#128</strong><span>of 6,400<br>managers</span><svg class="ps-trend-chart" viewBox="0 0 120 48" role="img" aria-label="Illustrative upward rank trend"><path d="M2 44L20 36L37 39L54 25L71 29L88 15L105 18L118 5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="118" cy="5" r="3" fill="currentColor"/></svg></div>
+        <div class="ps-season-context"><span>2026/27 season</span><span class="ps-rank-trend">↑ 12 places</span></div>
+        <div class="ps-standing-bar" aria-hidden="true"><span></span></div>
+        <div class="ps-stat-foot"><span>Top 2% worldwide</span><span>vs previous snapshot</span></div>
+      </article>
+      <article class="ps-record">
+        <div class="ps-stat-heading"><span class="ps-eyebrow">ALL-TIME BEST</span></div>
+        <div class="ps-record-value"><div><strong>#84</strong><span>WORLDWIDE</span></div><img class="ps-record-emblem" src="/assets/world-best-achievement.png" alt="All-time world ranking medal"></div>
+        <p class="ps-record-date">12 Oct 2025 <span>· 2025/26</span></p>
+        <button class="ps-best-link" data-action="show-career">See best picks ${icon('chevron')}</button>
+      </article>
+      <article class="ps-participation">
+        <div class="ps-stat-heading"><span class="ps-eyebrow">TOURNAMENTS PLAYED</span></div>
+        <div class="ps-participation-value"><strong>24</strong><img class="ps-milestone" src="/assets/tournament-milestone.png" alt="Tournament participation achievement"></div>
+        <span class="ps-percentile">Top 5% of users</span>
+        <p class="ps-participation-note">For tournament participation</p>
+        <div class="ps-tournament-marks" aria-label="24 tournaments completed">${Array.from({length:24},()=>'<i aria-hidden="true"></i>').join('')}</div>
+      </article>
+    </section>
     <div class="profile-tabs" role="tablist" aria-label="Profile sections"><button role="tab" data-profile-tab="overview" aria-selected="${state.tab==='overview'}">Overview</button><button role="tab" data-profile-tab="squad" aria-selected="${state.tab==='squad'}">Squad <span>5</span></button><button role="tab" data-profile-tab="calls" aria-selected="${state.tab==='calls'}">Calls <span>1</span></button></div>
     ${state.tab==='overview'?profileOverview(state,{shirt,icon,escapeHtml,players}):state.tab==='calls'?callsPanel(state,{shirt,icon,escapeHtml,players}):`<div class="section-heading"><h3>My starting five</h3><span class="muted mono">DEMO LINEUP</span></div><div class="squad-list">${players.map((p,i)=>`<button class="player-row" data-player="${i}">${shirt(p)}<span class="player-detail"><strong>${p.short}</strong><small><span class="available-dot"></span>${p.team} <span>${p.position}</span></small></span>${form(p.form)}<span class="player-value"><strong>${p.points}</strong><small>POINTS</small></span>${icon('chevron')}</button>`).join('')}</div>`}
     <p class="empty-note">Concept screen · illustrative stats and squad</p></section></div>`;
@@ -123,6 +144,7 @@ document.addEventListener('click', async e=>{
     case 'share-manager':openShare('manager');break;
     case 'share-player':openShare('player');break;
     case 'close-share':closeShare();break;
+    case 'show-career':{state.view='manager';state.tab='overview';render();const highlights=$('#career-highlights');highlights?.focus({preventScroll:true});highlights?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});break;}
     case 'like-call':state.liked=!state.liked;render();break;
     case 'media-preview':toast('Media is outside this profile study.');break;
     case 'player-trade-preview':toast('Visual preview only — no trade is placed.');break;
@@ -151,7 +173,7 @@ async function buildCard(){
   const heading={manager:'DIAMOND DIVISION',picks:'MY BEST PICKS RESULT',pack:'MY BIGGEST PACK PULL',call:'ON LAMINE YAMAL',player:p.team.toUpperCase()}[type];
   ctx.textAlign='center';ctx.fillStyle='#7a8085';ctx.font='500 22px "DM Mono"';ctx.fillText(heading,540,center+75);
   ctx.fillStyle='#eff1f2';let size=72;const title=person?s.name:p.name;ctx.font=`750 ${size}px Inter`;while(ctx.measureText(title).width>900&&size>30){size-=2;ctx.font=`750 ${size}px Inter`;}ctx.fillText(title,540,center+160);
-  const context={manager:'2026/27 season · 6,400 managers',picks:'Tournament 10 · Diamond division',pack:`Pulled by ${s.name} · Tournament 08`,call:'5 Nov 2026 · 18:42 UTC · Unedited',player:`Shared by ${s.name} · Tournament 10`}[type];
+  const context={manager:'2026/27 season · 6,400 managers',picks:'12 Oct 2025 · Tournament 10 · Diamond division',pack:`Pulled by ${s.name} · Tournament 08`,call:'5 Nov 2026 · 18:42 UTC · Unedited',player:`Shared by ${s.name} · Tournament 10`}[type];
   ctx.fillStyle='#7a8085';ctx.font='400 25px Inter';ctx.fillText(context,540,center+215);
   const y=H===1920?1175:740;
   ctx.fillStyle='#18181f';ctx.beginPath();ctx.roundRect(75,y-75,930,230,24);ctx.fill();

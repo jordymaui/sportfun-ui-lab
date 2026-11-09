@@ -1,0 +1,179 @@
+/* An earned profile: one featured performance, followed by distinct career moments. */
+.sh-overview{container:showcase / inline-size;min-width:0;color:#eff1f2}
+.sh-overview h3,.sh-overview h4,.sh-overview p{margin:0}
+.sh-overview button{font-family:Inter,Arial,sans-serif}
+.sh-kicker{font:500 10px/1.5 'DM Mono',monospace;letter-spacing:.55px;color:#909aa4}
+.sh-competition{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;margin-bottom:32px}
+.sh-division{padding:20px 22px 18px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 16% 42%,#326f8c25,transparent 66%),#111118;border:1px solid #a9e8ff28;border-radius:16px}
+.sh-division-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sh-live{display:inline-flex;align-items:center;gap:6px;color:#00c62d;font:500 10px 'DM Mono',monospace;letter-spacing:.7px}
+.sh-live i{height:6px;width:6px;border-radius:50%;background:currentColor;box-shadow:0 0 10px #00c62d77;animation:sh-live-pulse 3s ease-in-out infinite}
+.sh-division-main{display:flex;align-items:center;gap:18px;padding:8px 0}
+.sh-badge-stage{height:115px;width:115px;flex:0 0 115px;display:grid;place-items:center;position:relative}
+.sh-badge-stage::before{content:'';position:absolute;inset:12%;border-radius:50%;background:#a6e6ff15;box-shadow:0 0 30px #9ce6ff14}
+.sh-badge-stage img{height:115px;width:115px;object-fit:contain;position:relative;filter:drop-shadow(0 5px 14px #71c5e826)}
+.sh-division-copy{min-width:0}
+.sh-division-copy h3{font:600 31px/1.15 Inter,sans-serif;letter-spacing:-.8px;margin:5px 0 7px;color:#d8f4ff}
+.sh-division-copy p{font-size:12px;color:#95a9b8;line-height:1.5}
+.sh-standing{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-top:4px}
+.sh-standing>div>span{display:block;color:#8d98a2;font-size:11px;margin-bottom:6px}
+.sh-standing strong{font:500 25px/1.2 Inter,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.sh-standing strong small{font-size:13px;font-weight:400;letter-spacing:0;color:#7a8085}
+.sh-percentile{font:500 10px/1.2 'DM Mono',monospace;padding:6px 9px;border-radius:20px;color:#c0eaff;background:#92dafa10;border:1px solid #92dafa25;white-space:nowrap}
+.sh-standing-track{height:4px;background:#232b34;border-radius:5px;margin-top:14px;overflow:hidden}
+.sh-standing-track span{display:block;height:100%;width:94%;background:linear-gradient(90deg,#4b92b5,#c3eefe);border-radius:5px}
+.sh-leagues{min-width:0;padding:20px;background:#111118;border-radius:16px}
+.sh-league-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:10px}
+.sh-league-heading h3{font-size:15px;font-weight:550}
+.sh-league-heading>span{font-size:10px;color:#7a8085}
+.sh-league-row{display:flex;align-items:center;gap:11px;padding:21px 0;border-top:1px solid #232b34;min-width:0}
+.sh-league-row:first-of-type{border-top:0}
+.sh-league-crest{width:37px;height:43px;display:grid;place-items:center;flex-shrink:0;border:1px solid #ffffff22;border-radius:9px 9px 15px 15px;background:linear-gradient(130deg,#354352,#151b23);font:600 12px Inter,sans-serif;color:#c0d2e0;letter-spacing:-.4px;box-shadow:inset 0 0 0 3px #111118}
+.sh-friday{background:linear-gradient(130deg,#4a4435,#211d17);color:#d7c7a1}
+.sh-league-row>div:not(.sh-league-rank){min-width:0;flex:1}
+.sh-league-row>div>strong{font-size:13px;font-weight:550;display:block;overflow-wrap:anywhere}
+.sh-league-row small{display:block;font-size:10px;color:#7a8085;margin-top:5px;line-height:1.4}
+.sh-league-rank{text-align:right;flex-shrink:0}
+.sh-league-rank>strong{font:500 24px/1.2 Inter,sans-serif!important;font-variant-numeric:tabular-nums}
+.sh-league-rank>strong>span{font-size:12px;color:#7a8085}
+.sh-league-row:first-of-type .sh-league-rank>small{color:#b7dbe6}
+.sh-section-title{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+.sh-section-title h3{font:600 23px/1.2 Inter,sans-serif;letter-spacing:-.6px;margin-top:5px}
+.sh-section-title>span{font-size:11px;color:#7a8085}
+.sh-picks-hero{padding:22px 24px 20px;border:1px solid #87d7bb30;border-radius:16px;background:radial-gradient(ellipse at 85% 10%,#24845a1c,transparent 70%),#111118;overflow:hidden}
+.sh-picks-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.sh-record-stamp{font:500 10px/1.3 'DM Mono',monospace;letter-spacing:.6px;color:#bde4ce;display:inline-flex;align-items:center;gap:7px}
+.sh-record-stamp svg{height:15px;width:15px;color:#a7d8ba}
+.sh-picks-body{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1fr);align-items:center;gap:24px;margin-top:22px}
+.sh-score h4{font-size:14px;font-weight:500;color:#b5c0bc}
+.sh-score>strong{display:flex;align-items:baseline;gap:8px;font:500 64px/1.15 Inter,sans-serif;letter-spacing:-3px;margin:7px 0 8px;font-variant-numeric:tabular-nums}
+.sh-score>strong>span{font-size:13px;letter-spacing:0;color:#8d9994;font-weight:500}
+.sh-score-edge{font-size:11px;color:#71d591;line-height:1.5;display:block}
+.sh-overview .sh-record-date{margin-top:12px;font-size:10px;line-height:1.6;color:#9ca8a1}
+.sh-picks-team{min-width:0;text-align:center}
+.sh-picks-team>.sh-kicker{font-size:9px}
+.sh-lineup{display:flex;justify-content:space-between;gap:7px;margin-top:16px}
+.sh-lineup button{display:flex;flex:1;min-width:0;align-items:center;flex-direction:column;gap:10px;background:transparent;border:0;padding:0;color:#b9c2c6;border-radius:4px}
+.sh-lineup button:hover{color:#eff1f2}
+.sh-lineup button>span{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;font-weight:500}
+.device[data-size] .manager-main .sh-showcase .sh-lineup .player-shirt{width:46px;height:57px;max-width:100%;filter:drop-shadow(0 8px 6px #0005)}
+.device[data-size] .manager-main .sh-showcase .sh-lineup .player-shirt>span{font-size:15px}
+.sh-lineup button:nth-child(2) .player-shirt>span{color:#111118}
+.sh-picks-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-top:25px;padding-top:18px;border-top:1px solid #ffffff0c}
+.sh-score-compare{flex:1;max-width:480px;min-width:0}
+.sh-score-compare>div:not(.sh-score-bar):not(.sh-average-bar){display:flex;align-items:center;justify-content:space-between;color:#7f8e87;font-size:10px;line-height:1.5}
+.sh-score-compare strong{font-weight:500;color:#d4e3da;font-size:11px}
+.sh-score-bar,.sh-average-bar{height:4px;margin:5px 0 8px;border-radius:5px;overflow:hidden;background:#ffffff05}
+.sh-score-bar i{display:block;width:100%;height:100%;background:#00c62d;border-radius:5px}
+.sh-average-bar{margin-bottom:0;background:transparent}
+.sh-average-bar i{display:block;width:67.5%;height:100%;background:#484c4f;border-radius:5px}
+.sh-action{min-height:39px;border-radius:24px;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;padding:11px 16px;font-size:12px;font-weight:500;line-height:1.2;white-space:nowrap;flex-shrink:0}
+.sh-action svg{width:15px;height:15px}
+.sh-action-light{color:#111118;background:#eff1f2}
+.sh-action-light:hover{background:#d4dce0}
+.sh-supporting{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;margin-top:16px}
+.sh-favourite{display:flex;align-items:center;gap:20px;padding:23px;border-radius:16px;background:#111118;min-width:0;overflow:hidden}
+.sh-favourite-shirt{position:relative;flex:0 0 90px;display:grid;place-items:center;min-height:140px}
+.sh-favourite-shirt:before{content:'';position:absolute;width:122px;height:122px;border-radius:50%;background:radial-gradient(circle,#3e49662b,#18181f00 70%)}
+.device[data-size] .manager-main .sh-showcase .sh-favourite-shirt .player-shirt{height:109px;width:84px;filter:drop-shadow(0 12px 12px #0005);transform:rotate(-7deg)}
+.device[data-size] .manager-main .sh-showcase .sh-favourite-shirt .player-shirt>span{font-size:26px}
+.sh-favourite-shirt>span{position:absolute;right:-3px;bottom:6px;padding:6px 8px;border:1px solid #3c4350;border-radius:7px;background:#18181f;color:#cdd7e7;font:500 12px 'DM Mono',monospace;transform:rotate(5deg)}
+.sh-favourite-copy{min-width:0;flex:1}
+.sh-favourite-copy h4{font-size:18px;line-height:1.3;letter-spacing:-.5px;font-weight:550;margin:5px 0 8px}
+.sh-favourite-copy p{font-size:11px;line-height:1.6;color:#8e969e}
+.sh-favourite-copy p>strong{font-weight:550;color:#eff1f2}
+.sh-loyalty{display:flex;gap:3px;margin-top:13px;height:10px}
+.sh-loyalty i{flex:1;min-width:0;background:#252b35;border-radius:2px}
+.sh-loyalty .is-filled{background:#90afd0}
+.sh-text-action{display:inline-flex;align-items:center;gap:6px;border:0;background:transparent;font-size:11px;font-weight:500;padding:9px 0 0;color:#c6cdd5;min-height:34px;text-align:left}
+.sh-text-action svg{height:13px;width:13px}
+.sh-text-action:hover{color:#fff}
+.sh-pack{position:relative;overflow:hidden;padding:23px;border-radius:16px;border:1px solid #a6802929;background:radial-gradient(ellipse at 90% 30%,#c79a1d20,transparent 70%),#111118;min-width:0;min-height:222px}
+.sh-pack>.sh-kicker{color:#b5a277;position:relative;z-index:1}
+.sh-pack-art{position:absolute;right:9px;top:38px;transform:rotate(13deg);height:149px;width:126px;display:grid;place-items:center}
+.sh-pack-art:before{content:'';position:absolute;inset:4px 10px;border:1px solid #dbbc6a40;border-radius:12px;background:linear-gradient(150deg,#9f761d1d,#e4c37006);transform:rotate(-8deg)}
+.device[data-size] .manager-main .sh-showcase .sh-pack-art .player-shirt{height:125px;width:94px;filter:drop-shadow(0 9px 10px #0008)}
+.device[data-size] .manager-main .sh-showcase .sh-pack-art .player-shirt>span{font-size:27px;color:#111118}
+.sh-pack-copy{position:relative;margin-top:16px;max-width:calc(100% - 95px);z-index:1}
+.sh-pack-copy h4{font-size:16px;font-weight:550;line-height:1.35;letter-spacing:-.3px;margin-bottom:9px}
+.sh-pack-copy>strong{font:500 29px/1.2 Inter,sans-serif;color:#f6d680;display:flex;align-items:center;gap:7px;letter-spacing:-.7px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sh-gold-coin{display:grid;place-items:center;height:18px;width:18px;border:1px solid #e9b927;border-radius:50%;background:#b87c06;color:#ffe7a1;font-size:11px;letter-spacing:0}
+.sh-pack-copy p{font-size:10px;line-height:1.5;color:#9c927e;margin-top:8px}
+.sh-pack .sh-text-action{color:#e1c985}
+.sh-reward-ribbon{display:flex;align-items:center;gap:16px;padding:20px 24px;margin-top:16px;border-radius:13px;border:1px solid #b3b9c51b;background:linear-gradient(110deg,#202129,#111118 50%);min-width:0}
+.sh-reward-icon{height:54px;width:54px;flex-shrink:0;display:grid;place-items:center;border:1px solid #bfc6d62b;border-radius:50%;color:#c4cedc;background:radial-gradient(circle,#bfc9df16,#0c0d14);box-shadow:0 0 20px #8c9bb90b}
+.sh-reward-icon svg{height:27px;width:27px}
+.sh-reward-copy{flex:1;min-width:0}
+.sh-reward-copy h4{font-size:15px;font-weight:500;margin:4px 0 5px}
+.sh-reward-copy p{font-size:10px;color:#7a8085}
+.sh-reward-ribbon>strong{display:flex;align-items:center;gap:7px;font:500 36px/1.1 Inter,sans-serif;letter-spacing:-1.2px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sh-reward-ribbon>strong>span{height:24px;width:24px;background:#d9dee4;color:#111118;font:650 10px Inter,sans-serif;display:grid;place-items:center;border-radius:50%;letter-spacing:0}
+@keyframes sh-live-pulse{0%,100%{opacity:1;box-shadow:0 0 8px #00c62d55}50%{opacity:.55;box-shadow:0 0 12px #00c62d22}}
+@container showcase (max-width:760px){
+ .sh-competition{grid-template-columns:1fr;gap:12px;margin-bottom:28px}
+ .sh-division{padding:18px 20px}
+ .sh-division-main{padding:3px 0;gap:14px}
+ .sh-division-main .sh-badge-stage{height:100px;width:100px;flex-basis:100px}
+ .sh-badge-stage img{height:100px;width:100px}
+ .sh-standing{margin-top:0}
+ .sh-leagues{padding:15px 18px}
+ .sh-league-heading{padding-bottom:5px}
+ .sh-league-row{padding:14px 0}
+ .sh-picks-body{grid-template-columns:1fr;gap:22px;margin-top:17px}
+ .sh-score>strong{font-size:58px}
+ .sh-picks-team{text-align:left}
+ .sh-lineup{margin-top:13px;justify-content:flex-start;gap:12px}
+ .sh-lineup button{max-width:74px}
+ .sh-supporting{grid-template-columns:1fr;gap:12px;margin-top:12px}
+ .sh-pack-art{right:24px;top:28px}
+ .sh-pack{min-height:218px}
+ .sh-pack-copy{max-width:calc(100% - 140px)}
+ .sh-reward-ribbon{margin-top:12px}
+}
+@container showcase (max-width:430px){
+ .sh-kicker{font-size:9px;letter-spacing:.35px}
+ .sh-division{padding:15px 16px;border-radius:13px}
+ .sh-division-copy h3{font-size:28px}
+ .sh-division-copy p{font-size:11px}
+ .sh-division-copy>.sh-kicker{font-size:8px}
+ .sh-league-row>div>strong{font-size:12px}
+ .sh-league-heading h3{font-size:14px}
+ .sh-league-heading>span{font-size:9px}
+ .sh-league-rank>strong{font-size:22px!important}
+ .sh-league-rank small{font-size:9px}
+ .sh-section-title h3{font-size:21px}
+ .sh-section-title>span{font-size:10px}
+ .sh-picks-hero{padding:17px 16px;border-radius:13px}
+ .sh-record-stamp{font-size:8px;letter-spacing:.4px;gap:5px}
+ .sh-record-stamp svg{height:13px;width:13px}
+ .sh-picks-top>.sh-kicker{font-size:8px}
+ .sh-score h4{font-size:13px}
+ .sh-score>strong{font-size:54px;letter-spacing:-2px}
+ .sh-score-edge{font-size:10px}
+ .sh-lineup{gap:8px}
+ .sh-lineup button>span{font-size:8px}
+ .device[data-size] .manager-main .sh-showcase .sh-lineup .player-shirt{width:36px;height:46px}
+ .device[data-size] .manager-main .sh-showcase .sh-lineup .player-shirt>span{font-size:13px}
+ .sh-picks-bottom{align-items:stretch;flex-direction:column;gap:15px;margin-top:20px;padding-top:15px}
+ .sh-action{min-height:38px;font-size:11px}
+ .sh-score-compare{max-width:none;width:100%}
+ .sh-favourite{padding:20px 16px;gap:17px;border-radius:13px}
+ .sh-favourite-shirt{flex-basis:75px}
+ .device[data-size] .manager-main .sh-showcase .sh-favourite-shirt .player-shirt{width:69px;height:92px}
+ .device[data-size] .manager-main .sh-showcase .sh-favourite-shirt .player-shirt>span{font-size:23px}
+ .sh-favourite-copy h4{font-size:17px}
+ .sh-favourite-copy p{font-size:10px}
+ .sh-pack{padding:20px 18px;border-radius:13px}
+ .sh-pack-art{right:6px;top:43px;width:116px}
+ .sh-pack-copy{max-width:calc(100% - 91px)}
+ .sh-pack-copy h4{font-size:15px}
+ .sh-pack-copy>strong{font-size:27px}
+ .sh-reward-ribbon{padding:18px 15px;gap:11px;flex-wrap:wrap}
+ .sh-reward-icon{width:41px;height:41px}
+ .sh-reward-icon svg{width:22px;height:22px}
+ .sh-reward-copy{flex-basis:calc(100% - 55px)}
+ .sh-reward-copy h4{font-size:13px}
+ .sh-reward-copy>.sh-kicker{font-size:8px}
+ .sh-reward-ribbon>strong{margin:0 0 0 52px;font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){.sh-live i{animation:none}}
