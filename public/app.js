@@ -103,6 +103,7 @@ document.addEventListener('click', async e=>{
   if(el.id==='reference-close')showReference(false);
   if(el.id==='edit-close')$('#edit-dialog').close();
   switch(el.dataset.action){
+    case 'expand-preview':{const expanded=document.body.classList.toggle('preview-expanded');el.setAttribute('aria-pressed',String(expanded));el.textContent=expanded?'Exit full width':'Full width';if(expanded){state.size='desktop';render();}break;}
     case 'share-manager':state.shareType='manager';state.view='share';render();break;
     case 'share-player':state.shareType='player';state.view='share';render();break;
     case 'like-call':state.liked=!state.liked;render();break;

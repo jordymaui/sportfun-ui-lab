@@ -57,6 +57,10 @@ Screenshot calibration supports visual continuity but does not establish source-
 
 The additional player-profile references guide a wide desktop summary with performance, fixtures and charts, and mobile Selection, Market and Statistics tabs. Calls remains a proposed section after news within Selection. This pass changes layout; player, performance and market values remain illustrative.
 
+The v0.4 fidelity pass uses a desktop canvas up to 1800px wide, a 22% manager sidebar, 76px game header, filled top-level navigation pills and a consistent nested-card rhythm. The lab's **Full width** control hides the review sidebar and switches to the desktop layout. Phone component sizes remain independent of the desktop scale.
+
+The player grid now follows the reference's approximately 38/10/50 identity/facts/performance split. Facts are individually boxed; performance uses tall monthly bars and the supplied opponent badges; fixtures contain both teams, a central versus marker and illustrative probability strips. History, news, price and radial-stat panels form the two-column desktop grid, with transactions on the left and the Calls proposal below the standard modules. Mobile keeps the Selection/Market/Statistics grouping, compact identity, inline price change, pill actions and left-aligned tabs.
+
 ## Figma inspiration
 
 All nine reference images in the user's [Figma board](https://www.figma.com/design/CSt51FH6pSOuhjCznUGQIm/Untitled) were inspected read-only. The board was not modified. These are general composition references only; Sport.Fun screenshots remain the authority for the prototype's palette and components.
@@ -93,6 +97,8 @@ Player pages also use these badges beside the player's club, below performance b
 - Copy a preview URL on the current hostname. Hosted URLs can be shared; localhost URLs work only on the computer running the development server.
 
 ## Validation history — 6 November 2026
+
+For v0.4 on 9 November, the 1660px desktop review measured a 76px header, 22% sidebar and a roughly 505px player performance panel. The 390px and 320px phone layouts had no horizontal page or player-content overflow. Browser review covered all three player tabs, shared manager navigation and the full-width control; supplied badge images loaded successfully. Static rendering covered all 30 player/size/tab combinations, including badge paths, fixture pairs and existing action hooks. Syntax and whitespace checks passed. Chart values and fixture probabilities remain illustrative.
 
 For the initial prototype, JavaScript syntax checks passed. Browser review covered manager/player navigation, profile editing, a 390px mobile viewport (no page overflow or missing images), and a successful square PNG download. No live-game actions were performed.
 

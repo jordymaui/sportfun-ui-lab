@@ -1,204 +1,223 @@
-/* Current player-page structure, with proposed Calls added as a separate module. */
-.device[data-view=player] .game-topbar,.device[data-view=player] .game-bottomnav {display:none!important}
-.device[data-view=player] .game-content {background:#111118;padding:0!important}
-.player-detail-page {background:#111118;padding:18px 22px 24px;color:#eff1f2;font-family:Inter,Arial,sans-serif;min-width:0}
-.pp-toolbar {display:flex;align-items:center;gap:14px;padding-bottom:20px;min-height:41px}
-.pp-toolbar>span {margin:auto;font:8px 'DM Mono',monospace;color:#7a8085;letter-spacing:.6px}
-.pp-back,.pp-share {display:flex;align-items:center;gap:7px;border:0;background:transparent;padding:0;color:#a4aaaf;font-size:11px}
-.pp-back>span {font-size:18px}.pp-share svg {width:14px;height:14px}
-.pp-main-grid {display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;align-items:stretch}
-.pp-identity {grid-column:1/span 3;grid-row:1;position:relative;align-self:start;padding-top:4px}
-.pp-facts {grid-column:4/span 2;grid-row:1;display:flex;flex-direction:column;justify-content:space-around;gap:14px;padding:8px 0 8px 8px}
-.pp-performance {grid-column:6/span 7;grid-row:1}
-.pp-fixtures {grid-column:1/-1;grid-row:2;min-width:0}
-.pp-calls {grid-column:1/-1;grid-row:3;min-width:0}
-.pp-history {grid-column:1/span 6;grid-row:4}
-.pp-news {grid-column:7/span 6;grid-row:4}
-.pp-market {grid-column:1/span 6;grid-row:5}
-.pp-statistics {grid-column:7/span 6;grid-row:5}
-.pp-transactions {grid-column:1/-1;grid-row:6}
-.pp-picker {grid-column:1/-1;grid-row:7;min-width:0}
-.pp-mobile-tabs,.pp-close,.pp-mobile-share,.pp-ownership {display:none}
-.pp-person {display:flex;align-items:center;gap:12px}
-.pp-shirt-circle {height:76px;width:76px;border-radius:50%;background:#303335;display:grid;place-items:center;flex-shrink:0;overflow:hidden}
-.pp-shirt-circle .large-shirt {width:53px;height:67px;margin:0;filter:none}
-.pp-shirt-circle .large-shirt>span {font-size:20px}
-.pp-name {min-width:0}.pp-name h1 {font-size:23px;line-height:1.1;letter-spacing:-.6px;font-weight:600;margin:0 0 8px;overflow-wrap:anywhere}
-.pp-name p {margin:0;color:#7a8085;font-size:10px;line-height:1.5}.pp-name p>span {margin:0 3px}
-.pp-name .pp-teamline {display:flex;align-items:center;flex-wrap:wrap;gap:4px 5px;min-width:0}
-.pp-name .pp-teamline>span {margin:0}.pp-team-name {min-width:0;overflow-wrap:anywhere}
-.pp-club-badge {display:block;width:19px;height:19px;object-fit:contain;flex-shrink:0}
-.pp-price {display:flex;align-items:center;gap:8px;margin-top:26px;min-width:0}
-.pp-price strong {font-size:47px;line-height:1;letter-spacing:-2px;font-weight:500;font-variant-numeric:tabular-nums}
-.pp-coin {width:22px;height:22px;background:#fdb913;border:2px solid #c08b00;border-radius:50%;display:grid;place-items:center;color:#7a5600;font-size:13px;flex-shrink:0}
-.pp-change {display:flex;gap:8px;align-items:center;margin-top:10px;font-size:10px;flex-wrap:wrap}
-.pp-change strong {font-weight:500;color:#00c62d}.pp-change>span {color:#7a8085;font-size:9px}
-.pp-trade-actions {display:grid;grid-template-columns:1.4fr 1fr;gap:7px;margin-top:22px}
-.pp-trade-actions button {border:0;border-radius:18px;background:#303335;color:#eff1f2;font-size:10px;font-weight:500;min-height:35px;padding:9px 8px;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
-.pp-trade-actions .pp-sign {background:#fff;color:#111118}.pp-trade-actions .pp-swap {grid-column:1/-1;background:transparent;min-height:29px;color:#a4aaaf}
-.pp-trade-actions button:hover {background:#484c4f}.pp-trade-actions .pp-sign:hover {background:#c4cacf}.pp-swap svg {width:13px;height:13px}
-.pp-fact {min-width:0}.pp-fact>span {display:block;font-size:9px;color:#7a8085;line-height:1.5;margin-bottom:6px}
-.pp-fact strong {display:block;font-size:17px;font-weight:500;letter-spacing:-.3px;line-height:1.3;overflow-wrap:anywhere}.pp-fact strong i {font-style:normal;font-size:11px;color:#7a8085}
-.pp-fact small {display:block;font-size:8px;color:#7a8085;margin-top:3px}
-.pp-panel {background:#18181f;border:0;border-radius:14px;padding:17px 16px;min-width:0;overflow:hidden}
-.pp-panel-heading {display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px;min-width:0}
-.pp-panel-heading h2 {font-size:13px;font-weight:550;letter-spacing:-.15px;margin:0;line-height:1.3}
-.pp-panel-heading>span {font:7px 'DM Mono',monospace;color:#7a8085;letter-spacing:.5px;text-align:right;line-height:1.4;flex-shrink:0}
-.pp-performance-key {display:flex;justify-content:space-between;gap:12px;color:#7a8085;font-size:8px;margin-bottom:4px}
-.pp-performance-key>span:first-child {display:flex;align-items:center;gap:6px}.pp-performance-key i {height:5px;width:5px;border-radius:50%;background:#00c62d}
-.pp-performance-scroll {min-width:0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#303335 transparent}
-.player-detail-page .pp-performance-svg {width:100%;min-width:320px;height:auto;display:block;max-height:245px}
-.pp-opponent-legend {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px;margin-top:9px;padding-top:9px;border-top:1px solid #303335;color:#7a8085;font-size:9px;line-height:1.4}
-.pp-opponent-legend>span {display:flex;align-items:center;gap:5px;min-width:0}
-.pp-opponent-legend img {display:block;width:19px;height:19px;object-fit:contain;flex-shrink:0}
-.pp-opponent-legend>span>span {min-width:0;overflow-wrap:anywhere}
-.pp-fixture-strip {display:flex;gap:9px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#303335 transparent;padding-bottom:2px}
-.pp-fixture {background:#18181f;border-radius:10px;padding:12px;min-width:190px;flex:1}
-.pp-fixture>div:first-child {display:flex;justify-content:space-between;align-items:center;font-size:8px;color:#7a8085}.pp-fixture small {font-size:7px}
-.pp-fixture-teams {display:grid;grid-template-columns:29px minmax(0,1fr) auto;align-items:center;gap:8px;margin:16px 0 12px;min-height:34px;min-width:0}.pp-fixture-teams strong {min-width:0;font-weight:500;font-size:12px;line-height:1.35;overflow-wrap:anywhere}.pp-venue {font-size:10px;color:#7a8085}
-.pp-opponent {display:block;height:29px;width:29px;object-fit:contain}
-.pp-fixture p {margin:0;font:8px 'DM Mono',monospace;color:#7a8085}
-.pp-chart-summary {display:flex;align-items:baseline;gap:11px;margin:-2px 0 15px;flex-wrap:wrap}
-.pp-chart-summary strong {font-size:24px;letter-spacing:-.8px;line-height:1;font-weight:500}.pp-chart-summary>span {font-size:9px;color:#7a8085}
-.player-detail-page .pp-history-svg,.player-detail-page .pp-price-svg,.player-detail-page .pp-radar-svg {display:block;width:100%;height:auto;min-width:0}
-.pp-news-list {display:flex;flex-direction:column;gap:0}
-.pp-news-item {display:flex;gap:12px;padding:12px 0;border-top:1px solid #303335;min-width:0}
-.pp-news-item:first-child {border-top:0;padding-top:0}.pp-news-item:last-child {padding-bottom:0}
-.pp-news-art {height:54px;width:64px;flex-shrink:0;display:grid;place-items:center;border-radius:6px;background:#23232b;color:#7a8085}.pp-news-art svg {height:23px;width:23px}
-.pp-news-item h3 {font-size:11px;font-weight:500;margin:0 0 5px;line-height:1.3}.pp-news-item p {font-size:9px;line-height:1.45;color:#a4aaaf;margin:0 0 6px}.pp-news-item small {font-size:8px;color:#7a8085;display:block}
-.pp-calls {border:1px dashed #303335;padding:14px 16px;border-radius:14px;background:#111118}
-.pp-proposal-heading {display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
-.pp-proposal-heading>span {font:8px 'DM Mono',monospace;letter-spacing:.7px;color:#b0b7bc;background:#303335;border-radius:4px;padding:5px 7px}
-.pp-proposal-heading p {font-size:10px;color:#7a8085;margin:0;line-height:1.5}
-.pp-calls .research-section {margin-bottom:0}.pp-calls .research-section .section-heading {margin-top:15px}.pp-calls .call-card {background:#18181f;max-width:none}
-.pp-calls .call-card blockquote {max-width:none}.pp-calls .calls-context {margin-bottom:0}
-.pp-calls-empty h2 {font-size:14px;margin:16px 0 9px}.pp-calls-empty p {font-size:11px;color:#7a8085;margin:0 0 12px}
-.pp-calls-empty button {border:0;background:transparent;color:#c4cacf;padding:0;font-size:11px;display:flex;align-items:center;gap:6px}.pp-calls-empty button svg {width:13px;height:13px}
-.pp-table-scroll {overflow:auto;scrollbar-width:thin;scrollbar-color:#303335 transparent}
-.pp-transactions table {border-collapse:collapse;width:100%;min-width:480px;text-align:left;font-size:10px;white-space:nowrap}
-.pp-transactions th {color:#7a8085;font-size:9px;font-weight:400;padding:0 12px 12px}
-.pp-transactions td {padding:12px;border-top:1px solid #303335;font-variant-numeric:tabular-nums}
-.pp-transactions td:first-child {display:flex;align-items:center;gap:8px}.pp-transactions td:last-child,.pp-transactions th:last-child {text-align:right;color:#7a8085}
-.pp-demo-avatar {height:25px;width:25px;display:grid;place-items:center;background:#303335;border-radius:50%;font-size:7px;color:#a4aaaf;flex-shrink:0}
-.pp-positive,.pp-chart-summary>.pp-positive {color:#00c62d}.pp-negative {color:#ff4400}.pp-mini-coin {color:#fdb913}
-.pp-player-list {display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
-.pp-player-list button {display:flex;align-items:center;gap:10px;padding:10px;background:#18181f;color:#b0b7bc;border:1px solid transparent;border-radius:9px;font-size:10px;min-width:0;text-align:left}
-.pp-player-list button[aria-pressed=true] {border-color:#484c4f;color:#eff1f2;background:#23232b}
-.pp-player-list .player-shirt {width:30px;height:38px;flex-shrink:0}.pp-player-list .player-shirt>span {font-size:10px}
-.pp-player-list button>span {overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pp-data-note {font-size:9px;color:#7a8085;line-height:1.6;margin:14px 0 0}
-
-@container (max-width:880px) {
-  .pp-main-grid {grid-template-columns:repeat(6,minmax(0,1fr))}
-  .pp-identity {grid-column:1/span 3;grid-row:1}.pp-facts {grid-column:4/span 3;grid-row:1;display:grid;grid-template-columns:1fr 1fr;align-content:center;gap:22px}
-  .pp-performance {grid-column:1/-1;grid-row:2}.pp-fixtures {grid-row:3}.pp-calls {grid-row:4}
-  .pp-history {grid-column:1/span 3;grid-row:5}.pp-news {grid-column:4/span 3;grid-row:5}
-  .pp-market {grid-column:1/span 3;grid-row:6}.pp-statistics {grid-column:4/span 3;grid-row:6}
-  .pp-transactions {grid-row:7}.pp-picker {grid-row:8}
-  .pp-player-list button {flex-direction:column;gap:6px;text-align:center;padding:9px 4px}
+/* Player study calibrated to the supplied desktop and iOS screens. */
+.device[data-view=player] .game-topbar,.device[data-view=player] .game-bottomnav{display:none!important}
+.device[data-view=player] .game-content{background:#111118;padding:0!important}
+.player-detail-page{padding:16px 24px 28px;background:#111118;color:#eff1f2;font-family:Inter,Arial,sans-serif;min-width:0}
+.pp-sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.pp-toolbar{display:flex;align-items:center;gap:12px;min-height:32px;margin-bottom:14px}
+.pp-toolbar>span{margin:auto;color:#7a8085;font:8px 'DM Mono',monospace;letter-spacing:.4px}
+.pp-back,.pp-share{display:flex;align-items:center;gap:7px;padding:0;border:0;background:transparent;color:#a4aaaf;font-size:11px}
+.pp-back>span{display:grid;place-items:center;height:29px;width:29px;background:#303335;border-radius:50%;font-size:19px}
+.pp-share svg{height:14px;width:14px}
+.pp-main-grid{display:grid;grid-template-columns:minmax(0,3.8fr) minmax(100px,1fr) minmax(0,5fr);gap:20px 12px;align-items:stretch}
+.pp-identity{grid-column:1;grid-row:1;display:flex;flex-direction:column;position:relative;padding:10px 18px 0 0;min-width:0}
+.pp-facts{grid-column:2;grid-row:1;display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:7px;min-width:0}
+.pp-performance{grid-column:3;grid-row:1}
+.pp-fixtures{grid-column:1/-1;grid-row:2;padding:16px 0 18px;border-top:1px solid #232b34;border-bottom:1px solid #232b34;min-width:0}
+.pp-history{grid-column:1/span 2;grid-row:3}
+.pp-news{grid-column:3;grid-row:3}
+.pp-market{grid-column:1/span 2;grid-row:4}
+.pp-statistics{grid-column:3;grid-row:4}
+.pp-transactions{grid-column:1/span 2;grid-row:5}
+.pp-calls{grid-column:1/-1;grid-row:6}
+.pp-picker{grid-column:1/-1;grid-row:7;min-width:0}
+.pp-mobile-tabs,.pp-close,.pp-mobile-share,.pp-ownership{display:none}
+.pp-person{display:flex;align-items:center;gap:14px;min-width:0}
+.pp-shirt-circle{height:76px;width:76px;flex-shrink:0;display:grid;place-items:center;border-radius:50%;background:#303335;overflow:hidden}
+.pp-shirt-circle .large-shirt{height:70px;width:56px;margin:0;filter:none}
+.pp-shirt-circle .large-shirt>span{font-size:21px}
+.pp-name{min-width:0}
+.pp-name h1{margin:0 0 9px;font-size:27px;font-weight:550;line-height:1.1;letter-spacing:-.6px;overflow-wrap:anywhere}
+.pp-name .pp-teamline{display:flex;align-items:center;flex-wrap:wrap;gap:4px 5px;margin:0;color:#7a8085;font-size:12px;line-height:1.3;min-width:0}
+.pp-teamline>span{margin:0}.pp-team-name{min-width:0;overflow-wrap:anywhere}
+.pp-club-badge{height:21px;width:21px;object-fit:contain;flex-shrink:0}
+.pp-price-row{display:flex;align-items:baseline;gap:10px;margin-top:auto;padding-top:70px;min-width:0}
+.pp-price{display:flex;align-items:baseline;gap:7px;min-width:0}
+.pp-price strong{font-size:clamp(40px,4.1cqw,64px);line-height:1;letter-spacing:-2.8px;font-weight:400;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pp-coin{display:grid;place-items:center;align-self:center;height:20px;width:20px;background:#fdb913;border:2px solid #c08b00;border-radius:50%;color:#7a5600;font-size:11px;flex-shrink:0;transform:translateY(7px)}
+.pp-change{color:#00c62d;font-size:12px;white-space:nowrap;flex-shrink:0}.pp-change strong{font-weight:400}
+.pp-trade-actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;max-width:310px;width:100%;margin-top:20px}
+.pp-trade-actions button{display:flex;align-items:center;justify-content:center;gap:6px;min-height:39px;padding:10px 9px;border:0;border-radius:23px;background:#303335;color:#eff1f2;font-size:11px;font-weight:500;white-space:nowrap}
+.pp-trade-actions .pp-sign{background:#fff;color:#111118}
+.pp-trade-actions .pp-swap{grid-column:1/-1}
+.pp-trade-actions button:hover{background:#484c4f}.pp-trade-actions .pp-sign:hover{background:#e3e6e8}
+.pp-swap svg{height:12px;width:12px}
+.pp-fact{display:flex;flex-direction:column;min-width:0;min-height:78px;padding:11px 10px;background:#18181f;border-radius:7px}
+.pp-fact>span{display:block;color:#7a8085;font-size:10px;line-height:1.3;margin-bottom:10px}
+.pp-fact strong{display:block;margin-top:auto;font-size:26px;font-weight:400;letter-spacing:-.5px;line-height:1.1;overflow-wrap:anywhere}
+.pp-fact small{display:block;color:#7a8085;font-size:7px;line-height:1.3;margin-top:4px}
+.pp-fact-ownership strong{font-size:16px;letter-spacing:-.4px}.pp-fact strong i{font-style:normal;font-size:9px;color:#7a8085}
+.pp-panel{display:flex;flex-direction:column;background:transparent;padding:0;border:0;border-radius:0;min-width:0;overflow:hidden}
+.pp-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:0;margin-bottom:10px}
+.pp-panel-heading h2{margin:0;color:#7a8085;font-size:12px;font-weight:400;line-height:1.3}
+.pp-panel-heading>span{color:#7a8085;font:7px/1.3 'DM Mono',monospace;letter-spacing:.15px;text-align:right}
+.pp-plot{min-width:0;padding:17px 18px 14px;background:#18181f;border-radius:7px;flex:1}
+.pp-performance .pp-plot{display:flex;align-items:stretch;padding:8px 10px;aspect-ratio:1.67;min-height:290px}
+.player-detail-page .pp-performance-svg{display:block;width:100%;height:100%;min-width:0;max-height:none}
+.pp-performance-scroll{overflow:hidden}
+.pp-fixture-strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:3px;scrollbar-width:thin;scrollbar-color:#303335 transparent;min-width:0}
+.pp-fixture{flex:1 0 200px;min-width:0;max-width:310px;padding:11px;background:#18181f;border-radius:7px}
+.pp-fixture-meta{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#7a8085;font-size:9px;line-height:1.3;margin-bottom:9px}
+.pp-fixture-meta small{font-size:6px;letter-spacing:.2px}
+.pp-fixture-versus{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;position:relative}
+.pp-fixture-side{display:flex;flex-direction:column;background:#111118;border-radius:6px;overflow:hidden;min-width:0}
+.pp-fixture-team{display:flex;align-items:center;justify-content:center;gap:5px;min-height:83px;padding:8px 3px;min-width:0}
+.pp-fixture-team abbr{font-size:15px;text-decoration:none;white-space:nowrap}
+.pp-fixture-team img{height:26px;width:26px;object-fit:contain;flex-shrink:0}
+.pp-versus{position:absolute;top:37px;left:50%;transform:translateX(-50%);display:grid;place-items:center;height:18px;width:18px;border-radius:50%;background:#18181f;color:#7a8085;font-size:7px}
+.pp-probability{display:block;padding:4px 2px;color:#111118;font-size:8px;line-height:1;text-align:center;background:#7a8085}
+.pp-probability.is-favoured{background:#00c62d}.pp-probability.is-outsider{background:#ff4400}
+.player-detail-page .pp-history-svg,.player-detail-page .pp-price-svg{display:block;width:100%;height:auto;min-width:0}
+.pp-chart-summary{display:flex;align-items:center;gap:6px;min-height:48px;margin:10px 0 0;color:#eff1f2;min-width:0}
+.pp-chart-summary strong{font-size:28px;font-weight:400;line-height:1;letter-spacing:-.8px;white-space:nowrap}
+.pp-chart-summary>span:not(.pp-tp){font-size:8px;color:#7a8085;margin-left:6px}
+.pp-chart-summary .pp-tp{display:grid;place-items:center;height:26px;width:26px;background:#eff1f2;color:#111118;border-radius:50%;font-size:12px;font-weight:700;flex-shrink:0}
+.pp-chart-ranges{display:flex;align-items:center;gap:11px;margin-left:auto;color:#7a8085;font-size:9px}
+.pp-chart-ranges span{display:grid;place-items:center;width:22px;height:22px}
+.pp-chart-ranges .is-selected{border-radius:50%;background:#fff;color:#111118}
+.pp-statistics .pp-plot{display:grid;place-items:center;min-height:280px}
+.player-detail-page .pp-radar-svg{display:block;width:100%;height:100%;max-height:340px;min-width:0}
+.pp-news-list{max-height:430px;min-height:250px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#232b34 transparent;padding:21px 23px}
+.pp-news-item{margin:0 0 28px;padding:0;border:0;min-width:0}.pp-news-item:last-child{margin-bottom:0}
+.pp-news-author{display:flex;align-items:center;gap:8px;margin-bottom:8px;min-width:0}
+.pp-news-author>strong{font-size:11px;font-weight:550;min-width:0;overflow-wrap:anywhere}
+.pp-news-author>img{width:18px;height:18px;object-fit:contain;margin-left:auto}
+.pp-news-portrait{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#303335;overflow:hidden;flex-shrink:0}
+.pp-news-portrait .player-shirt{width:20px;height:26px}.pp-news-portrait .player-shirt>span{font-size:7px}
+.pp-news-item h3{font-size:12px;font-weight:550;line-height:1.4;margin:0 0 5px}
+.pp-news-item p{font-size:11px;line-height:1.5;color:#7a8085;margin:0 0 8px}
+.pp-news-item small{display:block;color:#7a8085;font-size:8px}
+.pp-transactions{padding-top:6px}
+.pp-table-scroll{overflow:auto;background:#18181f;border-radius:7px;padding:16px;scrollbar-width:thin;scrollbar-color:#303335 transparent}
+.pp-transactions table{width:100%;min-width:480px;border-collapse:collapse;text-align:left;font-size:11px;white-space:nowrap}
+.pp-transactions th{padding:0 12px 12px;color:#7a8085;font-size:9px;font-weight:400}
+.pp-transactions td{padding:13px 12px;border-top:1px solid #303335;font-variant-numeric:tabular-nums}
+.pp-transactions td:last-child,.pp-transactions th:last-child{text-align:right}
+.pp-positive{color:#00c62d}.pp-negative{color:#ff4400}.pp-mini-coin{color:#fdb913}
+.pp-calls{padding:18px;border:1px solid #232b34;border-radius:8px;min-width:0}
+.pp-proposal-heading{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.pp-proposal-heading>span{color:#a4aaaf;background:#18181f;padding:5px 7px;border-radius:4px;font:8px 'DM Mono',monospace;letter-spacing:.4px}
+.pp-proposal-heading p{margin:0;font-size:11px;line-height:1.5;color:#7a8085}
+.pp-calls .research-section{margin-bottom:0}.pp-calls .research-section .section-heading{margin-top:15px}
+.pp-calls .call-card{background:#18181f;max-width:none}.pp-calls .call-card blockquote{max-width:none}.pp-calls .calls-context{margin-bottom:0}
+.pp-calls-empty h2{font-size:14px;margin:16px 0 9px}.pp-calls-empty p{font-size:12px;color:#7a8085;margin:0 0 12px}
+.pp-calls-empty button{display:flex;align-items:center;gap:6px;border:0;background:transparent;color:#c4cacf;padding:0;font-size:11px}.pp-calls-empty button svg{width:13px;height:13px}
+.pp-player-list{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.pp-player-list button{display:flex;align-items:center;gap:10px;min-width:0;padding:10px;border:1px solid transparent;border-radius:7px;background:#18181f;color:#b0b7bc;font-size:10px;text-align:left}
+.pp-player-list button[aria-pressed=true]{border-color:#484c4f;color:#eff1f2;background:#23232b}
+.pp-player-list .player-shirt{width:30px;height:38px;flex-shrink:0}.pp-player-list .player-shirt>span{font-size:10px}
+.pp-player-list button>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pp-data-note{color:#7a8085;font-size:9px;line-height:1.6;margin:14px 0 0}
+@container(max-width:1050px){
+  .pp-main-grid{grid-template-columns:minmax(0,3.5fr) minmax(94px,1.2fr) minmax(0,5fr);gap:18px 10px}
+  .pp-name h1{font-size:22px}.pp-shirt-circle{height:64px;width:64px}.pp-shirt-circle .large-shirt{height:60px;width:47px}
+  .pp-person{gap:10px}.pp-name .pp-teamline{font-size:10px}.pp-price strong{font-size:42px;letter-spacing:-2px}.pp-change{font-size:10px}
+  .pp-identity{padding-right:4px}.pp-price-row{gap:6px}.pp-coin{height:17px;width:17px;font-size:9px}
 }
-@container (max-width:580px) {
-  .pp-main-grid {display:flex;flex-direction:column;gap:16px}
-  .pp-facts {padding:4px 0;grid-template-columns:repeat(2,minmax(0,1fr))}
-  .pp-identity {width:100%}.pp-person {max-width:290px}.pp-price strong {font-size:52px}
-  .pp-trade-actions {display:flex}.pp-trade-actions button {flex:1}.pp-trade-actions .pp-sign {flex:1.5}.pp-trade-actions .pp-swap {background:#303335}
-  .pp-toolbar>span {display:none}.pp-toolbar {justify-content:space-between}
+@container(max-width:760px){
+  .pp-main-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pp-identity{grid-column:1;grid-row:1;padding:0 0 4px}.pp-price-row{padding-top:35px}.pp-price strong{font-size:44px}
+  .pp-facts{grid-column:2;grid-row:1;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto}
+  .pp-performance{grid-column:1/-1;grid-row:2}.pp-fixtures{grid-row:3}
+  .pp-history{grid-column:1;grid-row:4}.pp-news{grid-column:2;grid-row:4}
+  .pp-market{grid-column:1;grid-row:5}.pp-statistics{grid-column:2;grid-row:5}
+  .pp-transactions{grid-column:1/-1;grid-row:6}.pp-calls{grid-row:7}.pp-picker{grid-row:8}
+  .pp-plot{padding:12px}.pp-chart-summary strong{font-size:23px}.pp-chart-summary>span:not(.pp-tp){font-size:7px}
+  .pp-chart-ranges{gap:3px;font-size:8px}.pp-chart-ranges span{width:18px;height:18px}
+  .pp-news-list{padding:15px;max-height:330px}.pp-news-item p{font-size:10px}
+  .pp-player-list button{flex-direction:column;gap:6px;padding:9px 4px;text-align:center}
 }
-
-/* Mobile player sheet: Selection / Market / Statistics mirror the supplied iOS view. */
-.device[data-size=mobile][data-view=player] .game-content {background:#263651;padding:16px 0 0!important}
-.device[data-size=mobile] .player-detail-page {padding:19px 16px 22px;border-radius:22px 22px 0 0;min-height:100%;background:#111118}
-.device[data-size=mobile] .pp-toolbar {display:none}
-.device[data-size=mobile] .pp-main-grid {display:flex;flex-direction:column;gap:17px}
-.device[data-size=mobile] .pp-identity {order:0;position:relative;padding-top:1px;width:100%}
-.device[data-size=mobile] .pp-person {padding-right:71px;gap:11px;max-width:none;min-height:60px}
-.device[data-size=mobile] .pp-shirt-circle {height:59px;width:59px;background:#303335}
-.device[data-size=mobile] .pp-shirt-circle .large-shirt {height:53px;width:43px}
-.device[data-size=mobile] .pp-shirt-circle .large-shirt>span {font-size:17px}
-.device[data-size=mobile] .pp-name h1 {font-size:23px;line-height:1.07;letter-spacing:-.5px;margin-bottom:6px}
-.device[data-size=mobile] .pp-name p {font-size:11px}
-.device[data-size=mobile] .pp-close {display:grid;place-items:center;position:absolute;right:0;top:0;width:29px;height:29px;border:0;border-radius:50%;background:#303335;color:#eff1f2;font:300 24px/1 Inter,sans-serif;padding:0}
-.device[data-size=mobile] .pp-mobile-share {display:grid;place-items:center;position:absolute;right:36px;top:0;width:29px;height:29px;border:0;border-radius:50%;background:#303335;color:#eff1f2;padding:6px}
-.device[data-size=mobile] .pp-mobile-share svg {width:15px;height:15px}
-.device[data-size=mobile] .pp-price {gap:10px;margin-top:28px}
-.device[data-size=mobile] .pp-price strong {font-size:64px;font-weight:500;letter-spacing:-2.5px}
-.device[data-size=mobile] .pp-coin {width:24px;height:24px;font-size:14px}
-.device[data-size=mobile] .pp-change {margin-top:9px;gap:10px;font-size:12px}
-.device[data-size=mobile] .pp-change>span {font-size:10px}
-.device[data-size=mobile] .pp-trade-actions {display:grid;grid-template-columns:1.5fr 1fr .9fr;gap:7px;margin-top:19px}
-.device[data-size=mobile] .pp-trade-actions button {font-size:11px;min-height:39px;padding:10px 7px;border-radius:22px}
-.device[data-size=mobile] .pp-trade-actions .pp-sign {order:0}
-.device[data-size=mobile] .pp-trade-actions .pp-swap {order:1;grid-column:auto;background:#303335;color:#eff1f2}
-.device[data-size=mobile] .pp-trade-actions .pp-release {order:2}
-.device[data-size=mobile] .pp-mobile-tabs {order:1;display:flex;gap:5px;align-items:center;margin:4px 0 0;overflow-x:auto;scrollbar-width:none}
-.device[data-size=mobile] .pp-mobile-tabs button {flex:1;border:0;border-radius:20px;padding:10px 12px;min-height:37px;background:transparent;color:#7a8085;font-size:12px;font-weight:500;white-space:nowrap}
-.device[data-size=mobile] .pp-mobile-tabs button[aria-pressed=true] {background:#eff1f2;color:#111118}
-.device[data-size=mobile] .pp-panel {padding:16px 13px;border-radius:15px}
-.device[data-size=mobile] .pp-panel-heading {gap:8px;margin-bottom:14px}
-.device[data-size=mobile] .pp-panel-heading h2 {font-size:14px;line-height:1.3}
-.device[data-size=mobile] .pp-panel-heading>span {font-size:8px;letter-spacing:.2px}
-.device[data-size=mobile] .pp-performance {order:2}
-.device[data-size=mobile] .pp-performance-key {font-size:9px;margin-bottom:10px}
-.device[data-size=mobile] .pp-performance-svg {min-width:0;width:100%;max-height:none}
-.device[data-size=mobile] .pp-fixtures {order:3}
-.device[data-size=mobile] .pp-fixture {flex:0 0 165px;min-width:165px;padding:12px}
-.device[data-size=mobile] .pp-fixture>div:first-child {font-size:9px}
-.device[data-size=mobile] .pp-fixture small {font-size:8px}
-.device[data-size=mobile] .pp-fixture-teams strong {font-size:12px}
-.device[data-size=mobile] .pp-fixture p {font-size:9px}
-.device[data-size=mobile] .pp-ownership {order:4;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.device[data-size=mobile] .pp-ownership-card {padding:14px 12px;background:#18181f;border-radius:12px;min-width:0}
-.device[data-size=mobile] .pp-ownership-card>span {font-size:10px;line-height:1.4;color:#7a8085;display:block;min-height:29px}
-.device[data-size=mobile] .pp-ownership-card strong {font-size:20px;font-weight:500;letter-spacing:-.5px;display:block;margin-top:8px}
-.device[data-size=mobile] .pp-ownership-card i {font-style:normal;color:#7a8085;font-size:11px}
-.device[data-size=mobile] .pp-ownership-card small {font-size:9px;color:#7a8085;display:block;margin-top:4px}
-.device[data-size=mobile] .pp-news {order:5}
-.device[data-size=mobile] .pp-news-item {gap:10px;padding:12px 0}
-.device[data-size=mobile] .pp-news-art {height:55px;width:59px}
-.device[data-size=mobile] .pp-news-item h3 {font-size:12px}
-.device[data-size=mobile] .pp-news-item p {font-size:10px;line-height:1.5}
-.device[data-size=mobile] .pp-news-item small {font-size:9px}
-.device[data-size=mobile] .pp-calls {order:6;padding:13px 12px;border-radius:14px}
-.device[data-size=mobile] .pp-proposal-heading {gap:8px}
-.device[data-size=mobile] .pp-proposal-heading>span {font-size:8px}
-.device[data-size=mobile] .pp-proposal-heading p {font-size:11px;line-height:1.4}
-.device[data-size=mobile] .pp-calls-empty p {font-size:12px}
-.device[data-size=mobile] .pp-market {order:2}
-.device[data-size=mobile] .pp-history {order:3}
-.device[data-size=mobile] .pp-transactions {order:4}
-.device[data-size=mobile] .pp-transactions .pp-table-scroll {overflow:visible}
-.device[data-size=mobile] .pp-transactions table,.device[data-size=mobile] .pp-transactions tbody {display:block;min-width:0;width:100%;white-space:normal}
-.device[data-size=mobile] .pp-transactions thead {display:none}
-.device[data-size=mobile] .pp-transactions tbody {display:flex;flex-direction:column;gap:8px}
-.device[data-size=mobile] .pp-transactions tr {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px 9px;padding:14px 12px;border-radius:10px;background:#23232b}
-.device[data-size=mobile] .pp-transactions td {border:0;padding:0;font-size:12px;min-width:0;text-align:left;line-height:1.4;font-variant-numeric:tabular-nums}
-.device[data-size=mobile] .pp-transactions td:first-child {order:0;grid-column:1;display:flex;align-items:center;gap:6px;font-size:12px;font-weight:550}
-.device[data-size=mobile] .pp-transactions td:nth-child(4) {order:1;grid-column:2/span 2;text-align:right;font-size:9px;color:#7a8085;align-self:center}
-.device[data-size=mobile] .pp-transactions td:nth-child(2) {order:2;grid-column:1}
-.device[data-size=mobile] .pp-transactions td:nth-child(3) {order:3;grid-column:2}
-.device[data-size=mobile] .pp-transactions td:last-child {order:4;grid-column:3;color:#eff1f2}
-.device[data-size=mobile] .pp-transactions td:nth-child(2)::before,.device[data-size=mobile] .pp-transactions td:nth-child(3)::before,.device[data-size=mobile] .pp-transactions td:last-child::before {content:attr(data-label);display:block;font-size:9px;color:#7a8085;margin-bottom:5px}
-.device[data-size=mobile] .pp-chart-summary strong {font-size:27px}
-.device[data-size=mobile] .pp-chart-summary>span {font-size:10px}
-.device[data-size=mobile] .pp-statistics {order:2}
-.device[data-size=mobile] .pp-facts {order:3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0}
-.device[data-size=mobile] .pp-fact {padding:14px 12px;border-radius:12px;background:#18181f}
-.device[data-size=mobile] .pp-fact>span {font-size:11px}
-.device[data-size=mobile] .pp-fact strong {font-size:24px;margin-top:10px}
-.device[data-size=mobile] .pp-fact small {font-size:9px}
-.device[data-size=mobile] .pp-fact-ownership {display:none}
-.device[data-size=mobile] .pp-picker {order:99}
-.device[data-size=mobile] .pp-player-list {gap:5px}
-.device[data-size=mobile] .pp-player-list button {padding:9px 3px;font-size:9px;gap:6px}
-.device[data-size=mobile] .pp-player-list .player-shirt {height:43px;width:34px}
-.device[data-size=mobile] .pp-data-note {font-size:10px;line-height:1.6}
+@container(max-width:580px){
+  .pp-main-grid{display:flex;flex-direction:column}.pp-identity{order:0}.pp-facts{order:1}.pp-performance{order:2}.pp-fixtures{order:3}.pp-history{order:4}.pp-news{order:5}.pp-market{order:6}.pp-statistics{order:7}.pp-transactions{order:8}.pp-calls{order:9}.pp-picker{order:10}
+  .pp-toolbar>span{display:none}.pp-toolbar{justify-content:space-between}
+}
+/* iOS player sheet. The content keeps the existing internal scroll container. */
+.device[data-size=mobile][data-view=player] .game-content{background:#263651;padding:16px 0 0!important}
+.device[data-size=mobile] .player-detail-page{min-height:100%;padding:15px 10px 22px;border-radius:20px 20px 0 0;background:#111118}
+.device[data-size=mobile] .pp-toolbar{display:none}
+.device[data-size=mobile] .pp-main-grid{display:flex;flex-direction:column;gap:17px}
+.device[data-size=mobile] .pp-identity{order:0;position:relative;display:block;width:100%;padding:0}
+.device[data-size=mobile] .pp-person{padding-right:67px;gap:10px;min-height:44px}
+.device[data-size=mobile] .pp-shirt-circle{height:42px;width:42px}
+.device[data-size=mobile] .pp-shirt-circle .large-shirt{height:42px;width:33px}.device[data-size=mobile] .pp-shirt-circle .large-shirt>span{font-size:12px}
+.device[data-size=mobile] .pp-name h1{font-size:18px;font-weight:500;line-height:1.1;letter-spacing:-.25px;margin:0 0 5px}
+.device[data-size=mobile] .pp-name .pp-teamline{font-size:11px;gap:3px 4px}.device[data-size=mobile] .pp-club-badge{width:17px;height:17px}
+.device[data-size=mobile] .pp-close,.device[data-size=mobile] .pp-mobile-share{position:absolute;top:0;display:grid;place-items:center;border:0;border-radius:50%;background:#303335;color:#eff1f2;width:29px;height:29px;padding:0}
+.device[data-size=mobile] .pp-close{right:0;font:300 23px/1 Inter,sans-serif}
+.device[data-size=mobile] .pp-mobile-share{right:35px;padding:7px}.device[data-size=mobile] .pp-mobile-share svg{width:14px;height:14px}
+.device[data-size=mobile] .pp-price-row{display:flex;align-items:baseline;gap:8px;margin-top:47px;padding:0}
+.device[data-size=mobile] .pp-price{gap:4px}.device[data-size=mobile] .pp-price strong{font-size:61px;font-weight:400;letter-spacing:-2.8px}
+.device[data-size=mobile] .pp-coin{height:20px;width:20px;font-size:11px;transform:translateY(7px)}
+.device[data-size=mobile] .pp-change{font-size:12px}
+.device[data-size=mobile] .pp-trade-actions{display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:6px;max-width:none;margin-top:18px}
+.device[data-size=mobile] .pp-trade-actions button{font-size:11px;min-height:39px;padding:10px 6px;border-radius:23px}
+.device[data-size=mobile] .pp-sign{order:0}.device[data-size=mobile] .pp-swap{order:1;grid-column:auto}.device[data-size=mobile] .pp-release{order:2}
+.device[data-size=mobile] .pp-swap svg{display:none}
+.device[data-size=mobile] .pp-mobile-tabs{order:1;display:flex;align-items:center;justify-content:flex-start;gap:4px;margin:0;overflow-x:auto;scrollbar-width:none}
+.device[data-size=mobile] .pp-mobile-tabs button{flex:0 0 auto;min-height:28px;padding:6px 10px;border:1px solid #232b34;border-radius:17px;background:transparent;color:#7a8085;font-size:11px;font-weight:400;line-height:1.2;white-space:nowrap}
+.device[data-size=mobile] .pp-mobile-tabs button[aria-pressed=true]{background:#fff;color:#111118;border-color:#fff}
+.device[data-size=mobile] .pp-panel{display:block;padding:12px;background:#18181f;border-radius:8px}
+.device[data-size=mobile] .pp-panel-heading{gap:5px;margin-bottom:12px}
+.device[data-size=mobile] .pp-panel-heading h2{font-size:10px;line-height:1.35;font-weight:400;text-transform:uppercase}
+.device[data-size=mobile] .pp-panel-heading>span{font-size:6px;letter-spacing:0;max-width:46%}
+.device[data-size=mobile] .pp-plot{padding:0;background:transparent;border-radius:0}
+.device[data-size=mobile] .pp-performance{order:2}
+.device[data-size=mobile] .pp-performance .pp-plot{display:block;aspect-ratio:auto;min-height:0}
+.device[data-size=mobile] .pp-performance-svg{width:100%;height:auto;min-width:0;max-height:none}
+.device[data-size=mobile] .pp-fixtures{order:3;padding:0;border:0}
+.device[data-size=mobile] .pp-fixtures .pp-panel-heading>span{max-width:52%;font-size:5.5px}
+.device[data-size=mobile] .pp-fixture-strip{gap:7px;padding-bottom:5px}
+.device[data-size=mobile] .pp-fixture{flex:0 0 calc((100% - 7px)/2);max-width:none;min-width:0;padding:9px 8px 10px}
+.device[data-size=mobile] .pp-fixture-meta{gap:3px;font-size:7px;margin-bottom:8px}.device[data-size=mobile] .pp-fixture-meta small{font-size:5px}
+.device[data-size=mobile] .pp-fixture-team{min-height:69px;gap:3px;padding:6px 2px}.device[data-size=mobile] .pp-fixture-team abbr{font-size:11px}
+.device[data-size=mobile] .pp-fixture-team img{height:21px;width:21px}
+.device[data-size=mobile] .pp-versus{top:29px;width:16px;height:16px;font-size:6px}
+.device[data-size=mobile] .pp-probability{font-size:7px;padding:3px 1px}
+.device[data-size=mobile] .pp-ownership{order:4;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.device[data-size=mobile] .pp-ownership-card{display:flex;flex-direction:column;min-width:0;min-height:112px;padding:12px 10px;background:#18181f;border-radius:8px}
+.device[data-size=mobile] .pp-ownership-card>span{font-size:10px;color:#7a8085;line-height:1.4;margin-bottom:22px}
+.device[data-size=mobile] .pp-ownership-card strong{font-size:21px;font-weight:400;line-height:1.2;margin-top:auto;letter-spacing:-.6px}
+.device[data-size=mobile] .pp-ownership-card i{font-size:10px;font-style:normal;color:#7a8085}
+.device[data-size=mobile] .pp-ownership-card small{font-size:8px;color:#7a8085;margin-top:3px}
+.device[data-size=mobile] .pp-news{order:5}.device[data-size=mobile] .pp-news-list{min-height:0;max-height:340px;padding:3px 2px}
+.device[data-size=mobile] .pp-news-item{margin-bottom:25px}.device[data-size=mobile] .pp-news-item h3{font-size:11px}.device[data-size=mobile] .pp-news-item p{font-size:10px}.device[data-size=mobile] .pp-news-item small{font-size:8px}
+.device[data-size=mobile] .pp-news-author>strong{font-size:10px}.device[data-size=mobile] .pp-news-portrait{width:24px;height:24px}
+.device[data-size=mobile] .pp-calls{order:6;padding:12px;border-radius:8px}
+.device[data-size=mobile] .pp-proposal-heading{gap:7px}.device[data-size=mobile] .pp-proposal-heading>span{font-size:7px}.device[data-size=mobile] .pp-proposal-heading p{font-size:10px}
+.device[data-size=mobile] .pp-market{order:2}.device[data-size=mobile] .pp-history{order:3}.device[data-size=mobile] .pp-transactions{order:4}
+.device[data-size=mobile] .pp-chart-summary{margin-top:6px;min-height:38px}.device[data-size=mobile] .pp-chart-summary strong{font-size:26px}.device[data-size=mobile] .pp-chart-summary>span:not(.pp-tp){font-size:7px}
+.device[data-size=mobile] .pp-chart-summary .pp-tp{height:24px;width:24px;font-size:11px}
+.device[data-size=mobile] .pp-chart-ranges{gap:6px;font-size:8px}.device[data-size=mobile] .pp-chart-ranges span{height:20px;width:20px}
+.device[data-size=mobile] .pp-table-scroll{background:transparent;padding:0;overflow:visible}
+.device[data-size=mobile] .pp-transactions table,.device[data-size=mobile] .pp-transactions tbody{display:block;min-width:0;width:100%;white-space:normal}
+.device[data-size=mobile] .pp-transactions thead{display:none}
+.device[data-size=mobile] .pp-transactions tbody{display:flex;flex-direction:column;gap:8px}
+.device[data-size=mobile] .pp-transactions tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 10px;padding:14px 12px;background:#111118;border-radius:8px}
+.device[data-size=mobile] .pp-transactions td{padding:0;border:0;min-width:0;font-size:11px;text-align:left;line-height:1.4;font-variant-numeric:tabular-nums}
+.device[data-size=mobile] .pp-transactions td:first-child{order:0;grid-column:1;font-size:11px;font-weight:500;color:#eff1f2}
+.device[data-size=mobile] .pp-transactions td:nth-child(4){order:1;grid-column:2;align-self:center;text-align:right;font-size:8px;color:#7a8085}
+.device[data-size=mobile] .pp-transactions td:nth-child(2){order:2;grid-column:1}.device[data-size=mobile] .pp-transactions td:nth-child(3){order:3;grid-column:2}
+.device[data-size=mobile] .pp-transactions td:last-child{order:4;grid-column:1/-1;display:flex;align-items:center;gap:3px;justify-content:flex-end;padding-top:11px;border-top:1px solid #232b34}
+.device[data-size=mobile] .pp-transactions td:nth-child(2)::before,.device[data-size=mobile] .pp-transactions td:nth-child(3)::before,.device[data-size=mobile] .pp-transactions td:last-child::before{content:attr(data-label);display:block;margin-bottom:5px;color:#7a8085;font-size:8px;text-transform:uppercase}
+.device[data-size=mobile] .pp-transactions td:last-child::before{margin-right:auto;margin-bottom:0}
+.device[data-size=mobile] .pp-statistics{order:2}.device[data-size=mobile] .pp-statistics .pp-plot{display:block;min-height:0}
+.device[data-size=mobile] .pp-radar-svg{height:auto;width:100%;max-height:none}
+.device[data-size=mobile] .pp-facts{order:3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto;gap:7px;padding:0}
+.device[data-size=mobile] .pp-fact{min-height:105px;padding:13px 11px;border-radius:8px}.device[data-size=mobile] .pp-fact>span{font-size:11px}.device[data-size=mobile] .pp-fact strong{font-size:28px}.device[data-size=mobile] .pp-fact small{font-size:7px}
+.device[data-size=mobile] .pp-fact-ownership{display:none}
+.device[data-size=mobile] .pp-picker{order:99}.device[data-size=mobile] .pp-player-list{gap:5px}
+.device[data-size=mobile] .pp-player-list button{padding:9px 3px;font-size:9px;gap:6px;flex-direction:column}
+.device[data-size=mobile] .pp-player-list .player-shirt{height:40px;width:31px}
+.device[data-size=mobile] .pp-data-note{font-size:9px}
 .device[data-size=mobile] .player-detail-page[data-player-tab=selection] [data-player-group]:not([data-player-group=selection]),
 .device[data-size=mobile] .player-detail-page[data-player-tab=market] [data-player-group]:not([data-player-group=market]),
-.device[data-size=mobile] .player-detail-page[data-player-tab=statistics] [data-player-group]:not([data-player-group=statistics]) {display:none}
-@container (max-width:340px) {
-  .device[data-size=mobile] .player-detail-page {padding:17px 12px 20px}
-  .device[data-size=mobile] .pp-name h1 {font-size:21px}
-  .device[data-size=mobile] .pp-price strong {font-size:57px}
-  .device[data-size=mobile] .pp-trade-actions button {font-size:10px;padding-left:5px;padding-right:5px}
-  .device[data-size=mobile] .pp-mobile-tabs button {font-size:11px;padding-left:8px;padding-right:8px}
-  .device[data-size=mobile] .pp-panel {padding:15px 11px}
+.device[data-size=mobile] .player-detail-page[data-player-tab=statistics] [data-player-group]:not([data-player-group=statistics]){display:none}
+@container(max-width:340px){
+  .device[data-size=mobile] .player-detail-page{padding:14px 9px 20px}
+  .device[data-size=mobile] .pp-name h1{font-size:17px}.device[data-size=mobile] .pp-name .pp-teamline{font-size:10px}
+  .device[data-size=mobile] .pp-price strong{font-size:53px;letter-spacing:-2.6px}.device[data-size=mobile] .pp-price-row{gap:6px}.device[data-size=mobile] .pp-change{font-size:10px}
+  .device[data-size=mobile] .pp-trade-actions button{font-size:10px;padding-left:4px;padding-right:4px}
+  .device[data-size=mobile] .pp-panel{padding:11px 9px}
+  .device[data-size=mobile] .pp-fixture{padding-left:6px;padding-right:6px}.device[data-size=mobile] .pp-fixture-meta small{display:none}
+  .device[data-size=mobile] .pp-fixture-team abbr{font-size:10px}.device[data-size=mobile] .pp-fixture-team img{height:19px;width:19px}
+  .device[data-size=mobile] .pp-chart-ranges{gap:3px}
 }
