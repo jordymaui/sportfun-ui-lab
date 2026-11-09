@@ -43,7 +43,7 @@ The prototype reuses assets from the local `sdf-site` checkout, plus the user's 
 | `clubs/*.svg` | User-supplied `Team Icons V2.zip` and `CWC Logos.zip`, supplied 9 November 2026; SVG contents preserved with normalized filenames |
 | `reference-game.png` | `../sdf-site/public/images/marketing/football-mobiles-live-v2-20260730.png` |
 
-ENDGAME and its avatar are the user's supplied in-game identity, used across the profile, Calls and share cards. Rankings, scores, holdings, rewards and Call activity remain illustrative. The supplied transparent football and NFL logos render directly at their natural proportions in matching selector circles. The selected mark is black on white; the inactive mark stays white on a dark circle.
+ENDGAME and its avatar are the user's supplied in-game identity, used across the profile, Calls and share cards. Rankings, scores, holdings, rewards and Call activity remain illustrative. The selector uses the clean Football crest SVG and supplied transparent NFL PNG. The 92×48px capsule contains 40px slots with inset 36px discs, a 20×24px Football mark and a 22×28px NFL mark. These optical sizes remain consistent on narrow phones. The selected mark is black on white; the inactive mark stays white on a dark circle.
 
 `reference-game.png` is the earlier July 2026 marketing composite. The seventeen current screenshot references used for v0.3 are instead stored in ignored `references/`, outside `public/`, and served locally through `/reference`. These comprise the ten earlier references plus seven player-profile references: three desktop and four iOS. They are review material and should remain outside any public asset package.
 
