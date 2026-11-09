@@ -3,5 +3,5 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "scripts": { "dev": "node server.mjs", "check": "node --check server.mjs && node --check public/app.js && node --check public/research.js && node --check public/player-profile.js && node --check public/club-badges.js && node --check public/profile-share-card.js" }
+  "scripts": { "dev": "node server.mjs", "check": "node --check server.mjs && node --check public/app.js && node --check public/research.js && node --check public/player-profile.js && node --check public/club-badges.js && node --check public/profile-share-card.js && node --check public/player-share-card.js" }
 }

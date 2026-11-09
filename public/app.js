@@ -2,6 +2,7 @@ import { profileOverview, callsPanel } from './research.js';
 import { renderPlayerProfile } from './player-profile.js';
 import { getClubBadge } from './club-badges.js';
 import { buildProfileShareCard } from './profile-share-card.js';
+import { buildPlayerShareCard } from './player-share-card.js';
 const $ = (selector) => document.querySelector(selector);
 const isLocalPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -95,7 +96,7 @@ function render(){
     const preview=$('.share-preview');
     preview.innerHTML='<p class="muted">Preparing card…</p>';
     buildCard().then(canvas=>{
-      canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${shareLabels[state.shareType]} share card — ${state.name} — concept with sample data`);
+      canvas.setAttribute('role','img');canvas.setAttribute('aria-label',`${shareLabels[state.shareType]} share card — ${state.shareType==='player'?players[state.player].name+' — shared by ':''}${state.name} — concept with sample data`);
       canvas.className='share-canvas';preview.replaceChildren(canvas);
     }).catch(()=>{preview.innerHTML='<p class="muted">Could not render the preview. Try switching the card content.</p>';});
   }
@@ -137,6 +138,7 @@ async function buildCard(){
   const s={...state},p=players[s.shareType==='pack'?1:s.player],type=s.shareType;
   await document.fonts.ready;
   if(type==='manager')return buildProfileShareCard(s,{loadImage,getClubBadge});
+  if(type==='player')return buildPlayerShareCard(s,p,{loadImage,getClubBadge});
   const W=1080,H=s.format==='story'?1920:1080,person=['manager','picks','call'].includes(type);
   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');
   ctx.fillStyle='#080a0f';ctx.fillRect(0,0,W,H);

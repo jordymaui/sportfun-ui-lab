@@ -95,12 +95,15 @@ Player pages also use these badges beside the player's club, below performance b
 - Switch mobile/desktop layout and compare against the saved game screenshot references.
 - Compose Picks-result, pack-pull, Call, manager or player cards in square (1080×1080) or story (1080×1920) format. Preview and PNG download use the same Canvas renderer, retaining identity and a sample-data label.
 - Manager cards use the game's flat surfaces, Inter typography and DM Mono labels, with a left-aligned identity, supported-club badge and equally sized rank values. Square cards use two stat columns; story cards stack them with room for the season context.
+- Player cards use the same frame, type scale and panel spacing, with a compact shirt, player name and supplied club badge. Performance and 24-hour share-price change have matching value sizes; ENDGAME attribution stays secondary. The change period matches the player-page mock, and all figures remain illustrative.
 - Copy a preview URL on the current hostname. Hosted URLs can be shared; localhost URLs work only on the computer running the development server.
 - Sharing has a sticky Back to profile/player control. It restores the source view, tab and scroll position, even after changing card format or revisiting Sharing. Direct share links fall back to the relevant profile.
 
 ## Validation history — 6 November 2026
 
 The profile-card refinement on 9 November passed JavaScript syntax and whitespace checks. Both square and story PNGs were downloaded and visually inspected for typography, spacing, image crops and overlap. The 390px mobile preview displayed the square card without horizontal overflow. Profile ranks remain sample data.
+
+The player-card refinement also passed syntax and whitespace checks. Square and story PNG exports were visually inspected, the 390px mobile preview had no horizontal overflow, and browser review covered long/accented player names, club badges and returning to the selected player. The five current shirt and badge mappings were reviewed. Real Madrid's white kit uses a dark shirt number for contrast.
 
 For v0.4 on 9 November, the 1660px desktop review measured a 76px header, 22% sidebar and a roughly 505px player performance panel. The 390px and 320px phone layouts had no horizontal page or player-content overflow. Browser review covered all three player tabs, shared manager navigation and the full-width control; supplied badge images loaded successfully. Static rendering covered all 30 player/size/tab combinations, including badge paths, fixture pairs and existing action hooks. Syntax and whitespace checks passed. Chart values and fixture probabilities remain illustrative.
 
