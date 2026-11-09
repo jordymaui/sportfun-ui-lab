@@ -53,12 +53,10 @@ body,.lab-header {background:#080a0f}
 .tp-coin,.tp {background:#eff1f2;color:#080a0f}
 .sport-switch {background:#eff1f2;color:#080a0f;border-radius:50%;height:33px;width:33px;display:grid;place-items:center;padding:7px;flex-shrink:0}
 .sport-switch svg {height:21px;width:21px}
-.game-sports {display:flex;align-items:center;gap:5px;border-radius:28px;padding:4px;background:#18181f;flex-shrink:0}
-.sport-option {display:flex;align-items:center;justify-content:center;height:33px;width:33px;padding:6px;color:#7a8085;border:0;background:transparent;border-radius:50%;flex-shrink:0}
-.sport-option svg,.sport-option img {width:23px;height:23px;object-fit:contain}
-.sport-mark {display:block;width:23px;height:25px;flex-shrink:0;background:currentColor;mask-mode:luminance;mask-size:contain;mask-repeat:no-repeat;mask-position:center}
-.sport-mark.football-mark {mask-image:url('/assets/football-mark.png')}
-.sport-mark.nfl-mark {mask-image:url('/assets/nfl-mark.png')}
+.game-sports {display:flex;align-items:center;gap:4px;border-radius:28px;padding:4px;background:#18181f;flex-shrink:0}
+.sport-option {display:grid;place-items:center;height:36px;width:36px;padding:0;color:#eff1f2;border:0;background:#111118;border-radius:50%;flex-shrink:0}
+.sport-option .sport-mark {display:block;width:24px;height:28px;object-fit:contain;flex-shrink:0;filter:none}
+.sport-option.selected .sport-mark {filter:brightness(0)}
 .sport-option.selected,.sport-option.active,.sport-option[aria-pressed=true] {background:#eff1f2;color:#111118}
 .game-desktop-links {display:none}
 .device[data-size=desktop] .game-desktop-links {display:flex;align-items:center;align-self:stretch;gap:19px;margin-left:8px;min-width:0}
@@ -273,8 +271,8 @@ dialog input,dialog textarea {background:#080a0f;border-color:#303335}
   .balances {gap:8px}
   .currency {font-size:10px}
   .game-sports {gap:3px;padding:3px}
-  .sport-option {height:29px;width:29px;padding:5px}
-  .sport-option svg,.sport-option img {height:20px;width:20px}
+  .sport-option {height:32px;width:32px;padding:0}
+  .sport-option .sport-mark {height:24px;width:21px}
   .profile-name {font-size:21px}
   .stat {padding:12px 8px}
   .stat-value {font-size:16px}
@@ -304,8 +302,8 @@ dialog input,dialog textarea {background:#080a0f;border-color:#303335}
 .device[data-size=mobile] .balances {grid-column:1;grid-row:1;justify-self:start;margin:0;gap:8px;min-width:0}
 .device[data-size=mobile] .currency {font-size:10px;font-family:Inter,Arial,sans-serif;font-weight:550;gap:4px;letter-spacing:-.1px}
 .device[data-size=mobile] .game-sports {grid-column:2;grid-row:1;justify-self:center;gap:3px;padding:4px}
-.device[data-size=mobile] .sport-option {height:32px;width:32px;padding:5px}
-.device[data-size=mobile] .sport-option svg,.device[data-size=mobile] .sport-option img {height:24px;width:24px}
+.device[data-size=mobile] .sport-option {height:36px;width:36px;padding:0}
+.device[data-size=mobile] .sport-option .sport-mark {height:28px;width:24px}
 .device[data-size=mobile] .game-utilities {grid-column:3;grid-row:1;justify-self:end;gap:6px}
 .device[data-size=mobile] .game-topbar>.top-avatar {grid-column:3;grid-row:1;justify-self:end}
 .device[data-size=mobile] .game-utility {width:27px;height:27px;padding:5px}
@@ -401,8 +399,8 @@ dialog input,dialog textarea {background:#080a0f;border-color:#303335}
   .device[data-size=mobile] .currency {font-size:9px;gap:3px}
   .device[data-size=mobile] .balances {gap:5px}
   .device[data-size=mobile] .gold-coin,.device[data-size=mobile] .tp-coin {width:14px;height:14px;font-size:7px}
-  .device[data-size=mobile] .sport-option {height:28px;width:28px;padding:4px}
-  .device[data-size=mobile] .sport-option img,.device[data-size=mobile] .sport-option svg {height:21px;width:21px}
+  .device[data-size=mobile] .sport-option {height:32px;width:32px;padding:0}
+  .device[data-size=mobile] .sport-option .sport-mark {height:24px;width:21px}
   .device[data-size=mobile] .game-sports {padding:3px;gap:2px}
   .device[data-size=mobile] .game-utilities {gap:4px}
   .device[data-size=mobile] .game-utility {height:24px;width:24px;padding:4px}
@@ -417,7 +415,7 @@ dialog input,dialog textarea {background:#080a0f;border-color:#303335}
   .device[data-size=mobile] .player-row>.form-bars {display:none}
   .device[data-size=mobile] .career-number {font-size:25px}
 }
-.game-utilities{display:flex;align-items:center;gap:8px;flex-shrink:0}.game-utility{width:28px;height:28px;border:0;border-radius:50%;display:grid;place-items:center;background:#303335;color:#b6babe;padding:6px}.game-utility svg{width:16px;height:16px}.sport-option img.football-mark{width:21px;height:25px}.sport-option.selected img.football-mark{filter:invert(1)}
+.game-utilities{display:flex;align-items:center;gap:8px;flex-shrink:0}.game-utility{width:28px;height:28px;border:0;border-radius:50%;display:grid;place-items:center;background:#303335;color:#b6babe;padding:6px}.game-utility svg{width:16px;height:16px}
 
 /* On a real narrow browser, the lab becomes a compact toolbar around the app. */
 @media(max-width:760px) {

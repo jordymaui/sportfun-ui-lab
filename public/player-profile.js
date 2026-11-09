@@ -1,10 +1,27 @@
-const performanceScores = [72, 64, 91, 38, 55, 84, 79, 66, 110, 95];
-const opponents = ['RIV', 'UNI', 'ATH', 'CIT', 'RIV', 'UNI', 'CIT', 'ATH', 'UNI', 'RIV'];
-const priceSamples = ['0.0288', '0.0364', '0.0246', '0.0192', '0.0168'];
+import { getClubBadge } from './club-badges.js';
 
-function performanceChart(index = 0) {
+const performanceScores = [72, 64, 91, 38, 55, 84, 79, 66, 110, 95];
+const priceSamples = ['0.0288', '0.0364', '0.0246', '0.0192', '0.0168'];
+// Named examples for this UI study, not actual past or upcoming schedules.
+const exampleOpponentsByTeam = {
+  Barcelona: [['Real Madrid','RMA'], ['Atlético Madrid','ATM'], ['Villarreal','VIL'], ['Valencia','VAL']],
+  'Real Madrid': [['Barcelona','BAR'], ['Athletic Club','ATH'], ['Real Betis','BET'], ['Villarreal','VIL']],
+  Arsenal: [['Fulham','FUL'], ['Tottenham Hotspur','TOT'], ['Manchester City','MCI'], ['Chelsea','CHE']],
+  PSG: [['Marseille','MAR'], ['Lyon','LYO'], ['AS Monaco','MON'], ['Benfica','BEN']],
+  Liverpool: [['Arsenal','ARS'], ['Manchester United','MUN'], ['Newcastle United','NEW'], ['Brighton & Hove Albion','BHA']],
+};
+
+function exampleOpponentsFor(team) {
+  const ownBadge = getClubBadge(team);
+  const entry = Object.entries(exampleOpponentsByTeam).find(([name]) => getClubBadge(name) === ownBadge);
+  return (entry?.[1] || []).map(([name, short]) => ({name, short, badge: getClubBadge(name)}))
+    .filter(opponent => opponent.badge && opponent.badge !== ownBadge);
+}
+
+function performanceChart(index, opponents, escapeHtml) {
+  if (!opponents.length) return '<p class="pp-data-note">No example opponents selected for this club.</p>';
   const values = performanceScores.map((value, i) => Math.max(20, value - index * 3 + (i % 3) * index));
-  return `<svg class="pp-performance-svg" viewBox="0 0 620 242" role="img" aria-label="Illustrative last ten match performance scores">
+  return `<svg class="pp-performance-svg" viewBox="0 0 620 242" role="img" aria-label="Illustrative last ten match performance scores. Example opponents: ${escapeHtml(opponents.map(opponent => opponent.name).join(', '))}.">
     <defs>${[['Green','#00c62d'],['Amber','#fdb913'],['Red','#ff4400']].map(([key,color])=>`<linearGradient id="ppBar${key}" x1="0" y1="0" x2="0" y2="1"><stop stop-color="${color}" stop-opacity=".38"/><stop offset="1" stop-color="${color}" stop-opacity=".035"/></linearGradient>`).join('')}</defs>
     <path d="M12 184H610" stroke="#303335"/>
     ${values.map((value, i) => {
@@ -12,12 +29,13 @@ function performanceChart(index = 0) {
       const height = value * 1.23;
       const color = value >= 70 ? '#00c62d' : value >= 50 ? '#fdb913' : '#ff4400';
       const gradient = value >= 70 ? 'Green' : value >= 50 ? 'Amber' : 'Red';
-      return `<rect x="${x - 15}" y="${182 - height}" width="30" height="${height}" rx="15" fill="url(#ppBar${gradient})"/>
+      const opponent = opponents[i % opponents.length];
+      const matchLabel = escapeHtml(`Example match vs ${opponent.name} (${i % 2 ? 'away' : 'home'}): ${value} points`);
+      return `<g><title>${matchLabel}</title><rect x="${x - 15}" y="${182 - height}" width="30" height="${height}" rx="15" fill="url(#ppBar${gradient})"/>
         <circle cx="${x}" cy="${181 - height}" r="17" fill="${color}"/>
         <text x="${x}" y="${186 - height}" text-anchor="middle" fill="#111118" font-size="15" font-weight="700">${value}</text>
-        <circle cx="${x}" cy="211" r="14" fill="#303335" stroke="#484c4f"/>
-        <text x="${x}" y="214" text-anchor="middle" fill="#eff1f2" font-size="7" font-weight="600">${opponents[i]}</text>
-        <text x="${x}" y="238" text-anchor="middle" fill="#7a8085" font-size="8">${i % 2 ? 'A' : 'H'}</text>`;
+        <image href="${opponent.badge}" x="${x - 17}" y="194" width="34" height="34" aria-label="${escapeHtml(opponent.name)} club badge"/>
+        <text x="${x}" y="239" text-anchor="middle" fill="#7a8085" font-size="8">${opponent.short} · ${i % 2 ? 'A' : 'H'}</text></g>`;
     }).join('')}
   </svg>`;
 }
@@ -54,6 +72,8 @@ export function renderPlayerProfile(state, helpers) {
   const { players, shirt, icon, escapeHtml, callsPanel } = helpers;
   const playerIndex = Number.isInteger(state.player) && players[state.player] ? state.player : 0;
   const p = players[playerIndex];
+  const clubBadge = getClubBadge(p.team);
+  const opponents = exampleOpponentsFor(p.team);
   const tab = ['selection','market','statistics'].includes(state.playerTab) ? state.playerTab : 'selection';
   const price = priceSamples[playerIndex] || priceSamples[0];
   const heading = (title, detail = '') => `<div class="pp-panel-heading"><h2>${title}</h2>${detail ? `<span>${detail}</span>` : ''}</div>`;
@@ -68,7 +88,7 @@ export function renderPlayerProfile(state, helpers) {
       <section class="pp-identity" aria-label="Player overview">
         <button class="pp-mobile-share" data-action="share-player" aria-label="Share player">${icon('share')}</button>
         <button class="pp-close" data-section="squad" aria-label="Close player and return to roster">×</button>
-        <div class="pp-person"><div class="pp-shirt-circle">${shirt(p,true)}</div><div class="pp-name"><h1>${escapeHtml(p.name)}</h1><p>${escapeHtml(p.team)} <span>·</span> ${escapeHtml(p.position)}</p></div></div>
+        <div class="pp-person"><div class="pp-shirt-circle">${shirt(p,true)}</div><div class="pp-name"><h1>${escapeHtml(p.name)}</h1><p class="pp-teamline">${clubBadge ? `<img class="pp-club-badge" src="${clubBadge}" alt="" aria-hidden="true">` : ''}<span class="pp-team-name">${escapeHtml(p.team)}</span><span aria-hidden="true">·</span><span>${escapeHtml(p.position)}</span></p></div></div>
         <div class="pp-price"><span class="pp-coin" aria-label="Gold">★</span><strong>${price}</strong></div>
         <div class="pp-change"><strong>↗ ${escapeHtml(p.change)}</strong><span>24h · sample price</span></div>
         <div class="pp-trade-actions"><button class="pp-sign" data-action="player-trade-preview">Sign more shares</button><button class="pp-release" data-action="player-trade-preview">Release</button><button class="pp-swap" data-action="player-trade-preview">Swap ${icon('arrows')}</button></div>
@@ -86,12 +106,13 @@ export function renderPlayerProfile(state, helpers) {
       <section class="pp-panel pp-performance" data-player-group="selection" aria-label="Player performance">
         ${heading('Performance','LAST 10 MATCHES')}
         <div class="pp-performance-key"><span><i></i>Performance points</span><span>Example opponents</span></div>
-        <div class="pp-performance-scroll">${performanceChart(playerIndex)}</div>
+        <div class="pp-performance-scroll">${performanceChart(playerIndex, opponents, escapeHtml)}</div>
+        <div class="pp-opponent-legend" aria-label="Example opponent names">${opponents.map(opponent => `<span><img src="${opponent.badge}" alt="" aria-hidden="true"><span>${escapeHtml(opponent.name)}</span></span>`).join('')}</div>
       </section>
 
       <section class="pp-fixtures" data-player-group="selection" aria-label="Upcoming example matches">
         ${heading('Upcoming matches','EXAMPLE FIXTURES')}
-        <div class="pp-fixture-strip">${['Riverside','United','Athletic','City'].map((team,i)=>`<article class="pp-fixture"><div><span>Matchday ${11+i}</span><small>${i%2?'AWAY':'HOME'}</small></div><div class="pp-fixture-teams"><span class="pp-opponent">${['RIV','UNI','ATH','CIT'][i]}</span><strong>${team}</strong><span class="pp-venue">${i%2?'A':'H'}</span></div><p>${['SUN · 15:00','WED · 20:00','SAT · 17:30','SUN · 14:00'][i]}</p></article>`).join('')}</div>
+        <div class="pp-fixture-strip">${opponents.map((opponent,i)=>`<article class="pp-fixture"><div><span>Matchday ${11+i}</span><small>${i%2?'AWAY':'HOME'}</small></div><div class="pp-fixture-teams"><img class="pp-opponent" src="${opponent.badge}" alt="" aria-hidden="true"><strong>${escapeHtml(opponent.name)}</strong><span class="pp-venue">${i%2?'A':'H'}</span></div><p>${['SUN · 15:00','WED · 20:00','SAT · 17:30','SUN · 14:00'][i]}</p></article>`).join('')}</div>
       </section>
 
       <section class="pp-ownership" data-player-group="selection" aria-label="Illustrative supply and holdings"><div class="pp-ownership-card"><span>Active / circulating supply</span><strong>1.24m <i>/ 2.00m</i></strong></div><div class="pp-ownership-card"><span>Your shares</span><strong>128</strong><small>Sample holding</small></div></section>

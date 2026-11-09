@@ -43,7 +43,7 @@ The prototype reuses assets from the local `sdf-site` checkout, plus the user's 
 | `clubs/*.svg` | User-supplied `Team Icons V2.zip` and `CWC Logos.zip`, supplied 9 November 2026; SVG contents preserved with normalized filenames |
 | `reference-game.png` | `../sdf-site/public/images/marketing/football-mobiles-live-v2-20260730.png` |
 
-ENDGAME and its avatar are the user's supplied in-game identity, used across the profile, Calls and share cards. Rankings, scores, holdings, rewards and Call activity remain illustrative. The supplied football and NFL logos are rendered as CSS luminance masks to match the sport selector's active and inactive colours.
+ENDGAME and its avatar are the user's supplied in-game identity, used across the profile, Calls and share cards. Rankings, scores, holdings, rewards and Call activity remain illustrative. The supplied transparent football and NFL logos render directly at their natural proportions in matching selector circles. The selected mark is black on white; the inactive mark stays white on a dark circle.
 
 `reference-game.png` is the earlier July 2026 marketing composite. The seventeen current screenshot references used for v0.3 are instead stored in ignored `references/`, outside `public/`, and served locally through `/reference`. These comprise the ten earlier references plus seven player-profile references: three desktop and four iOS. They are review material and should remain outside any public asset package.
 
@@ -80,6 +80,8 @@ The feature direction introduced in v0.2 remains based on the user-provided [Spo
 The supported-club row uses the user's supplied game badges, with Fulham as the default. Fulham's black-and-white circular badge replaces the earlier “F” placeholder. Club names are matched without case or punctuation sensitivity, including common aliases. Unknown clubs retain the white initial fallback. Older saved “Your club” placeholders resolve to Fulham; custom club selections are preserved.
 
 The badge library contains all 67 supplied SVGs: 45 from Team Icons V2 and 22 from CWC Logos. Import checks verified passive SVG markup and byte-for-byte equality with the archives. On 9 November 2026, syntax checks, badge-path/alias checks and desktop/mobile browser review of Fulham's badge passed.
+
+Player pages also use these badges beside the player's club, below performance bars and in example fixture cards. Opponent names and badges come from the same per-club sample list; these are not real schedules. Checks covered all five sample players and asset paths, desktop/mobile rendering, and a 320px browser viewport without horizontal overflow. The football/NFL selector uses consistently sized circles and the original transparent marks, preserving their proportions and clear active/inactive contrast.
 
 ## Available interactions
 
