@@ -2,6 +2,8 @@
 
 A separate design playground for exploring Sport.Fun interface improvements. Version 0.5 adds earned achievement artwork and a profile showcase on top of the seventeen current Sport.Fun screenshot references. Profile and sharing layouts remain proposals. The `fdf-platform` game repository was not available during setup; no current game frontend source has been duplicated.
 
+[Profile requirements and developer handoff](docs/profile-requirements.md) describes the proposed behaviour, current prototype limits, data definitions and replication checks.
+
 ## Run locally
 
 From this directory:
