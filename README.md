@@ -16,7 +16,7 @@ Open <http://127.0.0.1:4186>. The preview uses the user's actual in-game display
 
 ## GitHub and Vercel
 
-Source repository: [jordymaui/sportfun-ui-lab](https://github.com/jordymaui/sportfun-ui-lab) (private).
+Source repository: [jordymaui/sportfun-ui-lab](https://github.com/jordymaui/sportfun-ui-lab) (public).
 
 Hosted preview: [sportfun-ui-lab.vercel.app](https://sportfun-ui-lab.vercel.app). Vercel is connected to the GitHub repository; pushes to `main` deploy the production preview.
 

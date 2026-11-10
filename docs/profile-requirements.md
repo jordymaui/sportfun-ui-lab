@@ -6,7 +6,7 @@ The profile should give a manager an identity, show where they compete now, cele
 
 **Preview:** [Manager profile](https://sportfun-ui-lab.vercel.app/?view=manager) · [Profile sharing](https://sportfun-ui-lab.vercel.app/?view=share&card=manager) · [Picks sharing](https://sportfun-ui-lab.vercel.app/?view=share&card=picks)
 
-**Source:** [sportfun-ui-lab](https://github.com/jordymaui/sportfun-ui-lab), private repository. Visual baseline: commit `f3f11f5`.
+**Source:** [sportfun-ui-lab](https://github.com/jordymaui/sportfun-ui-lab), public repository. Visual baseline: commit `f3f11f5`.
 
 The mockup is a separate static frontend, with working local interactions and illustrative game data. It has no live account or game-service integration. ENDGAME, the supplied avatar and Fulham preference are the example identity; the statistics below are fixtures, not product rules or verified account results.
 
